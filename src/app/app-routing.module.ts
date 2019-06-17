@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'register', loadChildren: './register/register.module#RegisterModule' },
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 
