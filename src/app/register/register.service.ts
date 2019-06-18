@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Record } from "./../_interface/record.model";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
+  private _url:string = "./../../assets/records.json"
 
-  constructor() { }
-  getRecords() {
-    return [
-      {id: "1", user: "Strabag", action: "vizsgálat", dateOfAction: new Date("02/02/2019")},
-      {id: "2", user: "Strabag", action: "karbantartás", dateOfAction: new Date("02/02/2019")},
-      {id: "3", user: "Strabag", action: "javítás", dateOfAction: new Date("02/02/2019")},
-      {id: "4", user: "Strabag", action: "vizsgálat", dateOfAction: new Date("02/02/2019")}
-    ];
+  constructor(private http: HttpClient) { }
+
+  getRecords(): Observable<Record[]>{
+    return this.http.get<Record[]>(this._url)
   }
 }

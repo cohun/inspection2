@@ -1,0 +1,6 @@
+[
+    {"id": "1", "user": "Strabag", "action": "vizsgálat", "dateOfAction": "02/02/2019"},
+    {"id": "2", "user": "Strabag", "action": "karbantartás", "dateOfAction": "02/02/2019"},
+    {"id": "3", "user": "Strabag", "action": "javítás", "dateOfAction": "02/02/2019"},
+    {"id": "4", "user": "Strabag", "action": "vizsgálat", "dateOfAction": "02/02/2019"}
+  ]
