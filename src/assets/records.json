@@ -1,6 +1,12 @@
 [
     {"id": "1", "user": "Strabag", "action": "vizsgálat", "dateOfAction": "02/02/2019"},
     {"id": "2", "user": "Strabag", "action": "karbantartás", "dateOfAction": "02/02/2019"},
-    {"id": "3", "user": "Strabag", "action": "javítás", "dateOfAction": "02/02/2019"},
-    {"id": "4", "user": "Strabag", "action": "vizsgálat", "dateOfAction": "02/02/2019"}
+    {"id": "3", "user": "Andritz", "action": "javítás", "dateOfAction": "06/02/2019"},
+    {"id": "4", "user": "BKV", "action": "vizsgálat", "dateOfAction": "02/04/2019"},
+    {"id": "5", "user": "MÁV", "action": "vizsgálat", "dateOfAction": "02/04/2019"},
+    {"id": "6", "user": "Rába", "action": "vizsgálat", "dateOfAction": "02/04/2019"},
+    {"id": "7", "user": "BKV", "action": "vizsgálat", "dateOfAction": "08/04/2018"},
+    {"id": "8", "user": "Hauni", "action": "vizsgálat", "dateOfAction": "03/04/2019"},
+    {"id": "9", "user": "BKV", "action": "vizsgálat", "dateOfAction": "02/04/2019"},
+    {"id": "10", "user": "BKV", "action": "vizsgálat", "dateOfAction": "01/04/2019"}
   ]

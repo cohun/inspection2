@@ -19,7 +19,15 @@
     <a routerLink="/register/records">Nyílvántartás</a>
     </li>
     <li>
-    <a routerLink="/account">Account Actions</a>
+    <a routerLink="/account">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <h2>Felhasználó</h2>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>LOGIN</button>
+        <button mat-menu-item>REGISTER</button>
+      </mat-menu>
+    </a>
     </li>
     </ul>
     </div>
