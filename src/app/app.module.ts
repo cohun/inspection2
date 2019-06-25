@@ -11,6 +11,10 @@ import { LayoutComponent } from './layout/layout.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { MatPaginatorIntl } from '@angular/material';
+import { CustomPaginatorIntl } from './custom-paginator-intl';
+import { NotFoundComponent } from './error-pages/not-found/not-found.component';
+import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,9 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     LayoutComponent,
     HomeComponent,
     HeaderComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    NotFoundComponent,
+    ServerErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +34,9 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     FlexLayoutModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: MatPaginatorIntl, useClass: CustomPaginatorIntl }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

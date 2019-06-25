@@ -12,6 +12,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 const matMod = [
   MatButtonModule,
@@ -25,7 +28,10 @@ const matMod = [
   MatPaginatorModule,
   MatInputModule,
   MatFormFieldModule,
-  MatMenuModule
+  MatMenuModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatCheckboxModule
 ]
 
 @NgModule({
