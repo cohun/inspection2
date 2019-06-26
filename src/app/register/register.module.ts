@@ -5,9 +5,10 @@ import { RegisterRoutingModule } from './register-routing/register-routing.modul
 import { MaterialModule } from "./../material/material.module";
 import { RegisterService } from "./register.service";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { RegisterDetailComponent } from './register-detail/register-detail.component';
 
 @NgModule({
-  declarations: [RegisterListComponent],
+  declarations: [RegisterListComponent, RegisterDetailComponent],
   imports: [
     CommonModule,
     RegisterRoutingModule,
