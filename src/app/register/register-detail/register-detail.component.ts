@@ -22,11 +22,11 @@ export class RegisterDetailComponent implements OnInit {
     this.register.getRecords()
     .subscribe(data => this.records = data);
   }
+
   getRegisterDetail() {
     const ide: string = this.activeRoute.snapshot.params.id;
     this.record = this.records.filter(rec => rec.id === ide);
     console.log(this.record[0].userDetail.email);
-
   }
 
 }

@@ -14,4 +14,5 @@ export class RegisterService {
   getRecords(): Observable<Record[]>{
     return this.http.get<Record[]>(this._url)
   }
+
 }

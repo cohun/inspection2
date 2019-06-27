@@ -15,6 +15,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatCardModule} from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
 
 const matMod = [
   MatButtonModule,
@@ -31,7 +33,9 @@ const matMod = [
   MatMenuModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatCardModule,
+  MatSelectModule
 ]
 
 @NgModule({
