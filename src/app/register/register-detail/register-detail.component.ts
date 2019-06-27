@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Record } from "../../_interface/record.model";
 import { Router, ActivatedRoute } from "@angular/router";
 import { RegisterService } from "../register.service";
@@ -7,7 +7,7 @@ import { RegisterService } from "../register.service";
   templateUrl: './register-detail.component.html',
   styleUrls: ['./register-detail.component.css']
 })
-export class RegisterDetailComponent implements OnInit {
+export class RegisterDetailComponent implements OnInit, DoCheck {
   public records: Array<Record> = [];
   public record: Array<Record> = [];
   public showProducts;
@@ -22,6 +22,12 @@ export class RegisterDetailComponent implements OnInit {
     this.register.getRecords()
     .subscribe(data => this.records = data);
   }
+  ngDoCheck(): void {
+    const ide: string = this.activeRoute.snapshot.params.id;
+    this.record = this.records.filter(rec => rec.id === ide);
+
+  }
+
 
   getRegisterDetail() {
     const ide: string = this.activeRoute.snapshot.params.id;

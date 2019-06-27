@@ -14,6 +14,7 @@ export class UserDataComponent implements OnInit {
   ngOnInit() {
 
   }
+
   pr() {
     console.log(this.record[0].user);
   }

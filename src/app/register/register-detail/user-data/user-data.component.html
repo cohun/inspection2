@@ -9,7 +9,19 @@
         </div>
         <div fxLayout="row wrap" fxFlex>
           <div fxFlex><strong>Cím:</strong></div>
-          <div fxFlex>{{record[0]?.userDetail.address}}</div>
+          <div fxFlex>{{record[0]?.userDetail?.address}}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Partner:</strong></div>
+          <div fxFlex>{{record[0]?.userDetail?.partner}}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Telefon:</strong></div>
+          <div fxFlex>{{record[0]?.userDetail?.tel}}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Email:</strong></div>
+          <div fxFlex>{{record[0]?.userDetail?.email}}</div>
         </div>
       </div>
     </mat-card-content>

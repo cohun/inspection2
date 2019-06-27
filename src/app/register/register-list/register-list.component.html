@@ -1,8 +1,12 @@
-<div fxLayout fxLayoutAlign="center center">
+
+<div fxLayout fxLayout.lt-md="column wrap" fxLayoutAlign="center center" fxLayoutGap.gt-sm="250px" fxLayoutGap.lt.md="20px">
   <mat-form-field fxFlex="30%">
     <input matInput type="text" (keyup)="doFilter($event.target.value)"
     placeholder="Keresés">
   </mat-form-field>
+  <div>
+    <a [routerLink]="['/register/create']" mat-button color="primary">Új felvétele</a>
+  </div>
 </div>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
