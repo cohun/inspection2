@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-register-create',
@@ -6,10 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register-create.component.css']
 })
 export class RegisterCreateComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  myControl = new FormControl();
+  options: string[] = ['Vizsgálat', 'Karbantartás', 'Javítás', 'Üzembehelyezés'];
 }

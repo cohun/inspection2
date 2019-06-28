@@ -2,6 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,6 +20,8 @@ import { MatPaginatorIntl } from '@angular/material';
 import { CustomPaginatorIntl } from './custom-paginator-intl';
 import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
+import { LoginComponent } from './login/login.component';
+import { NewComponent } from './new/new.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +31,9 @@ import { ServerErrorComponent } from './error-pages/server-error/server-error.co
     HeaderComponent,
     SidenavListComponent,
     NotFoundComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    LoginComponent,
+    NewComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +41,10 @@ import { ServerErrorComponent } from './error-pages/server-error/server-error.co
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: CustomPaginatorIntl }
