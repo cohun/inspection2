@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from "@angular/forms";
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -20,8 +21,9 @@ import { MatPaginatorIntl } from '@angular/material';
 import { CustomPaginatorIntl } from './custom-paginator-intl';
 import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { NewComponent } from './new/new.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { NewComponent } from './new/new.component';
     NotFoundComponent,
     ServerErrorComponent,
     LoginComponent,
-    NewComponent
+    NewComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { NewComponent } from './new/new.component';
     MaterialModule,
     FlexLayoutModule,
     HttpClientModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule

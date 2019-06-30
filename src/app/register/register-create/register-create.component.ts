@@ -6,7 +6,7 @@ import {FormControl} from '@angular/forms';
   templateUrl: './register-create.component.html',
   styleUrls: ['./register-create.component.css']
 })
-export class RegisterCreateComponent implements OnInit {
+export class RegisterCreateComponent {
   myControl = new FormControl();
   options: string[] = ['Vizsgálat', 'Karbantartás', 'Javítás', 'Üzembehelyezés'];
 }

@@ -1,0 +1,33 @@
+
+<mat-card fxFlex="450px" fxFlexAlign="end end">
+  <mat-card-header>
+      <mat-card-title>Hozza létre felhasználói fiókját!</mat-card-title>
+      <mat-card-subtitle>*****</mat-card-subtitle>
+  </mat-card-header>
+  <form #f="ngForm">
+  <mat-card-content>
+      <mat-form-field>
+        <input type="email" matInput placeholder="Kérem az email címet!" [(ngModel)]="email" name="email"
+        email required #emailInput="ngModel">
+        <mat-error *ngIf="emailInput.hasError('required')">Nem lehet üres</mat-error>
+        <mat-error *ngIf="!emailInput.hasError('required')">Érvénytelen email cím.</mat-error>
+      </mat-form-field>
+      <mat-form-field hintLabel="Minimum 6 karakter">
+        <input type="password" matInput placeholder="Kérem a jelszót!" [(ngModel)]="password" name="password"
+        required minlength="6" #pwLength="ngModel">
+
+        <mat-hint align="end">{{pwLength.value?.length}}/6</mat-hint>
+        <mat-error>Kérem adjon meg legalább 6 karaktert!</mat-error>
+      </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions align="center">
+      <button  [disabled]="f.invalid" type="submit" mat-raised-button (click)="onSubmit(f)" color="primary">Küld</button>
+      <button mat-raised-button (click)="onCancel()" color="warn">Mégse</button>
+  </mat-card-actions>
+  <mat-card-footer>
+      <mat-checkbox labelPosition="before" [(ngModel)]="agree" name="agree" required color="primary">
+        <p  style="padding-left: 8px" class="mat-small">ÁSZF és adatvédelmi feltételeket megismertem és elfogadom!</p>
+      </mat-checkbox>
+  </mat-card-footer>
+</form>
+</mat-card>

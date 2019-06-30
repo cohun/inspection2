@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from "./error-pages/not-found/not-found.component";
 import { ServerErrorComponent } from './error-pages/server-error/server-error.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from "./auth/signup/signup.component";
 import { NewComponent } from './new/new.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent},
+  { path: 'signup', component: SignupComponent},
   { path: 'new', component: NewComponent},
   { path: 'register', loadChildren: './register/register.module#RegisterModule' },
   { path: '404', component: NotFoundComponent },
