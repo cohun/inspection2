@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 export class SignupComponent implements OnInit {
   password = '';
   email = '';
+  agree = false;
 
   constructor() { }
 
@@ -21,6 +22,7 @@ export class SignupComponent implements OnInit {
   onCancel() {
     this.password = '';
     this.email = '';
+    this.agree = false;
   }
 
 }

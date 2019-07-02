@@ -19,15 +19,25 @@
         <a routerLink="/register/records">Nyílvántartás</a>
       </li>
       <li>
-        <a routerLink="/signup">
+
           <button mat-button [matMenuTriggerFor]="menu">
             <h2>Felhasználó</h2>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>Bejelentkezés</button>
-            <button mat-menu-item>Új felhasználó</button>
+              <a routerLink="/login">
+            <button mat-menu-item><mat-icon>how_to_reg</mat-icon>
+            <span class="nav-caption" class="mat-small">Bejelentkezés</span></button>
+              </a>
+              <a routerLink="/signup">
+            <button mat-menu-item><mat-icon>assignment_ind</mat-icon>
+            <span class="nav-caption" class="mat-small">Új felhasználó</span></button>
+              </a>
+              <a routerLink="">
+            <button mat-menu-item><mat-icon>receipt</mat-icon>
+            <span class="nav-caption" class="mat-small">ÁSZF és Adatvédelmi Tájékoztató</span></button>
+              </a>
           </mat-menu>
-        </a>
+
       </li>
     </ul>
   </div>

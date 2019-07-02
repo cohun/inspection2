@@ -5,7 +5,21 @@
   <a mat-list-item routerLink="/register/records" (click)="onSidenavClose()">
     <mat-icon>assignment_ind</mat-icon> <span class="nav-caption">Nyílvántartás</span>
   </a>
-  <a mat-list-item routerLink="#" (click)="onSidenavClose()">
+  <a mat-list-item routerLink="#"  [matMenuTriggerFor]="belowMenu">
     <mat-icon>account_balance</mat-icon><span class="nav-caption">Felhasználó</span>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+      <a routerLink="/login" mat-menu-item (click)="onSidenavClose()">
+        <button mat-menu-item><mat-icon>how_to_reg</mat-icon>
+        <span class="nav-caption" class="mat-small">Bejelentkezés</span></button>
+      </a>
+      <a routerLink="/signup" mat-menu-item (click)="onSidenavClose()">
+        <button mat-menu-item><mat-icon>assignment_ind</mat-icon>
+        <span class="nav-caption" class="mat-small">Új felhasználó</span></button>
+      </a>
+      <a routerLink="" mat-menu-item (click)="onSidenavClose()">
+        <button mat-menu-item><mat-icon>receipt</mat-icon>
+        <span class="nav-caption" class="mat-small">ÁSZF és Adatvédelmi Tájékoztató</span></button>
+      </a>
+    </mat-menu>
   </a>
 </mat-nav-list>

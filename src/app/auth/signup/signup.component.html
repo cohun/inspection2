@@ -6,7 +6,7 @@
   </mat-card-header>
   <form #f="ngForm">
   <mat-card-content>
-      <mat-form-field>
+      <mat-form-field fxLayout="center">
         <input type="email" matInput placeholder="Kérem az email címet!" [(ngModel)]="email" name="email"
         email required #emailInput="ngModel">
         <mat-error *ngIf="emailInput.hasError('required')">Nem lehet üres</mat-error>
