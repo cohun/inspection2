@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { ErrorHandlerService } from "../../shared/error-handler.service";
 import {Router  } from "@angular/router";
+import { AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-register-list',
@@ -16,15 +17,18 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
 
   public records: Array<Record> = [];
   public displayedColumns: string[] = ['id', 'user', 'action', 'dateOfAction', 'details', 'update', 'delete'];
-  public dataSource = new MatTableDataSource<Record>();
+  public dataSource = new MatTableDataSource<any>();
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(private registerService: RegisterService, private errorService: ErrorHandlerService, private router: Router) { }
+  constructor(private registerService: RegisterService, private db: AngularFirestore,
+              private errorService: ErrorHandlerService, private router: Router) { }
 
   ngOnInit() {
-    this.registerService.getRecords()
-    .subscribe(data => this.dataSource.data = data);
+/*     this.registerService.getRecords()
+    .subscribe(data => this.dataSource.data = data); */
+    this.db.collection('records').valueChanges()
+    .subscribe(dat => this.dataSource.data = dat);
   }
 
   ngAfterViewInit(): void {
@@ -36,7 +40,7 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
   }
 
   public redirectToDetail = (id: string) => {
-    let url: string = `/register/detail/${id}`;
+    const url = `/register/detail/${id}`;
     this.router.navigate([url]);
   }
   public redirectToUpdate = (id: string) => {
