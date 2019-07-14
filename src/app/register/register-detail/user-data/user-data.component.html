@@ -2,26 +2,26 @@
  <mat-card fxFlex="500px" fxFlex.xs="100%">
     <mat-card-title>Kiválasztott üzemeltető adatai</mat-card-title>
     <mat-card-content>
-      <div fxLayout="column wrap" fxLayoutGap="40px">
+      <div fxLayout="column wrap" fxLayoutGap="40px" *ngFor="let item of user | async as list">
         <div fxLayout="row wrap" fxFlex>
           <div fxFlex><strong>Üzemeltető:</strong></div>
-          <div fxFlex>{{record[0]?.user}}</div>
+          <div fxFlex >{{item.user}}</div>
         </div>
         <div fxLayout="row wrap" fxFlex>
           <div fxFlex><strong>Cím:</strong></div>
-          <div fxFlex>{{record[0]?.userDetail?.address}}</div>
+          <div fxFlex>{{item.address}}</div>
         </div>
         <div fxLayout="row wrap" fxFlex>
           <div fxFlex><strong>Partner:</strong></div>
-          <div fxFlex>{{record[0]?.userDetail?.partner}}</div>
+          <div fxFlex>{{item.partner}}</div>
         </div>
         <div fxLayout="row wrap" fxFlex>
           <div fxFlex><strong>Telefon:</strong></div>
-          <div fxFlex>{{record[0]?.userDetail?.tel}}</div>
+          <div fxFlex>{{item.tel}}</div>
         </div>
         <div fxLayout="row wrap" fxFlex>
           <div fxFlex><strong>Email:</strong></div>
-          <div fxFlex>{{record[0]?.userDetail?.email}}</div>
+          <div fxFlex>{{item.email}}</div>
         </div>
       </div>
     </mat-card-content>

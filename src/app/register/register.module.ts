@@ -8,7 +8,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { RegisterDetailComponent } from './register-detail/register-detail.component';
 import { UserDataComponent } from './register-detail/user-data/user-data.component';
 import { RegisterCreateComponent } from './register-create/register-create.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [RegisterListComponent, RegisterDetailComponent, UserDataComponent, RegisterCreateComponent],
@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     RegisterRoutingModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    FormsModule,
     MaterialModule
   ],
   providers: [RegisterService],

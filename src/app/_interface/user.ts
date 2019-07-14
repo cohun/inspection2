@@ -1,8 +1,7 @@
 export interface User {
-    id: string;
+    user: string;
     address: string;
     partner: string;
     tel: string;
     email: string;
-    recordId?: string;
 }

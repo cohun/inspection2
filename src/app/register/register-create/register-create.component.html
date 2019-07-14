@@ -1,29 +1,35 @@
 <section fxLayout="row wrap" fxLayoutAlign="center center">
   <mat-card fxFlex="500px" fxFlex.xs="100%">
     <mat-card-title>Új esemény felvétele</mat-card-title>
-  <form [formGroup]="ownerForm" (ngSubmit)="createOwner(ownerForm.value)"
-        fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
-
+ <form fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
   <mat-card-content>
-    <mat-form-field>
-      <input matInput type="text" placeholder="Üzemeltető" formControlName="name" id="name">
+    <mat-form-field appearance="standard">
+        <mat-label>Üzemeltető</mat-label>
+      <input matInput type="text">
+      <mat-hint align="end">Kezd el gépelni!</mat-hint>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Időpont megadása" formControlName="dateOfBirth" id="dateOfBirth"
+      <mat-label>Sorszám</mat-label>
+      <input matInput type="text">
+    </mat-form-field>
+
+     <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Időpont megadása"
           readonly (click)="picker.open()">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field>
-      <input type="text" placeholder="Válssz eseményt!" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <!--<mat-form-field>
+      <input type="text" placeholder="Válssz eseményt!" aria-label="Number" matInput [formControl]="myControl"
+      [matAutocomplete]="auto" formControlName="action" id="action">
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of options" [value]="option">
           {{option}}
         </mat-option>
       </mat-autocomplete>
-    </mat-form-field>
+    </mat-form-field> -->
   </mat-card-content>
   <mat-card-actions align="center">
       <button mat-raised-button color="primary">Create</button>

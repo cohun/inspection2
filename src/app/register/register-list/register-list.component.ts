@@ -25,10 +25,7 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
               private errorService: ErrorHandlerService, private router: Router) { }
 
   ngOnInit() {
-/*     this.registerService.getRecords()
-    .subscribe(data => this.dataSource.data = data); */
-    this.db.collection('records').valueChanges()
-    .subscribe(dat => this.dataSource.data = dat);
+    this.registerService.getRecords(this.dataSource);
   }
 
   ngAfterViewInit(): void {

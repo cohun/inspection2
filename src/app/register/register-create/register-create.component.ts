@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
+import { RecordCreation } from "../../_interface/record-creation";
 
 @Component({
   selector: 'app-register-create',
@@ -7,6 +9,9 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./register-create.component.css']
 })
 export class RegisterCreateComponent {
-  myControl = new FormControl();
+/*   myControl = new FormControl();
   options: string[] = ['Vizsgálat', 'Karbantartás', 'Javítás', 'Üzembehelyezés'];
+
+  ownerForm: FormGroup; */
+
 }

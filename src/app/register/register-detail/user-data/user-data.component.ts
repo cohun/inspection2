@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Record } from "../../../_interface/record.model";
+import { User } from "../../../_interface/user";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-data',
@@ -7,7 +8,7 @@ import { Record } from "../../../_interface/record.model";
   styleUrls: ['./user-data.component.css']
 })
 export class UserDataComponent implements OnInit {
-  @Input() public record: Array<Record>;
+  @Input() public user: Observable<User[]>;
 
   constructor() { }
 
@@ -15,7 +16,4 @@ export class UserDataComponent implements OnInit {
 
   }
 
-  pr() {
-    console.log(this.record[0].user);
-  }
 }
