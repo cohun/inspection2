@@ -4,6 +4,7 @@ import { User } from "../_interface/user";
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
 import { AngularFirestore } from '@angular/fire/firestore';
+import { async } from 'q';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class RegisterService {
   records$: Observable<Record[]>;
   public fid: string;
   public user$: Observable<User[]>;
+  public users$: Observable<User[]>;
+  user = [];
 
   constructor(private db: AngularFirestore) { }
 
@@ -30,19 +33,26 @@ export class RegisterService {
       });
      }));
   }
-
-
-
-  loadAll() {
-    this.records$ = this.db.collection('records').snapshotChanges()
-    .pipe(map(snaps => {
-      return snaps.map(snap => {
-        return {
-          fid: snap.payload.doc.id,
-          ...snap.payload.doc.data()
-        }as Record;
-      });
-     }));
+  getUserToAutocomplete() {
+    this.users$ = this.db.collection('users').snapshotChanges()
+   .pipe(map(data => {
+     return data.map(e => {
+       return {
+         ...e.payload.doc.data()
+       } as User;
+     });
+   }));
   }
 
-}
+    loadAll() {
+      this.records$ = this.db.collection('records').snapshotChanges()
+      .pipe(map(snaps => {
+        return snaps.map(snap => {
+          return {
+            fid: snap.payload.doc.id,
+            ...snap.payload.doc.data()
+          }as Record;
+        });
+       }));
+    }
+  }
