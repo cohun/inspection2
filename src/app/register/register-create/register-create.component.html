@@ -1,35 +1,44 @@
 <section fxLayout="row wrap" fxLayoutAlign="center center">
-  <mat-card fxFlex="500px" fxFlex.xs="100%">
+  <mat-card fxFlex="400px" fxFlex.xs="100%">
     <mat-card-title>Új esemény felvétele</mat-card-title>
- <form fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
+ <form [formGroup] = "userForm" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px"
+       (ngSubmit)="createReg(userForm.value)">
   <mat-card-content>
+
+    <mat-form-field>
+      <input type="text" placeholder="Válssz eseményt!" aria-label="Number" matInput
+      [matAutocomplete]="aut" formControlName="action" id="action">
+      <mat-autocomplete #aut="matAutocomplete">
+        <mat-option *ngFor="let opt of actions" [value]="opt">
+          {{opt}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
     <mat-form-field appearance="standard">
         <mat-label>Üzemeltető</mat-label>
-      <input matInput type="text">
-      <mat-hint align="end">Kezd el gépelni!</mat-hint>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Sorszám</mat-label>
-      <input matInput type="text">
-    </mat-form-field>
-
-     <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Időpont megadása"
-          readonly (click)="picker.open()">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input type="text" placeholder="Válssz eseményt!" aria-label="Number" matInput [formControl]="myControl"
-      [matAutocomplete]="auto" formControlName="action" id="action">
+      <input matInput type="text" formControlName="user" [matAutocomplete]="auto">
+      <mat-hint align="end">Ha nem szerepel a kínálatban, előbb új üzemeltető adatait fel kell venni!</mat-hint>
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of options" [value]="option">
           {{option}}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Sorszám</mat-label>
+      <input matInput type="text" formControlName="id">
+    </mat-form-field>
+
+     <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Időpont megadása"
+          readonly (click)="picker.open()" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
   </mat-card-content>
   <mat-card-actions align="center">
       <button mat-raised-button color="primary">Create</button>

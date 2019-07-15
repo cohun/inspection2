@@ -23,6 +23,10 @@ export class RegisterService {
     return this.db.collection('records').valueChanges()
       .subscribe(dat => data.data = dat);
   }
+  addRecords(rec) {
+    this.db.collection('records').add(rec)
+  }
+
   getUser(ide) {
     this.user$ = this.db.collection('users', ref => ref.where('user', '==', ide)).snapshotChanges()
     .pipe(map(snaps => {
