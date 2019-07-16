@@ -15,30 +15,45 @@
 
   <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
     <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-      <li>
+      <li *ngIf="isAuth">
         <a routerLink="/register/records">Nyílvántartás</a>
       </li>
-      <li>
-
-          <button mat-button [matMenuTriggerFor]="menu">
-            <h2>Felhasználó</h2>
-          </button>
-          <mat-menu #menu="matMenu">
-              <a routerLink="/login">
-            <button mat-menu-item><mat-icon>how_to_reg</mat-icon>
-            <span class="nav-caption" class="mat-small">Bejelentkezés</span></button>
-              </a>
-              <a routerLink="/signup">
-            <button mat-menu-item><mat-icon>assignment_ind</mat-icon>
-            <span class="nav-caption" class="mat-small">Új felhasználó</span></button>
-              </a>
-              <a routerLink="">
-            <button mat-menu-item><mat-icon>receipt</mat-icon>
-            <span class="nav-caption" class="mat-small">ÁSZF és Adatvédelmi Tájékoztató</span></button>
-              </a>
-          </mat-menu>
-
+      <li *ngIf="!isAuth">
+        <button mat-button [matMenuTriggerFor]="menu">
+          <h2>Felhasználó</h2>
+        </button>
+        <mat-menu #menu="matMenu">
+            <a routerLink="/login">
+          <button mat-menu-item><mat-icon>how_to_reg</mat-icon>
+          <span class="nav-caption" class="mat-small">Bejelentkezés</span></button>
+            </a>
+            <a routerLink="/signup">
+          <button mat-menu-item><mat-icon>assignment_ind</mat-icon>
+          <span class="nav-caption" class="mat-small">Új felhasználó</span></button>
+            </a>
+            <a routerLink="">
+          <button mat-menu-item><mat-icon>receipt</mat-icon>
+          <span class="nav-caption" class="mat-small">ÁSZF és Adatvédelmi Tájékoztató</span></button>
+            </a>
+        </mat-menu>
       </li>
+
+      <li *ngIf="isAuth">
+        <button mat-button [matMenuTriggerFor]="menu">
+          <h2>Felhasználó</h2>
+        </button>
+        <mat-menu #menu="matMenu">
+            <a routerLink="/home" (click)="onLogout()">
+          <button mat-menu-item><mat-icon>how_to_reg</mat-icon>
+          <span class="nav-caption" class="mat-small">Kijelentkezés</span></button>
+            </a>
+            <a routerLink="">
+          <button mat-menu-item><mat-icon>receipt</mat-icon>
+          <span class="nav-caption" class="mat-small">ÁSZF és Adatvédelmi Tájékoztató</span></button>
+            </a>
+        </mat-menu>
+      </li>
+
     </ul>
   </div>
 </mat-toolbar>

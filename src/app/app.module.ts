@@ -24,6 +24,7 @@ import { ServerErrorComponent } from './error-pages/server-error/server-error.co
 import { LoginComponent } from './auth/login/login.component';
 import { NewComponent } from './new/new.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { AuthService } from "./auth/auth.service";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { SignupComponent } from './auth/signup/signup.component';
     AngularFireAuthModule
   ],
   providers: [
-    { provide: MatPaginatorIntl, useClass: CustomPaginatorIntl }
+    { provide: MatPaginatorIntl, useClass: CustomPaginatorIntl},
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
