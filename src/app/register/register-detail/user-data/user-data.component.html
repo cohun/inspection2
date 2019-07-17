@@ -1,8 +1,10 @@
 <section fxLayout="row wrap" fxLayoutAlign="center center">
  <mat-card fxFlex="500px" fxFlex.xs="100%">
     <mat-card-title>Kiválasztott üzemeltető adatai</mat-card-title>
+    <mat-card-subtitle *ngIf="!us">Nincsenek elérhető adatok az üzemeltetőről</mat-card-subtitle>
     <mat-card-content>
       <div fxLayout="column wrap" fxLayoutGap="40px" *ngFor="let item of user | async as list">
+
         <div fxLayout="row wrap" fxFlex>
           <div fxFlex><strong>Üzemeltető:</strong></div>
           <div fxFlex >{{item.user}}</div>
@@ -23,10 +25,11 @@
           <div fxFlex><strong>Email:</strong></div>
           <div fxFlex>{{item.email}}</div>
         </div>
+
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <mat-form-field>
+      <mat-form-field *ngIf="us">
         <mat-select placeholder="Mutasd a termékeket"
         (selectionChange)="onChange($event)">
           <mat-option *ngFor="let opt of selectOptions" [value]="opt.value">
@@ -34,7 +37,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-raised-button (click)="onClick" color="primary">Action</button>
+      <button  *ngIf="!us" mat-raised-button (click)="onClick()" color="primary">Adatbevitel</button>
     </mat-card-actions>
   </mat-card>
 </section>

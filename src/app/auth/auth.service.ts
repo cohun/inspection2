@@ -24,7 +24,7 @@ export class AuthService {
       if (user) {
         this.isAuthenticated = true;
         this.authChange.next(true);
-        this.router.navigate(['/register']);
+        this.router.navigate(['/home']);
       } else {
         this.authChange.next(false);
         this.router.navigate(['/login']);

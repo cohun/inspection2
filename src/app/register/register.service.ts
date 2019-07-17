@@ -16,6 +16,7 @@ export class RegisterService {
   public user$: Observable<User[]>;
   public users$: Observable<User[]>;
   user = [];
+  public ide: string;
 
   constructor(private db: AngularFirestore) { }
 
@@ -25,6 +26,10 @@ export class RegisterService {
   }
   addRecords(rec) {
     this.db.collection('records').add(rec)
+  }
+
+  addUsers(use) {
+    this.db.collection('users').add(use)
   }
 
   getUser(ide) {

@@ -26,10 +26,10 @@ export class RegisterCreateComponent implements OnInit {
   ngOnInit() {
     this.getOptions();
     this.userForm = new FormGroup({
-      user: new FormControl(''),
-      id: new FormControl(''),
-      date: new FormControl(new Date()),
-      action: new FormControl(''),
+      user: new FormControl('', [Validators.required]),
+      id: new FormControl('', [Validators.required]),
+      date: new FormControl(new Date(), [Validators.required]),
+      action: new FormControl('', [Validators.required]),
     })
   }
 
@@ -48,6 +48,7 @@ export class RegisterCreateComponent implements OnInit {
     }
     this.register.addRecords(newReg);
     console.log(newReg);
+    alert('Sikeres adatbevitel');
     this.location.back();
   }
 
