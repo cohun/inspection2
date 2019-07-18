@@ -25,7 +25,7 @@ export class UserDataComponent implements OnInit {
     this.user
     .subscribe(
       result => {
-          result.forEach(val => this.us = val.user )
+          result.forEach(val => this.us = val.user );
       });
 
     this.ide = this.activeRoute.snapshot.params.id;

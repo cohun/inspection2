@@ -1,3 +1,43 @@
-<div *ngFor="let item of recUpdate$ | async as list">
-  {{item.user}}
+<div *ngFor="let item of record | async as list">
+  <div>
+    {{item.id}}
+  </div>
+
 </div>
+
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="400px" fxFlex.xs="100%">
+      <mat-card-title>Adatok szerkesztése</mat-card-title>
+   <form [formGroup] = "recordForm" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px"
+         (ngSubmit)="createRec(recordForm.value)">
+    <mat-card-content *ngFor="let item of record | async as list">
+
+      <mat-form-field>
+        <mat-label>Sorszám</mat-label>
+        <input matInput type="text" formControlName="id" value="{{item.id}}">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Üzemeltető</mat-label>
+        <input matInput type="text" formControlName="user" value="{{item.user}}">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Esemény</mat-label>
+        <input matInput type="text" formControlName="action" value="{{item.action}}">
+      </mat-form-field>
+       <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Időpont megadása"
+            readonly (click)="picker.open()" formControlName="dateOfAction" value="{{item.dateOfAction}}">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+    </mat-card-content>
+    <mat-card-actions align="center">
+        <button [disabled] mat-raised-button color="primary">Feltölt</button>
+    </mat-card-actions>
+   </form>
+   <mat-card-footer align="center">
+      <button mat-raised-button color="warn" (click)="onCancel()">Megszakít</button>
+   </mat-card-footer>
+    </mat-card>
+  </section>

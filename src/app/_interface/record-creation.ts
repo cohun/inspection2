@@ -1,5 +1,5 @@
 export interface RecordCreation {
-  id: number;
+  id: string;
   user: string;
   action: string;
   dateOfAction: string;
