@@ -1,7 +1,8 @@
 
 <section fxLayout="row wrap" fxLayoutAlign="center center">
     <mat-card fxFlex="400px" fxFlex.xs="100%">
-      <mat-card-title>Adatok szerkesztése</mat-card-title>
+      <mat-card-title>Az alábbi adatok kerülnek törlésre</mat-card-title>
+      <mat-card-subtitle>(Figyelem! A művelet nem vonható vissza!)</mat-card-subtitle>
    <form [formGroup] = "recordForm" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px"
          (ngSubmit)="createRec(recordForm.value)">
     <mat-card-content *ngFor="let item of record | async as list">
@@ -27,11 +28,11 @@
 
     </mat-card-content>
     <mat-card-actions align="center">
-        <button [disabled]="true" mat-raised-button color="primary">Feltölt</button>
+        <button [disabled]="true" mat-raised-button color="primary">Töröl</button>
     </mat-card-actions>
    </form>
    <mat-card-footer align="center">
-      <button mat-raised-button color="warn" (click)="onCancel()">Megszakít</button>
+      <button mat-raised-button color="warn" (click)="onCancel()">Mégse</button>
    </mat-card-footer>
     </mat-card>
   </section>

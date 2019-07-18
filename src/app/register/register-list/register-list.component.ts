@@ -45,6 +45,8 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
     this.router.navigate([url]);
   }
   public redirectToDelete = (id: string) => {
+    const url = `/register/delete/${id}`;
+    this.router.navigate([url]);
   }
 
 }

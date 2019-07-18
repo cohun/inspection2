@@ -6,14 +6,16 @@ import { RegisterDetailComponent } from '../register-detail/register-detail.comp
 import { UserComponent } from '../user/user.component';
 import { UserCreateComponent } from '../user-create/user-create.component';
 import { RegisterUpdateComponent } from '../register-update/register-update.component';
+import { RegisterDeleteComponent } from '../register-delete/register-delete.component';
 
 const routes: Routes = [
   { path: 'records', component: RegisterListComponent },
   { path: 'detail/:id', component: RegisterDetailComponent },
   { path: 'create', component: UserComponent},
   { path: 'user', component: UserCreateComponent},
-  { path: 'update/:id', component: RegisterUpdateComponent}
-]
+  { path: 'update/:id', component: RegisterUpdateComponent},
+  { path: 'delete/:id', component: RegisterDeleteComponent}
+];
 
 @NgModule({
   declarations: [],
