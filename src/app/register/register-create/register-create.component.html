@@ -18,7 +18,7 @@
     <mat-form-field appearance="standard">
         <mat-label>Üzemeltető</mat-label>
       <input matInput type="text" formControlName="user" [matAutocomplete]="auto">
-      <mat-hint align="end">Ha nem szerepel a kínálatban, előbb új üzemeltető adatait fel kell venni!</mat-hint>
+      <mat-hint align="end">Ha nem szerepel a kínálatban, új üzemeltető beírható!</mat-hint>
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of options" [value]="option">
           {{option}}

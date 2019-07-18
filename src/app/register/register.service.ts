@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Record } from "./../_interface/record.model";
+import { RecordCreation } from "./../_interface/record-creation";
 import { User } from "../_interface/user";
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
@@ -12,6 +13,7 @@ import { async } from 'q';
 export class RegisterService {
   public records: Record[];
   records$: Observable<Record[]>;
+  public recUpdate$: Observable<RecordCreation[]>;
   public fid: string;
   public user$: Observable<User[]>;
   public users$: Observable<User[]>;
@@ -42,6 +44,18 @@ export class RegisterService {
       });
      }));
   }
+
+  getToUpdate(ide) {
+    this.recUpdate$ = this.db.collection('records', ref => ref.where('id', '==', ide)).snapshotChanges()
+    .pipe(map(snaps => {
+      return snaps.map(snap => {
+        return {
+          ...snap.payload.doc.data()
+        }as RecordCreation;
+      });
+     }));
+  }
+
   getUserToAutocomplete() {
     this.users$ = this.db.collection('users').snapshotChanges()
    .pipe(map(data => {

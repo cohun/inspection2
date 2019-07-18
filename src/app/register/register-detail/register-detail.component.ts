@@ -25,21 +25,4 @@ export class RegisterDetailComponent implements OnInit {
       this.user = this.register.user$;
     }
 
-/*   ngOnInit() {
-    this.register.getRecords()
-    .subscribe(data => this.records = data);
-  }
-  ngDoCheck(): void {
-    const ide: string = this.activeRoute.snapshot.params.id;
-    this.record = this.records.filter(rec => rec.id === ide);
-
-  }
-
-
-  getRegisterDetail() {
-    const ide: string = this.activeRoute.snapshot.params.id;
-    this.record = this.records.filter(rec => rec.id === ide);
-    console.log(this.record[0].userDetail.email);
-  } */
-
 }

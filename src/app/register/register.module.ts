@@ -11,9 +11,10 @@ import { RegisterCreateComponent } from './register-create/register-create.compo
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UserComponent } from './user/user.component';
 import { UserCreateComponent } from './user-create/user-create.component';
+import { RegisterUpdateComponent } from './register-update/register-update.component';
 
 @NgModule({
-  declarations: [RegisterListComponent, RegisterDetailComponent, UserDataComponent, RegisterCreateComponent, UserComponent, UserCreateComponent],
+  declarations: [RegisterListComponent, RegisterDetailComponent, UserDataComponent, RegisterCreateComponent, UserComponent, UserCreateComponent, RegisterUpdateComponent],
   imports: [
     CommonModule,
     RegisterRoutingModule,
