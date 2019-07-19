@@ -6,19 +6,19 @@
          (ngSubmit)="createRec(recordForm.value)">
     <mat-card-content *ngFor="let item of record | async as list">
 
-      <mat-form-field>
+      <mat-form-field appearance="fill">
         <mat-label>Sorszám</mat-label>
         <input matInput type="text" formControlName="id" value="{{item.id}}">
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field appearance="fill">
         <mat-label>Üzemeltető</mat-label>
         <input matInput type="text" formControlName="user" value="{{item.user}}">
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field appearance="fill">
         <mat-label>Esemény</mat-label>
         <input matInput type="text" formControlName="action" value="{{item.action}}">
       </mat-form-field>
-       <mat-form-field>
+       <mat-form-field appearance="fill">
         <input matInput [matDatepicker]="picker" placeholder="Időpont megadása"
             readonly (click)="picker.open()" formControlName="dateOfAction" value="{{item.dateOfAction}}">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
