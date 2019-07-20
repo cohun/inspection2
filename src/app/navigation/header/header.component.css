@@ -5,6 +5,9 @@ a {
 a:hover, a:active {
     color: lightgray;
     }
+li button h2:hover, li button h2:active {
+  color: lightgray;
+  }
 .navigation-items {
     list-style-type: none;
     padding: 0;

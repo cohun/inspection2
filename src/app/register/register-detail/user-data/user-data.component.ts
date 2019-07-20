@@ -14,6 +14,7 @@ export class UserDataComponent implements OnInit {
   isuser = false;
   us = '';
   public ide = '';
+  selected = '';
 
   constructor(
     private router: Router,
