@@ -38,7 +38,13 @@ export class UserDataComponent implements OnInit {
     this.router.navigate([url]).then(nav => {
       console.log(nav); // true if navigation is successful
     }, err => {
-      console.log(err) // when there's an error
+      console.log(err); // when there's an error
     });
+  }
+
+  routeToProducts() {
+    this.router.navigate(['/product/products'],
+    {queryParams: {user: this.ide,
+                  group: this.selected  }});
   }
 }

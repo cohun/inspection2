@@ -1,3 +1,16 @@
-<p>
-  product-list works!
-</p>
+
+
+    <mat-toolbar fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="80px">
+        <button mat-raised-button (click)="back()" color="primary">Vissza</button>
+        <span  fxFlex="250px">
+          <p>Üzemeltető: {{user}} </p>
+
+          <span class="caption">
+            <p class="mat-caption">
+            a táblázatban felsorolt <br> {{group}} vannak nyílvántartva:
+            </p>
+          </span>
+        </span>
+        <button mat-raised-button (click)="onClick" color="primary">Új bevitele</button>
+    </mat-toolbar>
+

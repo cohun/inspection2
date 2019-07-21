@@ -5,7 +5,7 @@
     </button>
   </div>
   <div>
-    <a routerLink="/home" fxLayout="row" fxLayoutAlign="start center">
+    <a routerLink="/home" routerLinkActive="active" fxLayout="row" fxLayoutAlign="start center">
       <h3>ETAR</h3>
       <span>
         <img src="./../../../assets/H-ITB_logo_Stencil.jpg" alt="logo" class="logo">
@@ -16,7 +16,7 @@
   <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
     <ul fxLayout fxLayoutGap="15px" class="navigation-items">
       <li *ngIf="isAuth">
-        <a routerLink="/register/records">Nyilvántartás</a>
+        <a routerLink="/register/records" routerLinkActive="active">Nyilvántartás</a>
       </li>
       <li *ngIf="!isAuth">
         <button mat-button [matMenuTriggerFor]="menu">
