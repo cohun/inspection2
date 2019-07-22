@@ -11,6 +11,7 @@ import { RegisterService } from '../../register.service';
 })
 export class UserDataComponent implements OnInit {
   @Input() public user: Observable<User[]>;
+  @Input() public id: string;
   isuser = false;
   us = '';
   public ide = '';
@@ -28,8 +29,7 @@ export class UserDataComponent implements OnInit {
       result => {
           result.forEach(val => this.us = val.user );
       });
-
-    this.ide = this.activeRoute.snapshot.params.id;
+    this.ide = this.activeRoute.snapshot.queryParams.user;
 }
 
   onClick() {
@@ -45,6 +45,7 @@ export class UserDataComponent implements OnInit {
   routeToProducts() {
     this.router.navigate(['/product/products'],
     {queryParams: {user: this.ide,
-                  group: this.selected  }});
+                  group: this.selected,
+                  id: this.id  }});
   }
 }

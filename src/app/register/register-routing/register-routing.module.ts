@@ -10,7 +10,7 @@ import { RegisterDeleteComponent } from '../register-delete/register-delete.comp
 
 const routes: Routes = [
   { path: 'records', component: RegisterListComponent },
-  { path: 'detail/:id', component: RegisterDetailComponent },
+  { path: 'detail', component: RegisterDetailComponent },
   { path: 'create', component: UserComponent},
   { path: 'user', component: UserCreateComponent},
   { path: 'update/:id', component: RegisterUpdateComponent},

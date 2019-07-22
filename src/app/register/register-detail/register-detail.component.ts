@@ -12,6 +12,7 @@ import { User } from '../../_interface/user';
 export class RegisterDetailComponent implements OnInit {
   public user: Observable<User[]>;
   public showProducts;
+  public id ='';
 
   constructor(
     private register: RegisterService,
@@ -20,7 +21,8 @@ export class RegisterDetailComponent implements OnInit {
   ) { }
 
     ngOnInit() {
-      const ide: string = this.activeRoute.snapshot.params.id;
+      this.id = this.activeRoute.snapshot.queryParams.id;
+      const ide: string = this.activeRoute.snapshot.queryParams.user;
       this.register.getUser(ide);
       this.user = this.register.user$;
     }

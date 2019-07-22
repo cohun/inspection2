@@ -35,7 +35,7 @@
     <th mat-header-cell *matHeaderCellDef> Részletek </th>
     <td mat-cell *matCellDef="let element">
     <button mat-icon-button color="primary"
-    (click)="redirectToDetail(element.user)">
+    (click)="redirectToDetail(element.user, element.id)">
     <mat-icon class="mat-18">reorder</mat-icon>
     </button>
     </td>

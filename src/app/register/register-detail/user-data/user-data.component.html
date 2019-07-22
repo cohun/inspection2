@@ -1,6 +1,6 @@
 <section fxLayout="row wrap" fxLayoutAlign="center center">
  <mat-card fxFlex="500px" fxFlex.xs="100%">
-    <mat-card-title>Kiválasztott üzemeltető adatai</mat-card-title>
+    <mat-card-title>Kiválasztott üzemeltető adatai ID: {{id}}</mat-card-title>
     <mat-card-subtitle *ngIf="!us">Nincsenek elérhető adatok az üzemeltetőről</mat-card-subtitle>
     <mat-card-content>
       <div fxLayout="column wrap" fxLayoutGap="40px" *ngFor="let item of user | async as list">
