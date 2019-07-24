@@ -22,4 +22,11 @@ export class ProductService {
       });
      }));
   }
+
+  getProducts(data, group) {
+    return this.db.collection('products', ref => ref.where('group', '==', group)).valueChanges()
+      .subscribe(dat => data.data = dat);
+  }
+
+
 }

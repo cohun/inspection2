@@ -6,23 +6,24 @@
         <div fxLayout="column wrap" fxLayoutGap="40px" *ngFor="let item of records$ | async as list">
 <div *ngIf="item.id == id">
     <div fxLayout="row wrap" fxFlex>
-      <div fxFlex><strong>Sorszám: </strong></div>
+      <div fxFlex><strong>Sorszám:</strong></div>
       <div fxFlex>{{item.id}}</div>
     </div>
     <div fxLayout="row wrap" fxFlex>
-      <div fxFlex><strong>Esemény: </strong></div>
+      <div fxFlex><strong>Esemény:</strong></div>
       <div fxFlex>{{item.action}}</div>
     </div>
     <div fxLayout="row wrap" fxFlex>
-      <div fxFlex><strong>Dátum: </strong></div>
+      <div fxFlex><strong>Dátum:</strong></div>
       <div fxFlex>{{item.dateOfAction}}</div>
     </div>
 </div>
         </div>
       </mat-card-content>
       <mat-card-actions fxLayout="row" fxLayoutAlign="space-between start">
-        <button mat-raised-button (click)="back()" color="accent">Vissza</button>
-        <button  mat-raised-button (click)="onClick" color="accent">Új adat</button>
+        <button mat-raised-button (click)="back()" color="warn">Vissza</button>
+        <button  mat-raised-button (click)="onClick" color="primary">Új sor felvétele</button>
       </mat-card-actions>
     </mat-card>
   </section>
+<app-product-table [group]="group" [user]="user"></app-product-table>
