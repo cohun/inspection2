@@ -36,10 +36,14 @@ export class ProductTableComponent implements OnInit {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 
-  public redirectToDetail = (user: string, id: string) => {
-    this.router.navigate([`/register/detail`],
-    {queryParams: {user: user,
-                  id: id}});
+  public redirectToDetail = (type: string, length: string, descreption: string, capacity: string, manufacturer: string) => {
+    this.router.navigate([`/product/single`],
+    {queryParams: {type: type,
+                  length: length,
+                  descreption: descreption,
+                  capacity: capacity,
+                  manufacturer: manufacturer,
+                  user: this.user}});
   }
   public redirectToUpdate = (id: string) => {
     const url = `/register/update/${id}`;

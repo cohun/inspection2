@@ -24,7 +24,6 @@ export class ProductListComponent implements OnInit {
     this.user = this.activeRoute.snapshot.queryParams.user;
     this.group = this.activeRoute.snapshot.queryParams.group;
     this.id = this.activeRoute.snapshot.queryParams.id;
-    console.log(this.user);
 
     this.products.getRecord(this.user);
     this.records$ = this.products.record$
