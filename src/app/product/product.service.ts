@@ -49,7 +49,7 @@ export class ProductService {
      }));
   }
 
-  loadProdSpec(fid: string) {
+  loadProdSpec(fid) {
     this.specProduct$ = this.db.collection('specProduct', ref => ref.where('fid', '==', fid))
     .snapshotChanges()
     .pipe(map(snaps => {
