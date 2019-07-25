@@ -21,6 +21,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from "@angular/material";
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatDividerModule} from '@angular/material/divider';
 
 const matMod = [
   MatButtonModule,
@@ -43,7 +44,8 @@ const matMod = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatAutocompleteModule,
-  MatDialogModule
+  MatDialogModule,
+  MatDividerModule
 ]
 
 @NgModule({

@@ -6,9 +6,10 @@ import { SingleProductComponent } from './single-product/single-product.componen
 import { MaterialModule } from "../material/material.module";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductTableComponent } from './product-table/product-table.component';
+import { ProductDataComponent } from './single-product/product-data/product-data.component';
 
 @NgModule({
-  declarations: [ProductListComponent, SingleProductComponent, ProductTableComponent],
+  declarations: [ProductListComponent, SingleProductComponent, ProductTableComponent, ProductDataComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,

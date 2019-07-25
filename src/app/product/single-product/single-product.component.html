@@ -1,46 +1,5 @@
-<section fxLayout="row wrap" fxLayoutAlign="center center">
-  <mat-card fxFlex="500px" fxFlex.xs="100%">
-     <mat-card-title>Felhasználó: {{user}} </mat-card-title>
-     <div #pRef>Hello</div>
-     <mat-card-content>
-       <div fxLayout="column wrap" fxLayoutGap="40px" *ngFor="let item of product$ | async as list">
-         <div fxLayout="row wrap" fxFlex>
-           <div fxFlex><strong>Fid:</strong></div>
-           <div fxFlex >{{item.fid}}</div>
-         </div>
-         <div fxLayout="row wrap" fxFlex>
-           <div fxFlex><strong>Típus:</strong></div>
-           <div fxFlex>{{item.type}}</div>
-         </div>
-         <div fxLayout="row wrap" fxFlex>
-           <div fxFlex><strong>Hossz:</strong></div>
-           <div fxFlex>{{item.length}}</div>
-         </div>
-         <div fxLayout="row wrap" fxFlex>
-           <div fxFlex><strong>Megnevezés:</strong></div>
-           <div fxFlex>{{item.descreption}}</div>
-         </div>
-         <div fxLayout="row wrap" fxFlex>
-           <div fxFlex><strong>Teherbírás:</strong></div>
-           <div fxFlex>{{item.capacity}}</div>
-         </div>
-       </div>
-
-       <div fxLayout="column wrap" fxLayoutGap="40px" *ngFor="let item of specProduct$ | async as list">
-        <div fxLayout="row wrap" fxFlex>
-          <div fxFlex><strong>Fid:</strong></div>
-          <div fxFlex >{{item.fid}}</div>
-        </div>
-        <div fxLayout="row wrap" fxFlex>
-          <div fxFlex><strong>Gyáriszám:</strong></div>
-          <div fxFlex>{{item.id}}</div>
-        </div>
-
-      </div>
-
-     </mat-card-content>
-     <mat-card-actions>
-
-     </mat-card-actions>
-   </mat-card>
+<section fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="start center">
+  <div *ngFor="let item of product$ | async as list" fxFlex.xs="100%">
+    <app-product-data [products]= "item"></app-product-data>
+  </div>
  </section>
