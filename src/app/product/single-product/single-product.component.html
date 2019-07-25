@@ -1,5 +1,7 @@
 <section fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="start center">
   <div *ngFor="let item of product$ | async as list" fxFlex.xs="100%">
-    <app-product-data [products]= "item"></app-product-data>
+    <app-product-data [products]= "item" [user]= "user" fxLayout="row wrap" fxLayoutGap="20px">
+
+    </app-product-data>
   </div>
  </section>

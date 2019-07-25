@@ -49,8 +49,9 @@ export class ProductService {
      }));
   }
 
-  loadProdSpec(fid) {
-    this.specProduct$ = this.db.collection('specProduct', ref => ref.where('fid', '==', fid))
+  loadProdSpec(fid, user) {
+    this.specProduct$ = this.db.collection('specProduct', ref => ref.where('fid', '==', fid)
+                                                            .where('user', '==', user ))
     .snapshotChanges()
     .pipe(map(snaps => {
       return snaps.map(snap => {

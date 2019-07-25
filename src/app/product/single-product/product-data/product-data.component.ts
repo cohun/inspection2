@@ -12,7 +12,9 @@ import { Location } from '@angular/common';
 })
 export class ProductDataComponent implements OnInit {
   @Input() products: ProductFid;
+  @Input() user: string;
   public product: ProductFid;
+  public users: string;
 
   public specProduct$: Observable<SpecProduct[]>;
 
@@ -20,16 +22,18 @@ export class ProductDataComponent implements OnInit {
   constructor(private productService: ProductService, private location: Location) { }
 
   ngOnInit() {
-    this.out(this.products);
-    const fid = this.products.fid;
-    console.log(fid);
-    this.productService.loadProdSpec(fid);
+    this.out(this.products, this.user);
+    const fid = this.product.fid;
+    const use = this.users;
+    console.log(fid, use);
+    this.productService.loadProdSpec(fid, use);
     this.specProduct$ = this.productService.specProduct$;
 
   }
 
-  out(prod: ProductFid) {
+  out(prod: ProductFid, us: string) {
     this.product = prod;
+    this.users = us;
   }
   onClick() {
     this.location.back();
