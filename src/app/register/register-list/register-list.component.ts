@@ -38,8 +38,8 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
 
   public redirectToDetail = (user: string, id: string) => {
     this.router.navigate([`/register/detail`],
-    {queryParams: {user: user,
-                  id: id}});
+    {queryParams: {user,
+                  id}});
   }
   public redirectToUpdate = (id: string) => {
     const url = `/register/update/${id}`;

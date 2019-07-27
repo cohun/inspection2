@@ -7,14 +7,20 @@ import { MaterialModule } from "../material/material.module";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductTableComponent } from './product-table/product-table.component';
 import { ProductDataComponent } from './single-product/product-data/product-data.component';
+import { ProductListCreateComponent } from './product-list/product-list-create/product-list-create.component';
+import { ProductListInputComponent } from './product-list/product-list-input/product-list-input.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [ProductListComponent, SingleProductComponent, ProductTableComponent, ProductDataComponent],
+  declarations: [ProductListComponent, SingleProductComponent, ProductTableComponent, ProductDataComponent,
+    ProductListCreateComponent, ProductListInputComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProductModule { }

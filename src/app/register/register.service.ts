@@ -27,11 +27,11 @@ export class RegisterService {
       .subscribe(dat => data.data = dat);
   }
   addRecords(rec) {
-    this.db.collection('records').add(rec)
+    this.db.collection('records').add(rec);
   }
 
   addUsers(use) {
-    this.db.collection('users').add(use)
+    this.db.collection('users').add(use);
   }
 
   getUser(ide) {

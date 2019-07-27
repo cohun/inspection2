@@ -5,6 +5,7 @@ import { map } from "rxjs/operators";
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ProductFid } from "../_interface/product-fid";
 import { SpecProduct } from "../_interface/specProduct";
+import { Product } from '../_interface/product';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ProductService {
   public record$: Observable<RecordCreation[]>;
   public product$: Observable<ProductFid[]>;
   public specProduct$: Observable<SpecProduct[]>;
+  public productGroup$: Observable<Product[]>;
 
   constructor(private db: AngularFirestore) { }
 
@@ -62,5 +64,19 @@ export class ProductService {
      }));
   }
 
+  loadProdGroup(group) {
+    this.productGroup$ = this.db.collection('products', ref => ref.where('group', '==', group))
+    .snapshotChanges()
+    .pipe(map(snaps => {
+      return snaps.map(snap => {
+        return {
+          ...snap.payload.doc.data()
+        }as Product;
+    });
+  }));
+}
+addProduct(prod) {
+  this.db.collection('products').add(prod);
+}
 
 }

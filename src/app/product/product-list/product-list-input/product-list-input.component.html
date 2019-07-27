@@ -1,0 +1,73 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="400px" fxFlex.xs="100%">
+      <mat-card-title>{{group | uppercase}} csoportba tartozó termék felvétele</mat-card-title>
+
+   <form [formGroup]="productForm" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px"
+         (ngSubmit)="createProd(productForm.value)">
+    <mat-card-content>
+
+      <mat-form-field appearance="standard">
+          <mat-label>Típus</mat-label>
+        <input matInput type="text" formControlName="type" [matAutocomplete]="type">
+        <mat-hint align="end">Ha nem szerepel a kínálatban, új beírható!</mat-hint>
+        <mat-autocomplete #type="matAutocomplete">
+          <mat-option *ngFor="let opt1 of types" [value]="opt1">
+            {{opt1}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+       <mat-form-field appearance="standard">
+          <mat-label>Hossz</mat-label>
+        <input matInput type="text" formControlName="length" [matAutocomplete]="length">
+        <mat-hint align="end">Ha nem szerepel a kínálatban, új beírható!</mat-hint>
+        <mat-autocomplete #length="matAutocomplete">
+          <mat-option *ngFor="let option of lengths" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+     <mat-form-field appearance="standard">
+          <mat-label>Megnevezés</mat-label>
+        <input matInput type="text" formControlName="descreption" [matAutocomplete]="descreption">
+        <mat-hint align="end">Ha nem szerepel a kínálatban, új beírható!</mat-hint>
+        <mat-autocomplete #descreption="matAutocomplete">
+          <mat-option *ngFor="let option of descreptions" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+          <mat-label>Teherbírás</mat-label>
+        <input matInput type="text" formControlName="capacity" [matAutocomplete]="capacity">
+        <mat-hint align="end">Ha nem szerepel a kínálatban, új beírható!</mat-hint>
+        <mat-autocomplete #capacity="matAutocomplete">
+          <mat-option *ngFor="let option of capacities" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+          <mat-label>Gyártó</mat-label>
+        <input matInput type="text" formControlName="manufacturer" [matAutocomplete]="manufacturer">
+        <mat-hint align="end">Ha nem szerepel a kínálatban, új beírható!</mat-hint>
+        <mat-autocomplete #manufacturer="matAutocomplete">
+          <mat-option *ngFor="let option of manufacturers" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+    </mat-card-content>
+    <mat-card-actions align="center">
+        <button type="submit" [disabled]="!productForm.valid" mat-raised-button color="primary">Feltölt</button>
+    </mat-card-actions>
+   </form>
+   <mat-card-footer align="center">
+      <button mat-raised-button color="warn" (click)="onCancel()">Megszakít</button>
+   </mat-card-footer>
+    </mat-card>
+  </section>

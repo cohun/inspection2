@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs/internal/Observable';
 import { RecordCreation } from 'src/app/_interface/record-creation';
@@ -18,7 +18,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(private activeRoute: ActivatedRoute,
               private location: Location,
-              private products: ProductService) { }
+              private products: ProductService,
+              private router: Router) { }
 
   ngOnInit() {
     this.user = this.activeRoute.snapshot.queryParams.user;
@@ -26,11 +27,15 @@ export class ProductListComponent implements OnInit {
     this.id = this.activeRoute.snapshot.queryParams.id;
 
     this.products.getRecord(this.user);
-    this.records$ = this.products.record$
+    this.records$ = this.products.record$;
   }
 
   back() {
     this.location.back();
+  }
+  onCreate() {
+    this.router.navigate(['/product/products/create'],
+    {queryParams: { group: this.group  }});
   }
 
 }

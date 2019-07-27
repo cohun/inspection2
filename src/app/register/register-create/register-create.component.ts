@@ -30,7 +30,7 @@ export class RegisterCreateComponent implements OnInit {
       id: new FormControl('', [Validators.required]),
       date: new FormControl(new Date(), [Validators.required]),
       action: new FormControl('', [Validators.required]),
-    })
+    });
   }
 
   getOptions() {
@@ -40,7 +40,7 @@ export class RegisterCreateComponent implements OnInit {
   }
 
   createReg(form) {
-    let newReg: RecordCreation = {
+    const newReg: RecordCreation = {
       id: form.id,
       user: form.user,
       action: form.action,

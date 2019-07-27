@@ -18,7 +18,6 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.register.getUserToAutocomplete();
     this.users = this.register.users$;
-    console.log(this.users);
   }
 
 }

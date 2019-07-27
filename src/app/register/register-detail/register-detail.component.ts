@@ -12,7 +12,7 @@ import { User } from '../../_interface/user';
 export class RegisterDetailComponent implements OnInit {
   public user: Observable<User[]>;
   public showProducts;
-  public id ='';
+  public id = '';
 
   constructor(
     private register: RegisterService,
