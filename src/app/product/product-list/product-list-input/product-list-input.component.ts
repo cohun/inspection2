@@ -13,12 +13,12 @@ export class ProductListInputComponent implements OnInit {
   @Input() pGroup: Product[];
   @Input() group: string;
   public productForm: FormGroup;
-  public types = [''];
-  public lengths = [''];
-  public descreptions = [''];
-  public capacities = [''];
-  public manufacturers = [''];
   public options: Product[];
+  public types: any = new Set();
+  public lengths: any = new Set();
+  public descreptions: any = new Set();
+  public capacities: any = new Set();
+  public manufacturers: any = new Set();
 
   constructor(
     private location: Location,
@@ -55,11 +55,11 @@ export class ProductListInputComponent implements OnInit {
 
   gettype() {
     this.options.forEach(element => {
-    this.types.push(element.type);
-    this.lengths.push(element.length);
-    this.descreptions.push(element.descreption);
-    this.capacities.push(element.capacity);
-    this.manufacturers.push(element.manufacturer);
+    this.types.add(element.type);
+    this.lengths.add(element.length);
+    this.descreptions.add(element.descreption);
+    this.capacities.add(element.capacity);
+    this.manufacturers.add(element.manufacturer);
     });
 }
 
