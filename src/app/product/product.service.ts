@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RecordCreation } from "../_interface/record-creation";
 import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
+import { map, take, first } from "rxjs/operators";
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ProductFid } from "../_interface/product-fid";
 import { SpecProduct } from "../_interface/specProduct";
@@ -15,6 +15,7 @@ export class ProductService {
   public product$: Observable<ProductFid[]>;
   public specProduct$: Observable<SpecProduct[]>;
   public productGroup$: Observable<Product[]>;
+  public length: number;
 
   constructor(private db: AngularFirestore) { }
 
@@ -49,6 +50,23 @@ export class ProductService {
         }as ProductFid;
       });
      }));
+  }
+
+  checkDupl(type, length, descreption, capacity, manufacturer) {
+    this.db.collection('products', ref => ref.where('type', '==', type)
+                                                     .where('length', '==', length)
+                                                     .where('descreption', '==', descreption)
+                                                     .where('capacity', '==', capacity)
+                                                     .where('manufacturer', '==', manufacturer))
+    .valueChanges()
+    .forEach(element => {
+        this.le(element.length);
+    }), first();
+
+  }
+
+  le(length) {
+      this.length = length;
   }
 
   loadProdSpec(fid, user) {

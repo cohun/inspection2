@@ -19,6 +19,7 @@ export class ProductListInputComponent implements OnInit {
   public descreptions: any = new Set();
   public capacities: any = new Set();
   public manufacturers: any = new Set();
+  public num: number;
 
   constructor(
     private location: Location,
@@ -47,10 +48,20 @@ export class ProductListInputComponent implements OnInit {
       manufacturer: form.manufacturer,
       group: this.group
     };
-    this.productService.addProduct(newProd);
-    console.log(newProd);
-    alert('Sikeres adatbevitel');
-    this.location.back();
+
+    this.productService.checkDupl(newProd.type, newProd.length, newProd.descreption, newProd.capacity, newProd.manufacturer);
+    setTimeout(() => {
+      this.num = this.productService.length;
+      if (this.num !== 0) {
+        alert('Dupla adatbevitel');
+        this.location.back();
+      } else {
+        this.productService.addProduct(newProd);
+        alert('Sikeres adatbevitel');
+        this.location.back();
+      }
+    }, 2000);
+
   }
 
   gettype() {
