@@ -1,11 +1,20 @@
-<div fxFlex="100" fxFlexOffset="80px">
-<button mat-fab color="warn" (click)="onClick()" class="btn">
-  Vissza
-</button>
-<button mat-fab color="primary" class="btn">
-  Új
-</button>
-</div>
+<section fxLayout="row" fxLayoutAlign="start start" >
+  <div fxFlex="30" fxFlexOffset="80px">
+    <button mat-fab color="warn" (click)="onClick()" class="btn">
+      Vissza
+    </button>
+    <button mat-fab color="primary" class="btn">
+      Új
+    </button>
+  </div>
+  <div fxFlex>
+    <h1>Kijelölt tételeknél munkalap dátum és sorszám feltöltése</h1>
+  </div>
+  <div fxFlex>
+    <button mat-raised-button (click)="onClick" color="primary">Action</button>
+  </div>
+</section>
+
 <mat-card class="example-card" *ngFor="let item of specProduct$ | async ">
   <mat-card-header>
     <mat-card-title>{{product.type}} {{product.length}} {{product.descreption}}</mat-card-title>
@@ -30,14 +39,13 @@
       <mat-divider></mat-divider>
       <br>
       <div fxLayout="column">
-        <mat-card-subtitle fxFlex fxLayoutAlign="center start">Üzembehelyezve:</mat-card-subtitle>
+        <mat-card-subtitle fxFlex fxLayoutAlign="center start"><strong> Üzembehelyezve:</strong></mat-card-subtitle>
         <div fxLayout="row wrap">
           <div fxFlex><strong>Munkalap ssz:</strong></div>
           <div fxFlex><strong>Dátum:</strong></div>
         </div>
         <div fxLayout="row wrap">
-          <div fxFlex>{{item.operationStart[0]}}</div>
-          <div fxFlex>{{item.operationStart[1]}}</div>
+          <div fxFlex="50" *ngFor="let time of item.operationStart">{{time}}</div>
         </div>
       </div>
 
@@ -46,46 +54,46 @@
       <br>
 
       <div fxLayout="column">
-        <mat-card-subtitle fxFlex fxLayoutAlign="center start">Vizsgálat:</mat-card-subtitle>
+        <mat-card-subtitle fxFlex fxLayoutAlign="center start"><strong> Vizsgálat:</strong></mat-card-subtitle>
         <div fxLayout="row wrap">
           <div fxFlex><strong>Munkalap ssz:</strong></div>
           <div fxFlex><strong>Dátum:</strong></div>
         </div>
-
-          <div fxLayout="row wrap">
-            <div fxFlex="50" *ngFor="let time of item.inspections; let i = index">{{time}}</div>
-          </div>
-
+        <div fxLayout="row wrap">
+          <div fxFlex="50" *ngFor="let time of item.inspections">{{time}}</div>
+        </div>
       </div>
 
       <br>
       <mat-divider></mat-divider>
       <br>
 
-      <div fxLayout="row wrap">
-        <div fxFlex><strong>Karbantartás:</strong></div>
-        <div fxFlex >
-          <div fxLayout="column" *ngFor="let time of item.maintenance">
-            <div fxFlex>
-              {{time}}
-            </div>
-          </div>
+      <div fxLayout="column">
+        <mat-card-subtitle fxFlex fxLayoutAlign="center start"><strong> Karbantartás:</strong></mat-card-subtitle>
+        <div fxLayout="row wrap">
+          <div fxFlex><strong>Munkalap ssz:</strong></div>
+          <div fxFlex><strong>Dátum:</strong></div>
+        </div>
+        <div fxLayout="row wrap">
+          <div fxFlex="50" *ngFor="let time of item.maintenance">{{time}}</div>
         </div>
       </div>
+
       <br>
       <mat-divider></mat-divider>
       <br>
 
-      <div fxLayout="row wrap">
-        <div fxFlex><strong>Javítás:</strong></div>
-        <div fxFlex >
-          <div fxLayout="column" *ngFor="let time of item.repair">
-            <div fxFlex>
-              {{time}}
-            </div>
-          </div>
+      <div fxLayout="column">
+        <mat-card-subtitle fxFlex fxLayoutAlign="center start"><strong> Javítás:</strong></mat-card-subtitle>
+        <div fxLayout="row wrap">
+          <div fxFlex><strong>Munkalap ssz:</strong></div>
+          <div fxFlex><strong>Dátum:</strong></div>
+        </div>
+        <div fxLayout="row wrap">
+          <div fxFlex="50" *ngFor="let time of item.repair">{{time}}</div>
         </div>
       </div>
+
       <br>
       <mat-divider></mat-divider>
       <br>

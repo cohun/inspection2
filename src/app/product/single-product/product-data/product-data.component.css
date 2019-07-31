@@ -5,3 +5,17 @@
 .btn {
   margin-right: 50px;
 }
+.title {
+  color: #3f51b5;
+  font-size: 30px;
+  text-shadow: 2px 3px 5px grey;
+  margin: 0;
+  }
+  section {
+    width: 100vw;
+  }
+  h1 {
+    color: #3f51b5;
+    font-size: 20px;
+    text-shadow: 2px 3px 5px grey;
+  }
