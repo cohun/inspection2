@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit {
 
   constructor(private activeRoute: ActivatedRoute,
               private location: Location,
-              private products: ProductService,
+              private productservice: ProductService,
               private router: Router) { }
 
   ngOnInit() {
@@ -26,8 +26,8 @@ export class ProductListComponent implements OnInit {
     this.group = this.activeRoute.snapshot.queryParams.group;
     this.id = this.activeRoute.snapshot.queryParams.id;
 
-    this.products.getRecord(this.user);
-    this.records$ = this.products.record$;
+    this.productservice.getRecord(this.user);
+    this.records$ = this.productservice.record$;
   }
 
   back() {

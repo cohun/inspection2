@@ -29,24 +29,35 @@
       <br>
       <mat-divider></mat-divider>
       <br>
-      <div fxLayout="row wrap">
-        <div fxFlex><strong>Üzembehelyezve:</strong></div>
-        <div fxFlex>{{item.operationStart}}</div>
+      <div fxLayout="column">
+        <mat-card-subtitle fxFlex fxLayoutAlign="center start">Üzembehelyezve:</mat-card-subtitle>
+        <div fxLayout="row wrap">
+          <div fxFlex><strong>Munkalap ssz:</strong></div>
+          <div fxFlex><strong>Dátum:</strong></div>
+        </div>
+        <div fxLayout="row wrap">
+          <div fxFlex>{{item.operationStart[0]}}</div>
+          <div fxFlex>{{item.operationStart[1]}}</div>
+        </div>
       </div>
+
       <br>
       <mat-divider></mat-divider>
       <br>
 
-      <div fxLayout="row wrap">
-        <div fxFlex><strong>Vizsgálat:</strong></div>
-        <div fxFlex >
-          <div fxLayout="column" *ngFor="let time of item.inspections">
-            <div fxFlex>
-              {{time}}
-            </div>
-          </div>
+      <div fxLayout="column">
+        <mat-card-subtitle fxFlex fxLayoutAlign="center start">Vizsgálat:</mat-card-subtitle>
+        <div fxLayout="row wrap">
+          <div fxFlex><strong>Munkalap ssz:</strong></div>
+          <div fxFlex><strong>Dátum:</strong></div>
         </div>
+
+          <div fxLayout="row wrap">
+            <div fxFlex="50" *ngFor="let time of item.inspections; let i = index">{{time}}</div>
+          </div>
+
       </div>
+
       <br>
       <mat-divider></mat-divider>
       <br>

@@ -35,12 +35,13 @@
   </ng-container>
 
   <ng-container matColumnDef="details">
-    <th mat-header-cell *matHeaderCellDef> Részletek </th>
+    <th mat-header-cell *matHeaderCellDef> Kiválaszt </th>
     <td mat-cell *matCellDef="let element">
     <button mat-icon-button color="primary"
     (click)="redirectToDetail(element.type, element.length, element.descreption,
              element.capacity, element.manufacturer)">
-    <mat-icon class="mat-18">reorder</mat-icon>
+          <mat-checkbox value="" color="primary"></mat-checkbox>
+    <!-- <mat-icon class="mat-18">reorder</mat-icon> -->
     </button>
     </td>
   </ng-container>
@@ -48,9 +49,9 @@
   <ng-container matColumnDef="update">
     <th mat-header-cell *matHeaderCellDef> Szerkesztés </th>
     <td mat-cell *matCellDef="let element">
-    <button mat-icon-button color="accent"
+    <button mat-icon-button color="primary"
     >
-    <mat-icon class="mat-18">system_update</mat-icon>
+    <mat-icon class="mat-18">reorder</mat-icon>
     </button>
     </td>
   </ng-container>

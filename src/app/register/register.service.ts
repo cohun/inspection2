@@ -5,7 +5,6 @@ import { User } from "../_interface/user";
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
 import { AngularFirestore } from '@angular/fire/firestore';
-import { async } from 'q';
 
 @Injectable({
   providedIn: 'root'
