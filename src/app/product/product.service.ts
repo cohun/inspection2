@@ -65,6 +65,14 @@ export class ProductService {
 
   }
 
+  checkid(id) {
+    this.db.collection('specProduct', ref => ref.where('id', '==', id))
+    .valueChanges()
+    .forEach(element => {
+        this.le(element.length);
+    }), first();
+  }
+
   le(length) {
       this.length = length;
   }
@@ -95,6 +103,9 @@ export class ProductService {
 }
 addProduct(prod) {
   this.db.collection('products').add(prod);
+}
+addSpecProd(prod) {
+  this.db.collection('specProduct').add(prod);
 }
 
 }

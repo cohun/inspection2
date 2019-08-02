@@ -14,6 +14,7 @@ import {Router  } from "@angular/router";
 export class ProductTableComponent implements OnInit {
   @Input() public group: string;
   @Input() public user: string;
+  @Input() public id: string;
 
   public displayedColumns: string[] = ['type', 'length', 'descreption', 'capacity', 'manufacturer',
                                        'details', 'update', 'delete'];
@@ -43,7 +44,8 @@ export class ProductTableComponent implements OnInit {
                   descreption: descreption,
                   capacity: capacity,
                   manufacturer: manufacturer,
-                  user: this.user}});
+                  user: this.user,
+                  id: this.id}});
   }
   public redirectToUpdate = (id: string) => {
     const url = `/register/update/${id}`;

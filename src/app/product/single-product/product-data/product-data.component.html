@@ -1,17 +1,13 @@
-<section fxLayout="row" fxLayoutAlign="start start" >
-  <div fxFlex="30" fxFlexOffset="80px">
+<section fxLayout="row wrap"fxLayoutAlign="start start">
+  <div fxFlex="10" fxFlexOffset="80px">
     <button mat-fab color="warn" (click)="onClick()" class="btn">
       Vissza
     </button>
-    <button mat-fab color="primary" class="btn">
+  </div>
+  <div fxFlex fxFlexOffset="30px">
+    <button mat-fab color="primary" (click)="onCreate()">
       Új
     </button>
-  </div>
-  <div fxFlex>
-    <h1>Kijelölt tételeknél munkalap dátum és sorszám feltöltése</h1>
-  </div>
-  <div fxFlex>
-    <button mat-raised-button (click)="onClick" color="primary">Action</button>
   </div>
 </section>
 
@@ -36,7 +32,20 @@
         <div fxFlex>{{item.id}}</div>
       </div>
       <br>
-      <mat-divider></mat-divider>
+      <div fxLayout="column" fxLayoutAlign="center center" class="check">
+        <mat-card-subtitle *ngIf="!p.checked" fxFlex>
+          <strong> Feltöltésre kijelöl:</strong>
+        </mat-card-subtitle>
+        <div fxFlex>
+          <mat-checkbox value="" color="primary" #p  [ngModel]="checked"></mat-checkbox>
+        </div>
+        <div fxFlex *ngIf="p.checked" style="padding: 8px 0 0 0">
+          <strong> {{i}}. </strong> sorszámú munkalap <br> dátum feltöltése
+        </div>
+        <button fxFlex *ngIf="p.checked" mat-icon-button color="warn" (click)="p.cheked='unchecked'" >
+          <mat-icon>backup</mat-icon>
+        </button>
+      </div>
       <br>
       <div fxLayout="column">
         <mat-card-subtitle fxFlex fxLayoutAlign="center start"><strong> Üzembehelyezve:</strong></mat-card-subtitle>

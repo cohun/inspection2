@@ -17,6 +17,7 @@ export class SingleProductComponent implements OnInit {
   public capacity: string;
   public manufacturer: string;
   public user: string;
+  public id: string;
   public product$: Observable<ProductFid[]>;
 
 
@@ -32,6 +33,7 @@ export class SingleProductComponent implements OnInit {
     this.capacity = this.activeRoute.snapshot.queryParams.capacity;
     this.manufacturer = this.activeRoute.snapshot.queryParams.manufacturer;
     this.user = this.activeRoute.snapshot.queryParams.user;
+    this.id = this.activeRoute.snapshot.queryParams.id;
     this.productService.getFid(this.type, this.length, this.descreption, this.capacity, this.manufacturer);
 
     this.product$ = this.productService.product$;

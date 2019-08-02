@@ -10,10 +10,11 @@ import { ProductDataComponent } from './single-product/product-data/product-data
 import { ProductListCreateComponent } from './product-list/product-list-create/product-list-create.component';
 import { ProductListInputComponent } from './product-list/product-list-input/product-list-input.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ProductSpecInputComponent } from './single-product/product-spec-input/product-spec-input.component';
 
 @NgModule({
   declarations: [ProductListComponent, SingleProductComponent, ProductTableComponent, ProductDataComponent,
-    ProductListCreateComponent, ProductListInputComponent],
+    ProductListCreateComponent, ProductListInputComponent, ProductSpecInputComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,

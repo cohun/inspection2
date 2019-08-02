@@ -1,0 +1,30 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="400px" fxFlex.xs="100%">
+      <mat-card-title>Üzemeltető: <mat-card-subtitle>{{user | uppercase}}</mat-card-subtitle></mat-card-title>
+      <mat-card-title>Termék: <mat-card-subtitle>{{type}} {{length}} </mat-card-subtitle></mat-card-title>
+   <form [formGroup]="productForm" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px"
+         (ngSubmit)="createProd(productForm.value)">
+    <mat-card-content>
+
+      <mat-form-field appearance="standard">
+          <mat-label>Gyáriszám</mat-label>
+        <input matInput type="text" formControlName="id">
+        <mat-hint align="end">Kötelező kitölteni!</mat-hint>
+      </mat-form-field>
+
+       <mat-form-field appearance="standard">
+          <mat-label>Helyszín</mat-label>
+        <input matInput type="text" formControlName="site">
+        <mat-hint align="end">Ha nem ismert, üresen hagyható!</mat-hint>
+      </mat-form-field>
+
+    </mat-card-content>
+    <mat-card-actions align="center">
+        <button type="submit" [disabled]="!productForm.valid" mat-raised-button color="primary">Feltölt</button>
+    </mat-card-actions>
+   </form>
+   <mat-card-footer align="center">
+      <button mat-raised-button color="warn" (click)="onCancel()">Megszakít</button>
+   </mat-card-footer>
+    </mat-card>
+  </section>
