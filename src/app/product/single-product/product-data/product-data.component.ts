@@ -19,7 +19,8 @@ export class ProductDataComponent implements OnInit {
   public users: string;
   public i: string;
   public gysz: [string];
-  ischecked = false;
+  public ischecked = false;
+  public ch: [boolean];
 
   public specProduct$: Observable<SpecProduct[]>;
 
@@ -56,6 +57,10 @@ export class ProductDataComponent implements OnInit {
   check(id: string) {
     this.ischecked = !this.ischecked;
     console.log(id);
+  }
+  upload(p) {
+    p = !p;
+    console.log(p);
   }
 
 }

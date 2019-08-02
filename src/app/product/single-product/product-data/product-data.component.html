@@ -11,7 +11,7 @@
   </div>
 </section>
 
-<mat-card class="example-card" *ngFor="let item of specProduct$ | async ">
+<mat-card class="example-card" *ngFor="let item of (specProduct$ | async) ; let i = index">
   <mat-card-header>
     <mat-card-title>{{product.type}} {{product.length}} {{product.descreption}}</mat-card-title>
     <mat-card-subtitle></mat-card-subtitle>
@@ -37,12 +37,12 @@
           <strong> Feltöltésre kijelöl:</strong>
         </mat-card-subtitle>
         <div fxFlex>
-          <mat-checkbox value="" color="primary" #p  [ngModel]="checked"></mat-checkbox>
+          <mat-checkbox value="" color="primary" #p [(ngModel)]="p.checked" ></mat-checkbox>
         </div>
         <div fxFlex *ngIf="p.checked" style="padding: 8px 0 0 0">
           <strong> {{i}}. </strong> sorszámú munkalap <br> dátum feltöltése
         </div>
-        <button fxFlex *ngIf="p.checked" mat-icon-button color="warn" (click)="p.cheked='unchecked'" >
+        <button fxFlex *ngIf="p.checked" mat-icon-button color="warn" (click)="p.checked=false">
           <mat-icon>backup</mat-icon>
         </button>
       </div>
