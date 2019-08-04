@@ -5,6 +5,7 @@ import { SpecProduct } from 'src/app/_interface/specProduct';
 import { ProductFid } from 'src/app/_interface/product-fid';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { RecordCreation } from "../../../_interface/record-creation";
 
 @Component({
   selector: 'app-product-data',
@@ -15,14 +16,17 @@ export class ProductDataComponent implements OnInit {
   @Input() products: ProductFid;
   @Input() user: string;
   @Input() id: string;
+  @Input() record: RecordCreation;
   public product: ProductFid;
   public users: string;
   public i: string;
   public gysz: [string];
   public ischecked = false;
   public ch: [boolean];
-
+  public action: string;
+  public dateOfAction: string;
   public specProduct$: Observable<SpecProduct[]>;
+  public act: string;
 
 
   constructor(private productService: ProductService, private location: Location,
@@ -35,7 +39,8 @@ export class ProductDataComponent implements OnInit {
     console.log(fid, use);
     this.productService.loadProdSpec(fid, use);
     this.specProduct$ = this.productService.specProduct$;
-
+    this.action = this.record[0].action;
+    this.dateOfAction = this.record[0].dateOfAction;
   }
 
   out(prod: ProductFid, us: string, i: string) {
@@ -58,9 +63,29 @@ export class ProductDataComponent implements OnInit {
     this.ischecked = !this.ischecked;
     console.log(id);
   }
-  upload(p) {
-    p = !p;
-    console.log(p);
+  upload(gysz, srsz) {
+    console.log(gysz);
+    console.log(srsz);
+    // I need to collect action and dateOfAction from records where id=srsz = Done!
+    switch (this.action) {
+      case 'Vizsgálat':
+        this.act = 'inspections';
+        break;
+      case 'Javítás':
+        this.act = 'repair';
+        break;
+      case 'Üzembehelyezés':
+        this.act = 'operationStart';
+        break;
+      case 'Karbantartás':
+        this.act = 'maintenance';
+        break;
+      default: console.log('Sorry');
+    }
+    console.log(srsz);
+    console.log(this.dateOfAction);
+    console.log(this.act);
+    this.productService.updateAction(gysz, this.act, srsz, this.dateOfAction);
   }
 
 }

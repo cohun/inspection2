@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { Observable } from 'rxjs/internal/Observable';
 import { ProductService } from '../product.service';
 import { ProductFid } from 'src/app/_interface/product-fid';
-
+import { RecordCreation } from '../../_interface/record-creation';
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
@@ -19,7 +19,7 @@ export class SingleProductComponent implements OnInit {
   public user: string;
   public id: string;
   public product$: Observable<ProductFid[]>;
-
+  public rec$: Observable<RecordCreation[]>;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -37,6 +37,8 @@ export class SingleProductComponent implements OnInit {
     this.productService.getFid(this.type, this.length, this.descreption, this.capacity, this.manufacturer);
 
     this.product$ = this.productService.product$;
+    this.productService.getRec(this.id);
+    this.rec$ = this.productService.rec$;
   }
 
 }

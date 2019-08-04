@@ -43,7 +43,7 @@
           <strong> {{i}}. </strong> sorszámú munkalap <br> dátum feltöltése
         </div>
         <button fxFlex *ngIf="p.checked" mat-icon-button color="warn" (click)="p.checked=false">
-          <mat-icon>backup</mat-icon>
+          <mat-icon (click)="upload(item.id, i)">backup</mat-icon>
         </button>
       </div>
       <br>

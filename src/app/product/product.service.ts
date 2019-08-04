@@ -3,15 +3,18 @@ import { RecordCreation } from "../_interface/record-creation";
 import { Observable } from 'rxjs';
 import { map, take, first } from "rxjs/operators";
 import { AngularFirestore } from '@angular/fire/firestore';
+import { firestore } from 'firebase/app';
 import { ProductFid } from "../_interface/product-fid";
 import { SpecProduct } from "../_interface/specProduct";
 import { Product } from '../_interface/product';
+import { Fid } from "../_interface/fid";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   public record$: Observable<RecordCreation[]>;
+  public rec$: Observable<RecordCreation[]>;
   public product$: Observable<ProductFid[]>;
   public specProduct$: Observable<SpecProduct[]>;
   public productGroup$: Observable<Product[]>;
@@ -28,6 +31,34 @@ export class ProductService {
         }as RecordCreation;
       });
      }));
+  }
+
+  getRec(id) {
+    this.rec$ = this.db.collection('records', ref => ref.where('id', '==', id)).snapshotChanges()
+    .pipe(map(snaps => {
+      return snaps.map(snap => {
+        return {
+          ...snap.payload.doc.data()
+        }as RecordCreation;
+      });
+     }));
+  }
+
+  updateAction(id, act, srsz, date) {
+    console.log(id);
+
+    this.db.collection('specProduct', ref => ref.where('id', '==', id))
+     .snapshotChanges()
+     .subscribe(snaps => {
+       const fi = snaps.map(snap => snap.payload.doc.id);
+       const f = fi[0];
+       console.log(f);
+       this.db.collection('specProduct').doc(f)
+       .update(
+         {[act]: firestore.FieldValue.arrayUnion(srsz, date)}
+       );
+     }
+     );
   }
 
   getProducts(data, group) {
