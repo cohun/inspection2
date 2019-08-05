@@ -87,5 +87,11 @@ export class ProductDataComponent implements OnInit {
     console.log(this.act);
     this.productService.updateAction(gysz, this.act, srsz, this.dateOfAction);
   }
+  public certificate = (user: string, id: string) => {
+    this.router.navigate([`product/single/certificate`],
+    {queryParams: {user,
+                  id,
+                  i: this.i}});
+  }
 
 }

@@ -1,0 +1,75 @@
+<mat-card class="example-card" *ngFor="let item of specProduct$ | async">
+  <mat-card-header>
+    <mat-card-title>{{user}} felhasználó részére végzett munkálatok:</mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+  </mat-card-header>
+  <br>
+  <mat-card-content>
+    <div fxLayout="column">
+      <label id="example-radio-group-label">Az alábbi munkálatokról készíthető jegyzőkönyv:</label>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        [(ngModel)]="favoriteSeason">
+
+        <div fxLayout="row wrap">
+          <div fxFlex><strong>Munkalap ssz:</strong></div>
+          <div fxFlex><strong>Dátum:</strong></div>
+        </div>
+
+        <div fxLayout="row wrap">
+
+          <div fxFlex="50" *ngFor="let time of item.inspections; let i = index">
+            <span style="padding-top: 6px"> {{time}}</span>
+            <div fxFlex="20" fxFlexOffset="80px" fxLayoutAlign="start start">
+              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='{"act": "Vizsgálat", "time": time} | json'>
+              </mat-radio-button>
+              <br>
+              <mat-divider></mat-divider>
+              <br>
+            </div>
+          </div>
+
+          <div fxFlex="50" *ngFor="let time of item.repair; let i = index">
+              <span style="padding-top: 6px"> {{time}}</span>
+            <div fxFlex="20" fxFlexOffset="80px" fxLayoutAlign="start start">
+              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='{"act": "Javítás", "time": time} | json'>
+              </mat-radio-button>
+              <br>
+              <mat-divider></mat-divider>
+              <br>
+            </div>
+          </div>
+
+          <div fxFlex="50" *ngFor="let time of item.maintenance; let i = index">
+              <span style="padding-top: 6px"> {{time}}</span>
+            <div fxFlex="20" fxFlexOffset="80px" fxLayoutAlign="start start">
+              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='{"act": "Karbantartás", "time": time} | json'>
+              </mat-radio-button>
+              <br>
+              <mat-divider></mat-divider>
+              <br>
+            </div>
+          </div>
+
+          <div fxFlex="50" *ngFor="let time of item.operationStart; let i = index">
+              <span style="padding-top: 6px"> {{time}}</span>
+            <div fxFlex="20" fxFlexOffset="80px" fxLayoutAlign="start start">
+              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='{"act": "Üzembehelyezés", "time": time} | json'>
+              </mat-radio-button>
+              <br>
+              <mat-divider></mat-divider>
+              <br>
+            </div>
+          </div>
+
+        </div>
+      </mat-radio-group>
+      <div>A kiválasztott munkavégzés: {{favoriteSeason}}</div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions style="text-align: center">
+    <button mat-raised-button (click)="onClick()" color="primary">Vissza</button>
+    <button [disabled]="!favoriteSeason" mat-raised-button color="warn" >Mehet</button>
+  </mat-card-actions>
+</mat-card>

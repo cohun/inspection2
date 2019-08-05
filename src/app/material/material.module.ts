@@ -22,6 +22,7 @@ import { MatNativeDateModule } from "@angular/material";
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatRadioModule} from '@angular/material/radio';
 
 const matMod = [
   MatButtonModule,
@@ -45,7 +46,8 @@ const matMod = [
   MatNativeDateModule,
   MatAutocompleteModule,
   MatDialogModule,
-  MatDividerModule
+  MatDividerModule,
+  MatRadioModule
 ]
 
 @NgModule({

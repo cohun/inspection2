@@ -1,0 +1,21 @@
+.example-card {
+    max-width: 400px;
+    margin-top: 16px;
+  }
+.btn {
+  margin-right: 50px;
+}
+
+  h1 {
+    color: #3f51b5;
+  }
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+
+  .example-radio-button {
+    margin: 5px;
+  }

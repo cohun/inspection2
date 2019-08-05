@@ -138,5 +138,16 @@ addProduct(prod) {
 addSpecProd(prod) {
   this.db.collection('specProduct').add(prod);
 }
+certiAct(id) {
+  return this.db.collection('specProduct', ref => ref.where('id', '==', id))
+  .snapshotChanges()
+  .pipe(map(snaps => {
+    return snaps.map(snap => {
+      return {
+        ...snap.payload.doc.data()
+      }as SpecProduct;
+    });
+   }));
+}
 
 }
