@@ -14,9 +14,8 @@ export class CertificateComponent implements OnInit {
   public specProduct$: Observable<SpecProduct[]>;
   public user: string;
   public srsz: string;
-  favoriteSeason: {};
-  public act = this.favoriteSeason;
-  public time = this.favoriteSeason;
+  favoriteSeason: string;
+  public act: string;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -34,7 +33,12 @@ export class CertificateComponent implements OnInit {
 
   }
   onClick() {
+    console.log(this.act);
+
     this.location.back();
+  }
+  f(data) {
+    this.act = data;
   }
 
 }
