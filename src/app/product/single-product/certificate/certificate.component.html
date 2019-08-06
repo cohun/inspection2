@@ -19,10 +19,10 @@
 
         <div fxLayout="row wrap">
 
-          <div fxFlex="50" *ngFor="let time of item.inspections; let i = index">
+          <div fxFlex="50" *ngFor="let time of item.inspections as list; let i = index">
             <span style="padding-top: 6px"> {{time}}</span>
             <div fxFlex="20" fxFlexOffset="80px" fxLayoutAlign="start start">
-              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='time' (click)="f('Vizsgálat')">
+              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='list[i-1]' (click)="f('Vizsgálat')">
               </mat-radio-button>
               <br>
               <mat-divider></mat-divider>
@@ -30,10 +30,10 @@
             </div>
           </div>
 
-          <div fxFlex="50" *ngFor="let time of item.repair; let i = index">
+          <div fxFlex="50" *ngFor="let time of item.repair as list; let i = index">
               <span style="padding-top: 6px"> {{time}}</span>
             <div fxFlex="20" fxFlexOffset="80px" fxLayoutAlign="start start">
-              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='time' (click)="f('Javítás')">
+              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='list[i-1]' (click)="f('Javítás')">
               </mat-radio-button>
               <br>
               <mat-divider></mat-divider>
@@ -41,10 +41,10 @@
             </div>
           </div>
 
-          <div fxFlex="50" *ngFor="let time of item.maintenance; let i = index">
+          <div fxFlex="50" *ngFor="let time of item.maintenance as list; let i = index">
               <span style="padding-top: 6px"> {{time}}</span>
             <div fxFlex="20" fxFlexOffset="80px" fxLayoutAlign="start start">
-              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='time' (click)="f('Karbantartás')">
+              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='list[i-1]' (click)="f('Karbantartás')">
               </mat-radio-button>
               <br>
               <mat-divider></mat-divider>
@@ -52,10 +52,10 @@
             </div>
           </div>
 
-          <div fxFlex="50" *ngFor="let time of item.operationStart; let i = index">
+          <div fxFlex="50" *ngFor="let time of item.operationStart as list; let i = index">
               <span style="padding-top: 6px"> {{time}}</span>
             <div fxFlex="20" fxFlexOffset="80px" fxLayoutAlign="start start">
-              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='time' (click)="f('Üzembehelyezés')">
+              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='list[i-1]' (click)="f('Üzembehelyezés')">
               </mat-radio-button>
               <br>
               <mat-divider></mat-divider>
@@ -66,11 +66,11 @@
         </div>
       </mat-radio-group>
       <mat-card-subtitle><strong>A kiválasztott munkavégzés: <span style="color: red">{{act}}</span></strong></mat-card-subtitle>
-      <mat-card-subtitle><strong>Dátuma: <span style="color: red">{{favoriteSeason}}</span></strong></mat-card-subtitle>
+      <mat-card-subtitle><strong>Munkalap sorszáma: <span style="color: red">{{favoriteSeason}}</span></strong></mat-card-subtitle>
     </div>
   </mat-card-content>
   <mat-card-actions style="text-align: center">
     <button mat-raised-button (click)="onClick()" color="primary">Vissza</button>
-    <button [disabled]="!favoriteSeason" mat-raised-button color="warn" >Mehet</button>
+    <button [disabled]="!favoriteSeason" (click)="onGo()" mat-raised-button color="warn" >Mehet</button>
   </mat-card-actions>
 </mat-card>

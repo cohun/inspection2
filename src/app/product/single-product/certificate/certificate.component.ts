@@ -14,8 +14,10 @@ export class CertificateComponent implements OnInit {
   public specProduct$: Observable<SpecProduct[]>;
   public user: string;
   public srsz: string;
-  favoriteSeason: string;
+  favoriteSeason: string; // this is the chosen gysz.
+  public gysz: string;
   public act: string;
+  public num: number;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -24,21 +26,36 @@ export class CertificateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const gysz: string = this.activeRoute.snapshot.queryParams.id;
+    this.gysz = this.activeRoute.snapshot.queryParams.id;
     this.user = this.activeRoute.snapshot.queryParams.user;
     this.srsz = this.activeRoute.snapshot.queryParams.i;
 
-    console.log(gysz, this.user, this.srsz);
-    this.specProduct$ = this.productService.certiAct(gysz)
+    console.log(this.gysz, this.user, this.srsz);
+    this.specProduct$ = this.productService.certiAct(this.gysz)
 
   }
   onClick() {
-    console.log(this.act);
-
     this.location.back();
   }
+
   f(data) {
     this.act = data;
+  }
+  onGo() {
+    this.productService.checkRemarks(this.favoriteSeason,this.gysz);
+    console.log(this.favoriteSeason, this.gysz);
+
+    setTimeout(() => {
+      this.num = this.productService.length;
+      if (this.num !== 0) {
+        alert('Van remark, jkv nyomtatás');
+        this.location.back();
+      } else {
+
+        alert('Nincs remark, adatbevitel');
+        this.location.back();
+      }
+    }, 1000);
   }
 
 }

@@ -104,6 +104,15 @@ export class ProductService {
     }), first();
   }
 
+  checkRemarks(id, fid) {
+    this.db.collection('remarks', ref => ref.where('id', '==', id)
+                                            .where('fid', '==', fid))
+    .valueChanges()
+    .forEach(element => {
+        this.le(element.length);
+    }), first();
+  }
+
   le(length) {
       this.length = length;
   }
