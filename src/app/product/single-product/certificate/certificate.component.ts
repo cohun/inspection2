@@ -22,7 +22,8 @@ export class CertificateComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
     private productService: ProductService,
-    private location: Location
+    private location: Location,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -41,15 +42,18 @@ export class CertificateComponent implements OnInit {
   f(data) {
     this.act = data;
   }
-  onGo() {
+
+   onGo() {
     this.productService.checkRemarks(this.favoriteSeason,this.gysz);
     console.log(this.favoriteSeason, this.gysz);
 
     setTimeout(() => {
       this.num = this.productService.length;
       if (this.num !== 0) {
-        alert('Van remark, jkv nyomtatás');
-        this.location.back();
+        this.router.navigate(['/product/print'],
+        {queryParams: {id: this.gysz,
+                       srsz: this.srsz}});
+
       } else {
 
         alert('Nincs remark, adatbevitel');

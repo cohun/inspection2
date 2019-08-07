@@ -12,10 +12,11 @@ import { ProductListInputComponent } from './product-list/product-list-input/pro
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProductSpecInputComponent } from './single-product/product-spec-input/product-spec-input.component';
 import { CertificateComponent } from './single-product/certificate/certificate.component';
+import { PrintComponent } from './single-product/certificate/print/print.component';
 
 @NgModule({
   declarations: [ProductListComponent, SingleProductComponent, ProductTableComponent, ProductDataComponent,
-    ProductListCreateComponent, ProductListInputComponent, ProductSpecInputComponent, CertificateComponent],
+    ProductListCreateComponent, ProductListInputComponent, ProductSpecInputComponent, CertificateComponent, PrintComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,

@@ -23,6 +23,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 const matMod = [
   MatButtonModule,
@@ -47,7 +48,8 @@ const matMod = [
   MatAutocompleteModule,
   MatDialogModule,
   MatDividerModule,
-  MatRadioModule
+  MatRadioModule,
+  MatGridListModule
 ]
 
 @NgModule({
