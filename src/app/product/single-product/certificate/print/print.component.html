@@ -1,32 +1,61 @@
 
-  <mat-grid-list cols="6" rowHeight="100px">
-    <mat-grid-tile
-    colspan="2"
-    rowspan="2" fxLayout="column">
-      <div fxLayout="column">
-        <div fxFlex="20%" fxFlexFill><img class="logo" src="../../../../../assets/H-ITB_logo_Stencil.jpg"
-              alt="H-ITB" style="margin-bottom: 0px">
-        </div>
-        <div fxFlex class="mat-subheading-2" style="margin-bottom:2px">
+<section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
+  <div fxFlex="25">
+    <mat-grid-list cols="2" rowHeight="20px">
+       <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="3">
+        <img class="logo" src="../../../../../assets/H-ITB_logo_Stencil.jpg"
+                alt="H-ITB" style="margin-bottom: 0px">
+      </mat-grid-tile>
+      <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="2">
+        <span class="mat-subheading-2" style="margin-bottom:2px">
           <strong>Emelőgép Szakszolgálat</strong>
-        </div>
-        <div fxFlex class="mat-caption">1119 Budapest Kelenvölgyi határsor 5</div>
-        <div fxFlex class="mat-caption">Tel.: (1) 205-6208  Fax.: (1) 205-6209</div>
-        <div fxFlex class="mat-caption">www.h-itb-hu  email: vizsgalat@h-itb.hu</div>
-      </div>
-    </mat-grid-tile>
-
-    <mat-grid-tile
-    [colspan]="4"
-    [rowspan]="2">
-      <div fxLayout="column">
-        <div fxFlex class="mat-display-3" style="margin-bottom: 12px">JEGYZŐKÖNYV</div>
-        <div fxFlex class="mat-title">FÜLES HEVEDEREK SZERKEZETI VIZSGÁLAT</div>
-        <div fxFlex>elvégzéséről.</div>
-        <div fxFlex>
-          <span>Jegyzőkönyv sorszáma: {{srsz}}</span>
-          <span>Gyártási vagy nyilvántartási szám: {{id}}</span>
-        </div>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+        </span>
+      </mat-grid-tile>
+      <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="1">
+      <span class="mat-caption">1119 Budapest Kelenvölgyi határsor 5</span>
+      </mat-grid-tile>
+      <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="1">
+      <span class="mat-caption">Tel.: (1) 205-6208  Fax.: (1) 205-6209</span>
+      </mat-grid-tile>
+      <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="1">
+        <span class="mat-caption">www.h-itb-hu  email: vizsgalat@h-itb.hu</span>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div fxFlex="70">
+    <mat-grid-list cols="6" rowHeight="10px">
+      <mat-grid-tile
+      [colspan]="6"
+      [rowspan]="6">
+        <span class="mat-display-3" style="margin-bottom: 12px">JEGYZŐKÖNYV</span>
+      </mat-grid-tile>
+      <mat-grid-tile
+      [colspan]="6"
+      [rowspan]="6">
+        <span class="mat-title">FÜLES HEVEDEREK SZERKEZETI VIZSGÁLAT</span>
+      </mat-grid-tile>
+      <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="2">
+        <span>Jegyzőkönyv srsz: <strong>{{srsz}}</strong></span>
+      </mat-grid-tile>
+      <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="2">
+        <span>Gyártási szám: <strong>{{id}}</strong></span>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</section>
+<hr>
+<br>
