@@ -36,7 +36,6 @@ export class ProductDataComponent implements OnInit {
     this.out(this.products, this.user, this.id);
     const fid = this.product.fid;
     const use = this.users;
-    console.log(fid, use);
     this.productService.loadProdSpec(fid, use);
     this.specProduct$ = this.productService.specProduct$;
     this.action = this.record[0].action;
@@ -64,8 +63,6 @@ export class ProductDataComponent implements OnInit {
     console.log(id);
   }
   upload(gysz, srsz) {
-    console.log(gysz);
-    console.log(srsz);
     // I need to collect action and dateOfAction from records where id=srsz = Done!
     switch (this.action) {
       case 'Vizsgálat':

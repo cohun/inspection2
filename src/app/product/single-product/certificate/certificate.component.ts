@@ -30,8 +30,6 @@ export class CertificateComponent implements OnInit {
     this.gysz = this.activeRoute.snapshot.queryParams.id;
     this.user = this.activeRoute.snapshot.queryParams.user;
     this.srsz = this.activeRoute.snapshot.queryParams.i;
-
-    console.log(this.gysz, this.user, this.srsz);
     this.specProduct$ = this.productService.certiAct(this.gysz)
 
   }
@@ -45,7 +43,6 @@ export class CertificateComponent implements OnInit {
 
    onGo() {
     this.productService.checkRemarks(this.favoriteSeason,this.gysz);
-    console.log(this.favoriteSeason, this.gysz);
 
     setTimeout(() => {
       this.num = this.productService.length;

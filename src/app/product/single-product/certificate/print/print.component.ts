@@ -16,6 +16,7 @@ export class PrintComponent implements OnInit {
   public id: string; //gysz.
   public srsz: string;
   public specProduct$: Observable<SpecProduct[]>;
+  public specPr$: Observable<SpecProduct[]>;
   public fid: string;
   public product$: Observable<Product[]>;
   public record$: Observable<RecordCreation[]>;
@@ -29,9 +30,15 @@ export class PrintComponent implements OnInit {
     this.id = this.activeRoute .snapshot.queryParams.id;
     this.srsz = this.activeRoute .snapshot.queryParams.srsz;
     this.specProduct$ = this.productService.getSpecProduct(this.id);
-    this.specProduct$.subscribe(x => x.forEach(y => {
-                                console.log(y.fid)
-                                this.productService.getProduct(y.fid)}));
+    this.specPr$ = this.specProduct$;
+    setTimeout(() => {
+      this.specProduct$.subscribe(x => x.forEach(y => {
+        setTimeout(() => {
+          this.productService.getProduct(y.fid);
+        }, 600);
+        }));
+    }, 600);
+
     this.product$ = this.productService.pr$;
     this.productService.getRec(this.srsz);
     this.record$ = this.productService.rec$;
