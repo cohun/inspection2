@@ -1,6 +1,6 @@
 
 <section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
-  <div fxFlex="25">
+  <div fxFlex="30">
     <mat-grid-list cols="2" rowHeight="20px">
        <mat-grid-tile
       [colspan]="2"
@@ -32,30 +32,132 @@
       </mat-grid-tile>
     </mat-grid-list>
   </div>
-  <div fxFlex="70">
+  <div fxFlex="47">
     <mat-grid-list cols="6" rowHeight="10px">
       <mat-grid-tile
       [colspan]="6"
-      [rowspan]="6">
-        <span class="mat-display-3" style="margin-bottom: 12px">JEGYZŐKÖNYV</span>
+      [rowspan]="5">
+        <span class="mat-title" style="margin: 8px 0">SZERKEZETI VIZSGÁLAT</span>
       </mat-grid-tile>
       <mat-grid-tile
       [colspan]="6"
       [rowspan]="6">
-        <span class="mat-title">FÜLES HEVEDEREK SZERKEZETI VIZSGÁLAT</span>
+        <span class="mat-display-1" style="margin-bottom: 8px">JEGYZŐKÖNYV</span>
       </mat-grid-tile>
       <mat-grid-tile
-      [colspan]="3"
+      [colspan]="6"
       [rowspan]="2">
-        <span>Jegyzőkönyv srsz: <strong>{{srsz}}</strong></span>
+        <span class="mat-caption">Az Emelőgép Biztonsági Szabályzatáról szóló</span>
       </mat-grid-tile>
       <mat-grid-tile
-      [colspan]="3"
+      [colspan]="6"
       [rowspan]="2">
-        <span>Gyártási szám: <strong>{{id}}</strong></span>
+        <span class="mat-caption">47/1999 (VIII.4) GM rendelet melléklete szerint</span>
       </mat-grid-tile>
     </mat-grid-list>
   </div>
+  <div fxFlex="20">
+    <mat-grid-list cols="2" rowHeight="20px">
+      <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="2">
+        <span>Jegyzőkönyv srsz:</span>
+      </mat-grid-tile>
+      <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="2" style="border: solid black 2px; margin-right: 8px">
+        <span><strong>{{srsz}}</strong></span>
+      </mat-grid-tile>
+      <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="2">
+        <span>Gyártási szám:</span>
+      </mat-grid-tile>
+      <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="2" style="border: solid black 2px">
+        <span><strong>{{id}}</strong></span>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div fxFlex="3"></div>
 </section>
-<hr>
 <br>
+<hr>
+<div class="mat-caption">
+  Az emelőgép üzemeltetője köteles a {{id}} rendeltetésszerű használatáról, biztonságos állapotának
+  megörzéséről, az időszakos vizsgálatokról és a karbantartás szakszerű és rendszeres elvégzéséről
+  gondoskodni.
+</div>
+<div class="mat-title" style="margin: 8px 0; text-align: center">
+  ÜZEMELTETŐ
+</div>
+<br>
+<section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
+  <div fxFlex="33">
+    Cégnév:
+  </div>
+  <div fxFlex="33">
+    Cím:
+  </div>
+  <div fxFlex="33">
+    Üzemeltetés helyszíne:
+  </div>
+</section>
+<br>
+<hr>
+<div class="mat-title" style="margin: 8px 0; text-align: center">
+  EMELŐGÉP MEGNEVEZÉSE
+</div>
+<br>
+<div *ngFor="let it of product$ | async">
+  <section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
+    <div fxFlex="33">
+      Típus: <strong>{{it.type}}</strong>
+    </div>
+    <div fxFlex="33">
+      Hossz: <strong>{{it.length}}</strong>
+    </div>
+    <div fxFlex="33">
+      Megnevezés: <strong>{{it.descreption}}</strong>
+    </div>
+  </section>
+  <br>
+  <section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
+    <div fxFlex="33">
+      Teherbírás: <strong>{{it.capacity}}</strong>
+    </div>
+    <div fxFlex="33">
+      Gyártó: <strong>{{it.manufacturer}}</strong>
+    </div>
+    <div fxFlex="33">
+      Gyáriszám: <strong>{{id}}</strong>
+    </div>
+  </section>
+</div>
+<br>
+<hr>
+<div class="mat-title" style="margin: 8px 0; text-align: center">
+  VIZSGÁLAT MEGÁLLAPÍTÁSAI
+</div>
+<br>
+<section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
+  <div fxFlex="50">
+    Eredménye:
+  </div>
+  <div fxFlex="50">
+    <strong>MEGFELELT</strong>
+  </div>
+</section>
+<br>
+<section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
+  <div fxFlex="50">
+    Időpontja:
+  </div>
+  <div fxFlex="50">
+    Érvényessége:
+  </div>
+  <div fxFlex="99" fxLayoutAlign="start start">
+    Megjegyzés:
+  </div>
+</section>

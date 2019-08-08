@@ -18,6 +18,7 @@ export class ProductService {
   public product$: Observable<ProductFid[]>;
   public specProduct$: Observable<SpecProduct[]>;
   public productGroup$: Observable<Product[]>;
+  public pr$: Observable<Product[]>;
   public length: number;
 
   constructor(private db: AngularFirestore) { }
@@ -157,6 +158,31 @@ certiAct(id) {
       }as SpecProduct;
     });
    }));
+}
+
+getSpecProduct(gysz) {
+   return this.db.collection('specProduct', ref => ref.where('id', '==', gysz))
+  .snapshotChanges()
+  .pipe(map(snaps => {
+    return snaps.map(snap => {
+      return {
+        fid: snap.payload.doc.id,
+        ...snap.payload.doc.data()
+      }as SpecProduct;
+    });
+   }));
+}
+getProduct(fid) {
+  this.pr$ = this.db.collection('products', ref => ref.where(firestore.FieldPath.documentId(), '==', fid))
+  .snapshotChanges()
+    .pipe(map(snaps => {
+      return snaps.map(snap => {
+        return {
+          ...snap.payload.doc.data()
+        }as Product;
+    });
+  }));
+
 }
 
 }
