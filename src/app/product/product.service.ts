@@ -7,7 +7,8 @@ import { firestore } from 'firebase/app';
 import { ProductFid } from "../_interface/product-fid";
 import { SpecProduct } from "../_interface/specProduct";
 import { Product } from '../_interface/product';
-import { Fid } from "../_interface/fid";
+import { User } from "../_interface/user";
+import { Remark } from '../_interface/remark';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,8 @@ export class ProductService {
   public specProduct$: Observable<SpecProduct[]>;
   public productGroup$: Observable<Product[]>;
   public pr$: Observable<Product[]>;
+  public user$: Observable<User[]>;
+  public remark$: Observable<Remark[]>;
   public length: number;
 
   constructor(private db: AngularFirestore) { }
@@ -182,7 +185,28 @@ getProduct(fid) {
         }as Product;
     });
   }));
-
 }
-
+ getUser(user) {
+  this.user$ = this.db.collection('users', ref => ref.where('user', '==', user))
+  .snapshotChanges()
+    .pipe(map(snaps => {
+      return snaps.map(snap => {
+        return {
+          ...snap.payload.doc.data()
+        }as User;
+    });
+  }));
+ }
+ getRemark(srsz, gysz) {
+  this.remark$ = this.db.collection('remarks', ref => ref.where('fid', '==', gysz)
+                                                          .where('id', '==', srsz ))
+  .snapshotChanges()
+  .pipe(map(snaps => {
+    return snaps.map(snap => {
+      return {
+        ...snap.payload.doc.data()
+      }as Remark;
+    });
+   }));
+}
 }

@@ -1,90 +1,39 @@
-<div *ngFor="let record of record$ | async"
-
->
+<article style="border: black solid 1px;">
+  <div style="margin-left: 5px; margin-top: 5px;">
+<div *ngFor="let remark of remark$ | async">
+<div *ngFor="let record of record$ | async">
 <section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
   <div fxFlex="30">
-    <mat-grid-list cols="2" rowHeight="20px">
-       <mat-grid-tile
-      [colspan]="2"
-      [rowspan]="3">
-        <img class="logo" src="../../../../../assets/H-ITB_logo_Stencil.jpg"
-                alt="H-ITB" style="margin-bottom: 0px">
-      </mat-grid-tile>
-      <mat-grid-tile
-      [colspan]="2"
-      [rowspan]="2">
-        <span class="mat-subheading-2" style="margin-bottom:2px">
-          <strong>Emelőgép Szakszolgálat</strong>
-        </span>
-      </mat-grid-tile>
-      <mat-grid-tile
-      [colspan]="2"
-      [rowspan]="1">
+    <div fxLayout="column" fxLayoutAlign.lt-md="center center">
+      <div class="logo">
+        <img  class="logo" src="../../../../../assets/H-ITB_logo_Stencil.jpg"
+              alt="H-ITB" style="margin-bottom: 0px">
+      </div>
+      <span class="mat-subheading-2" style="margin-bottom:2px">
+        <strong>Emelőgép Szakszolgálat</strong>
+      </span>
       <span class="mat-caption">1119 Budapest Kelenvölgyi határsor 5</span>
-      </mat-grid-tile>
-      <mat-grid-tile
-      [colspan]="2"
-      [rowspan]="1">
       <span class="mat-caption">Tel.: (1) 205-6208  Fax.: (1) 205-6209</span>
-      </mat-grid-tile>
-      <mat-grid-tile
-      [colspan]="2"
-      [rowspan]="1">
-        <span class="mat-caption">www.h-itb-hu  email: vizsgalat@h-itb.hu</span>
-      </mat-grid-tile>
-    </mat-grid-list>
+      <span class="mat-caption">www.h-itb-hu  email: vizsgalat@h-itb.hu</span>
+    </div>
   </div>
-  <div fxFlex="47">
-    <mat-grid-list cols="6" rowHeight="10px">
-      <mat-grid-tile
-      [colspan]="6"
-      [rowspan]="5">
-        <span class="mat-title" style="margin: 8px 0">SZERKEZETI {{record.action | uppercase}}</span>
-      </mat-grid-tile>
-      <mat-grid-tile
-      [colspan]="6"
-      [rowspan]="6">
-        <span class="mat-display-1" style="margin-bottom: 8px">JEGYZŐKÖNYV</span>
-      </mat-grid-tile>
-      <mat-grid-tile
-      [colspan]="6"
-      [rowspan]="2">
-        <span class="mat-caption">Az Emelőgép Biztonsági Szabályzatáról szóló</span>
-      </mat-grid-tile>
-      <mat-grid-tile
-      [colspan]="6"
-      [rowspan]="2">
-        <span class="mat-caption">47/1999 (VIII.4) GM rendelet melléklete szerint</span>
-      </mat-grid-tile>
-    </mat-grid-list>
+  <div fxFlex="42">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <span class="mat-title" style="margin: 8px 0">{{remark.kind | uppercase}}</span>
+      <span class="mat-display-1" style="margin-bottom: 8px">JEGYZŐKÖNYV</span>
+      <span class="mat-caption">Az Emelőgép Biztonsági Szabályzatáról szóló</span>
+      <span class="mat-caption">47/1999 (VIII.4) GM rendelet melléklete szerint</span>
+    </div>
   </div>
-  <div fxFlex="20">
-    <mat-grid-list cols="2" rowHeight="20px">
-      <mat-grid-tile
-      [colspan]="2"
-      [rowspan]="2">
-        <span>Jegyzőkönyv srsz:</span>
-      </mat-grid-tile>
-      <mat-grid-tile
-      [colspan]="2"
-      [rowspan]="2" style="border: solid black 2px; margin-right: 8px">
-        <span><strong>{{srsz}}</strong></span>
-      </mat-grid-tile>
-      <mat-grid-tile
-      [colspan]="2"
-      [rowspan]="2">
-        <span>Gyártási szám:</span>
-      </mat-grid-tile>
-      <mat-grid-tile
-      [colspan]="2"
-      [rowspan]="2" style="border: solid black 2px">
-        <span><strong>{{id}}</strong></span>
-      </mat-grid-tile>
-    </mat-grid-list>
+  <div fxFlex="25">
+    <div fxLayout="column" fxLayoutAlign="center end" fxLayoutAlign.lt-md="center center" fxLayoutGap="6px">
+     <span class="mat-caption" fxFlexOffset="16px">Jegyzőkönyv srsz:</span>
+     <span style="border: solid black 2px; padding: 2px; min-width: 120px; text-align: center"><strong>{{srsz}}</strong></span>
+     <span class="mat-caption">Gyártási szám:</span>
+     <span style="border: solid black 2px; padding: 2px; min-width: 120px; text-align: center"><strong>{{id}}</strong></span>
+    </div>
   </div>
-  <div fxFlex="3"></div>
 </section>
-<br>
 <hr>
 <div class="mat-caption">
   Az emelőgép üzemeltetője köteles a {{id}} rendeltetésszerű használatáról, biztonságos állapotának
@@ -92,49 +41,51 @@
   gondoskodni.
 </div>
 <div class="mat-title" style="margin: 8px 0; text-align: center">
-  ÜZEMELTETŐ
+  <u>ÜZEMELTETŐ</u>
 </div>
 <br>
 <div *ngFor="let specpr of specPr$ | async">
-<section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
-  <div fxFlex="33">
+  <div *ngFor="let us of user$ | async">
+<section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px" fxLayoutAlign="space-between">
+  <div fxFlex="50">
     Cégnév: <strong>{{record.user}}</strong>
   </div>
-  <div fxFlex="33">
-    Cím:
+  <div fxFlex="50">
+    Cím: <strong>{{us.address}}</strong>
   </div>
-  <div fxFlex="33">
-    Üzemeltetés helyszíne: {{specpr.site}}
+  <div fxFlex="50">
+    Üzemeltetés helyszíne: <strong>{{specpr.site}}</strong>
   </div>
 </section>
+  </div>
 </div>
 <br>
 <hr>
 <div class="mat-title" style="margin: 8px 0; text-align: center">
-  EMELŐGÉP MEGNEVEZÉSE
+  <u>EMELŐGÉP MEGNEVEZÉSE</u>
 </div>
 <br>
 <div *ngFor="let it of product$ | async">
-  <section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
-    <div fxFlex="33">
+  <section fxLayout="row" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
+    <div fxFlex="30" class="border">
       Típus: <strong>{{it.type}}</strong>
     </div>
-    <div fxFlex="33">
+    <div fxFlex="30" class="border">
       Hossz: <strong>{{it.length}}</strong>
     </div>
-    <div fxFlex="33">
+    <div fxFlex="30" class="border">
       Megnevezés: <strong>{{it.descreption}}</strong>
     </div>
   </section>
   <br>
-  <section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
-    <div fxFlex="33">
+  <section fxLayout="row" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
+    <div fxFlex="30" class="border">
       Teherbírás: <strong>{{it.capacity}}</strong>
     </div>
-    <div fxFlex="33">
+    <div fxFlex="30" class="border">
       Gyártó: <strong>{{it.manufacturer}}</strong>
     </div>
-    <div fxFlex="33">
+    <div fxFlex="30" class="border">
       Gyáriszám: <strong>{{id}}</strong>
     </div>
   </section>
@@ -142,27 +93,52 @@
 <br>
 <hr>
 <div class="mat-title" style="margin: 8px 0; text-align: center">
-  {{record.action}} MEGÁLLAPÍTÁSAI
+  <u>{{record.action | uppercase}} MEGÁLLAPÍTÁSAI</u>
 </div>
 <br>
 <section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
-  <div fxFlex="50">
+  <div fxFlex="20">
     Eredménye:
   </div>
-  <div fxFlex="50">
-    <strong>MEGFELELT</strong>
+  <div fxFlex="60" fxLayoutAlign="center center">
+    <span class="mat-headline"><strong>{{remark.result| uppercase}}</strong></span>
   </div>
 </section>
 <br>
 <section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
-  <div fxFlex="50">
-    Időpontja: <strong>{{record.dateOfAction}}</strong>
+  <div fxFlex="38">
+    {{remark.kind}} időpontja: <strong>{{record.dateOfAction}}</strong>
   </div>
-  <div fxFlex="50">
-    Érvényessége:
+  <div fxFlex="62">
+    Érvényesség vége: <strong> 2020{{record.dateOfAction | slice: 4:10}}</strong>
   </div>
-  <div fxFlex="99" fxLayoutAlign="start start">
-    Megjegyzés:
+  <div fxFlex="100"></div>
+  <div fxFlex="99" fxLayoutAlign="start start"  fxLayoutGap="16px">
+    <div> Megjegyzés:</div>
+    <div>
+    <strong>{{remark.comment}}</strong>
+    </div>
+  </div>
+  <div fxFlex="100"></div>
+  <div>Felhasznált anyagok:</div>
+  <div fxLayout="row wrap" fxLayoutGap="28px">
+    <div *ngFor="let time of remark.parts">
+      <strong>{{time}}</strong>
+    </div>
   </div>
 </section>
+<br>
+<hr>
+
+<div> Az elvégzett munka szakszerűségét igazolja:</div>
+<br><br>
+<div style="text-align: center">
+  <strong>{{remark.done}}</strong>
+  <div>Emelőgép ügyintéző</div>
 </div>
+<p>Dátum: Budapest, {{ today | date | slice: 7:12 }} {{ today | date | slice: 0:5 }}. </p>
+
+</div>
+</div>
+  </div>
+</article>

@@ -49,8 +49,8 @@ export class CertificateComponent implements OnInit {
       if (this.num !== 0) {
         this.router.navigate(['/product/print'],
         {queryParams: {id: this.gysz,
-                       srsz: this.srsz}});
-
+                       srsz: this.srsz,
+                       user: this.user}});
       } else {
 
         alert('Nincs remark, adatbevitel');
