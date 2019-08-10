@@ -44,9 +44,9 @@ export class PrintComponent implements OnInit {
       this.specProduct$.subscribe(x => x.forEach(y => {
         setTimeout(() => {
           this.productService.getProduct(y.fid);
-        }, 800);
+        }, 500);
         }));
-    }, 700);
+    }, 800);
 
     this.product$ = this.productService.pr$;
     this.productService.getRec(this.srsz);

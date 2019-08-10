@@ -36,7 +36,7 @@
 </section>
 <hr>
 <div class="mat-caption">
-  Az emelőgép üzemeltetője köteles a {{id}} rendeltetésszerű használatáról, biztonságos állapotának
+  Az emelőgép üzemeltetője köteles az emelőgép rendeltetésszerű használatáról, biztonságos állapotának
   megörzéséről, az időszakos vizsgálatokról és a karbantartás szakszerű és rendszeres elvégzéséről
   gondoskodni.
 </div>
@@ -67,25 +67,25 @@
 <br>
 <div *ngFor="let it of product$ | async">
   <section fxLayout="row" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
-    <div fxFlex="30" class="border">
+    <div fxFlex="33" class="border">
       Típus: <strong>{{it.type}}</strong>
     </div>
-    <div fxFlex="30" class="border">
+    <div fxFlex="33" class="border">
       Hossz: <strong>{{it.length}}</strong>
     </div>
-    <div fxFlex="30" class="border">
+    <div fxFlex="33" class="border">
       Megnevezés: <strong>{{it.descreption}}</strong>
     </div>
   </section>
   <br>
   <section fxLayout="row" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
-    <div fxFlex="30" class="border">
+    <div fxFlex="33" class="border">
       Teherbírás: <strong>{{it.capacity}}</strong>
     </div>
-    <div fxFlex="30" class="border">
+    <div fxFlex="33" class="border">
       Gyártó: <strong>{{it.manufacturer}}</strong>
     </div>
-    <div fxFlex="30" class="border">
+    <div fxFlex="33" class="border">
       Gyáriszám: <strong>{{id}}</strong>
     </div>
   </section>
@@ -106,13 +106,14 @@
 </section>
 <br>
 <section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
-  <div fxFlex="38">
+  <div fxFlex="49.5" class="border">
     {{remark.kind}} időpontja: <strong>{{record.dateOfAction}}</strong>
   </div>
-  <div fxFlex="62">
+  <div fxFlex="49.5" class="border">
     Érvényesség vége: <strong> 2020{{record.dateOfAction | slice: 4:10}}</strong>
   </div>
   <div fxFlex="100"></div>
+  <br>
   <div fxFlex="99" fxLayoutAlign="start start"  fxLayoutGap="16px">
     <div> Megjegyzés:</div>
     <div>
