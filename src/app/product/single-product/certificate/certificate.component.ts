@@ -42,7 +42,7 @@ export class CertificateComponent implements OnInit {
   }
 
    onGo() {
-    this.productService.checkRemarks(this.favoriteSeason,this.gysz);
+    this.productService.checkRemarks(this.favoriteSeason, this.gysz);
 
     setTimeout(() => {
       this.num = this.productService.length;
@@ -54,7 +54,7 @@ export class CertificateComponent implements OnInit {
       } else {
         this.router.navigate(['/product/remark'],
         {queryParams: {id: this.gysz,
-                       srsz: this.srsz}});
+                       srsz: this.favoriteSeason}});
       }
     }, 1000);
   }

@@ -5,33 +5,72 @@
     <mat-card-subtitle>Termék gyáriszáma: </mat-card-subtitle>
     <mat-card-title>{{fid}} </mat-card-title>
  <form [formGroup]="remarkForm" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px"
-       (ngSubmit)="createRemark(remarkForm.value)">
+       (ngSubmit)="createRemark(remarkForm.value)"
+       (keydown.enter)="$event.preventDefault()">
   <mat-card-content>
 
     <mat-form-field appearance="standard">
         <mat-label>Elvégzett munka</mat-label>
-      <input matInput type="text" formControlName="kind">
+      <input matInput type="text" formControlName="kind" [matAutocomplete]="kind">
       <mat-hint align="end">Kötelező kitölteni!</mat-hint>
+      <mat-autocomplete #kind="matAutocomplete">
+          <mat-option *ngFor="let option of kindArray" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
     </mat-form-field>
 
     <mat-form-field appearance="standard">
         <mat-label>Elvégzett munka eredménye</mat-label>
-      <input matInput type="text" formControlName="result">
+      <input matInput type="text" formControlName="result" [matAutocomplete]="result">
       <mat-hint align="end">Kötelező kitölteni!</mat-hint>
+      <mat-autocomplete #result="matAutocomplete">
+        <mat-option *ngFor="let option of resultArray" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
 
     <mat-form-field appearance="standard">
         <mat-label>Elvégzett munka felelőse</mat-label>
-      <input matInput type="text" formControlName="done">
+      <input matInput type="text" formControlName="done" [matAutocomplete]="done">
       <mat-hint align="end">Kötelező kitölteni!</mat-hint>
+      <mat-autocomplete #done="matAutocomplete">
+        <mat-option *ngFor="let option of doneArray" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
 
      <mat-form-field appearance="standard">
         <mat-label>Megjegyzés</mat-label>
-      <input matInput type="text" formControlName="comment">
-      <mat-hint align="end">Ha nincs észrevétel, üresen hagyható!</mat-hint>
-
+      <input matInput type="text" formControlName="comment" [matAutocomplete]="comment">
+      <mat-hint align="end">Ha nincs észrevétel, üresen hagyható! Max 100 karakter!</mat-hint>
+      <mat-autocomplete #comment="matAutocomplete">
+        <mat-option *ngIf="remarkForm.value.result === 'Javítás után megfelelet'" [value]="text">
+          {{text}}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
+
+    <h4>Felhasznált anyagok</h4>
+    <div formArrayName="parts">
+      <div *ngFor="let part of partsForms.controls; let i=index" [formGroupName]="i">
+        <mat-form-field appearance="standard">
+          <mat-label>Mennyiség:</mat-label>
+            <input matInput formControlName="db"
+                  type="text">
+        <mat-hint align="end">Mennyiségi egységet is meg kell adni! (pl. m vagy db)</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>Megnevezés:</mat-label>
+              <input matInput formControlName="mi"
+                      type="text">
+        </mat-form-field>
+        <button mat-fab (click)="deleteParts(i)" color="warn">Töröl</button>
+      </div>
+    </div>
+    <button type="button" style="margin-top: 4px" mat-raised-button (click)="addParts()" color="primary">További alkatrészek</button>
 
   </mat-card-content>
   <mat-card-actions align="center">
@@ -43,4 +82,3 @@
  </mat-card-footer>
   </mat-card>
 </section>
-
