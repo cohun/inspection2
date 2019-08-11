@@ -13,10 +13,11 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProductSpecInputComponent } from './single-product/product-spec-input/product-spec-input.component';
 import { CertificateComponent } from './single-product/certificate/certificate.component';
 import { PrintComponent } from './single-product/certificate/print/print.component';
+import { RemarkInputComponent } from './single-product/certificate/remark-input/remark-input.component';
 
 @NgModule({
   declarations: [ProductListComponent, SingleProductComponent, ProductTableComponent, ProductDataComponent,
-    ProductListCreateComponent, ProductListInputComponent, ProductSpecInputComponent, CertificateComponent, PrintComponent],
+    ProductListCreateComponent, ProductListInputComponent, ProductSpecInputComponent, CertificateComponent, PrintComponent, RemarkInputComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,

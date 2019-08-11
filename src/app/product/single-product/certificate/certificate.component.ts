@@ -52,9 +52,9 @@ export class CertificateComponent implements OnInit {
                        srsz: this.srsz,
                        user: this.user}});
       } else {
-
-        alert('Nincs remark, adatbevitel');
-        this.location.back();
+        this.router.navigate(['/product/remark'],
+        {queryParams: {id: this.gysz,
+                       srsz: this.srsz}});
       }
     }, 1000);
   }

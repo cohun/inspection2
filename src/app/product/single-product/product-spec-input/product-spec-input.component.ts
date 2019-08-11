@@ -16,7 +16,7 @@ export class ProductSpecInputComponent implements OnInit {
   public type: string;
   public length: string;
   public productForm: FormGroup;
-  public specProd: SpecProdCreation
+  public specProd: SpecProdCreation;
   public num: number;
 
   constructor(private activeRoute: ActivatedRoute,

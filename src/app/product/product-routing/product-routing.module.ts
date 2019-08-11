@@ -7,11 +7,13 @@ import { ProductListCreateComponent } from '../product-list/product-list-create/
 import { ProductSpecInputComponent } from '../single-product/product-spec-input/product-spec-input.component';
 import { CertificateComponent } from '../single-product/certificate/certificate.component';
 import { PrintComponent } from '../single-product/certificate/print/print.component';
+import { RemarkInputComponent } from '../single-product/certificate/remark-input/remark-input.component';
 
 const routes: Routes = [
   { path: 'products', component: ProductListComponent},
   { path: 'single', component: SingleProductComponent },
   { path: 'print', component: PrintComponent },
+  { path: 'remark', component: RemarkInputComponent },
   { path: 'products/create', component: ProductListCreateComponent},
   { path: 'products/specinput', component: ProductSpecInputComponent},
   { path: 'single/certificate', component: CertificateComponent }
