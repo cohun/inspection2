@@ -28,15 +28,16 @@
   <div fxFlex="25">
     <div fxLayout="column" fxLayoutAlign="center end" fxLayoutAlign.lt-md="center center" fxLayoutGap="6px">
      <span class="mat-caption" fxFlexOffset="16px">Jegyzőkönyv srsz:</span>
-     <span style="border: solid black 2px; padding: 2px; min-width: 120px; text-align: center"><strong>{{srsz}}</strong></span>
+     <span style="border: solid black 2px; padding: 2px; min-width: 120px; text-align: center"><strong>{{remark.jkv | slice:0:6}} / {{srsz}}</strong></span>
      <span class="mat-caption">Gyártási szám:</span>
      <span style="border: solid black 2px; padding: 2px; min-width: 120px; text-align: center"><strong>{{id}}</strong></span>
     </div>
   </div>
 </section>
 <hr>
+<div *ngFor="let it of product$ | async">
 <div class="mat-caption">
-  Az emelőgép üzemeltetője köteles az emelőgép rendeltetésszerű használatáról, biztonságos állapotának
+  Az emelőgép üzemeltetője köteles az {{it.group}} rendeltetésszerű használatáról, biztonságos állapotának
   megörzéséről, az időszakos vizsgálatokról és a karbantartás szakszerű és rendszeres elvégzéséről
   gondoskodni.
 </div>
@@ -65,7 +66,6 @@
   <u>EMELŐGÉP MEGNEVEZÉSE</u>
 </div>
 <br>
-<div *ngFor="let it of product$ | async">
   <section fxLayout="row" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
     <div fxFlex="33" class="border">
       Típus: <strong>{{it.type}}</strong>
@@ -120,19 +120,21 @@
     <strong>{{remark.comment}}</strong>
     </div>
   </div>
-  <div fxFlex="100"></div>
-  <div>Felhasznált anyagok:</div>
-  <div fxLayout="row wrap" fxLayoutGap="28px">
-    <div *ngFor="let time of remark.parts">
-      <strong>{{time}}</strong>
+  <div fxFlex="99" fxLayoutAlign="start start"  fxLayoutGap="16px">
+    <div>Felhasznált anyagok:</div>
+    <div fxLayout="row wrap" fxLayoutGap="28px">
+      <div *ngFor="let time of remark.parts">
+        <strong>{{time.db }}</strong>
+        <strong fxFlexOffset="8px">{{ time.mi}},</strong>
+      </div>
     </div>
   </div>
 </section>
 <br>
 <hr>
-
+<br>
 <div> Az elvégzett munka szakszerűségét igazolja:</div>
-<br><br>
+<br><br><br>
 <div style="text-align: center">
   <strong>{{remark.done}}</strong>
   <div>Emelőgép ügyintéző</div>

@@ -42,10 +42,11 @@
       </mat-autocomplete>
     </mat-form-field>
 
-     <mat-form-field appearance="standard">
+    <mat-form-field appearance="standard">
         <mat-label>Megjegyzés</mat-label>
-      <input matInput type="text" formControlName="comment" [matAutocomplete]="comment">
-      <mat-hint align="end">Ha nincs észrevétel, üresen hagyható! Max 100 karakter!</mat-hint>
+      <textarea matInput type="text" formControlName="comment" [matAutocomplete]="comment">
+      </textarea>
+      <mat-hint align="end">Ha nincs észrevétel, üresen hagyható! Max 150 karakter!</mat-hint>
       <mat-autocomplete #comment="matAutocomplete">
         <mat-option *ngIf="remarkForm.value.result === 'Javítás után megfelelet'" [value]="text">
           {{text}}

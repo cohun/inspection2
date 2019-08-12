@@ -7,7 +7,7 @@ import { SpecProduct } from 'src/app/_interface/specProduct';
 import { Product } from 'src/app/_interface/product';
 import { RecordCreation } from "src/app/_interface/record-creation";
 import { User } from 'src/app/_interface/user';
-import { Remark } from 'src/app/_interface/remark';
+import { RemarkCert } from 'src/app/_interface/remarkCert';
 
 @Component({
   selector: 'app-print',
@@ -24,7 +24,7 @@ export class PrintComponent implements OnInit {
   public product$: Observable<Product[]>;
   public record$: Observable<RecordCreation[]>;
   public user$: Observable<User[]>;
-  public remark$: Observable<Remark[]>;
+  public remark$: Observable<RemarkCert[]>;
   public today = new Date();
 
   constructor(private activeRoute: ActivatedRoute,
@@ -41,7 +41,7 @@ export class PrintComponent implements OnInit {
     this.specProduct$ = this.productService.getSpecProduct(this.id);
     this.specPr$ = this.specProduct$;
     setTimeout(() => {
-      this.specProduct$.subscribe(x => x.forEach(y => {
+       this.specProduct$.subscribe(x => x.forEach(y => {
         setTimeout(() => {
           this.productService.getProduct(y.fid);
         }, 500);
@@ -56,5 +56,6 @@ export class PrintComponent implements OnInit {
     this.productService.getRemark(this.srsz, this.id);
     this.remark$ = this.productService.remark$;
   }
+
 
 }

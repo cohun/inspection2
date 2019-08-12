@@ -8,7 +8,7 @@ import { ProductFid } from "../_interface/product-fid";
 import { SpecProduct } from "../_interface/specProduct";
 import { Product } from '../_interface/product';
 import { User } from "../_interface/user";
-import { Remark } from '../_interface/remark';
+import { RemarkCert } from '../_interface/remarkCert';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class ProductService {
   public productGroup$: Observable<Product[]>;
   public pr$: Observable<Product[]>;
   public user$: Observable<User[]>;
-  public remark$: Observable<Remark[]>;
+  public remark$: Observable<RemarkCert[]>;
   public length: number;
 
   constructor(private db: AngularFirestore) { }
@@ -204,9 +204,13 @@ getProduct(fid) {
   .pipe(map(snaps => {
     return snaps.map(snap => {
       return {
+        jkv: snap.payload.doc.id,
         ...snap.payload.doc.data()
-      }as Remark;
+      }as RemarkCert;
     });
    }));
+}
+addRemark(prod) {
+  this.db.collection('remarks').add(prod);
 }
 }

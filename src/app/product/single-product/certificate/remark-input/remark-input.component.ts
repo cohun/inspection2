@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Remark } from '../../../../_interface/remark';
 import { Location } from '@angular/common';
+import { ProductService } from 'src/app/product/product.service';
 
 @Component({
   selector: 'app-remark-input',
@@ -20,11 +21,13 @@ export class RemarkInputComponent implements OnInit {
   public resultArray = ['Megfelelt', 'Javítás után megfelelet', 'Nem felelt meg', 'Működőképesen átadva'];
   public doneArray = ['Gerőy Iván', 'Szadlon Norbert', 'Nagy Imre', 'Boros Norbert'];
   public text = 'Figyelem! A vizsgálat csak az elvégzett javítást igazoló jegyzőkönyvvel együtt érvényes!';
+  private part = [''];
 
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private productService: ProductService
   ) { }
 
   ngOnInit() {
@@ -38,7 +41,7 @@ export class RemarkInputComponent implements OnInit {
       kind: new FormControl('', [Validators.required]),
       result: new FormControl('', [Validators.required]),
       done: new FormControl('', [Validators.required]),
-      comment: new FormControl('', [Validators.maxLength(100)]),
+      comment: new FormControl('', [Validators.maxLength(150)]),
       parts:  new FormArray([part]),
     });
   }
@@ -67,6 +70,20 @@ export class RemarkInputComponent implements OnInit {
     }
     console.log(pa);
 
+    const newRem: Remark = {
+      fid: this.fid,
+      id: this.id,
+      kind: form.kind,
+      result: form.result,
+      done: form.done,
+      comment: form.comment,
+      parts: form.parts
+      }
+
+    this.productService.addRemark(newRem);
+    console.log(newRem);
+    alert('Sikeres adatbevitel');
+    this.location.back();
   }
 /*   createRemark(form) {
     const newRem: Remark = {
