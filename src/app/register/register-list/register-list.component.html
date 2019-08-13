@@ -41,6 +41,16 @@
     </td>
   </ng-container>
 
+  <ng-container matColumnDef="list">
+    <th mat-header-cell *matHeaderCellDef> Terméklista </th>
+    <td mat-cell *matCellDef="let element">
+    <button mat-icon-button color="primary"
+    (click)="redirectToDetail(element.user, element.id)">
+    <mat-icon class="mat-18">list</mat-icon>
+    </button>
+    </td>
+  </ng-container>
+
   <ng-container matColumnDef="update">
     <th mat-header-cell *matHeaderCellDef> Szerkesztés </th>
     <td mat-cell *matCellDef="let element">

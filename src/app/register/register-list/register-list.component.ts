@@ -16,7 +16,7 @@ import { AngularFirestore} from '@angular/fire/firestore';
 export class RegisterListComponent implements OnInit, AfterViewInit {
 
   public records: Array<Record> = [];
-  public displayedColumns: string[] = ['id', 'user', 'action', 'dateOfAction', 'details', 'update', 'delete'];
+  public displayedColumns: string[] = ['id', 'user', 'action', 'dateOfAction', 'details', 'list', 'update', 'delete'];
   public dataSource = new MatTableDataSource<any>();
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
