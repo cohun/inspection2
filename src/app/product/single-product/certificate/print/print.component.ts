@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs/internal/Observable';
@@ -14,7 +14,7 @@ import { RemarkCert } from 'src/app/_interface/remarkCert';
   templateUrl: './print.component.html',
   styleUrls: ['./print.component.css']
 })
-export class PrintComponent implements OnInit {
+export class PrintComponent implements OnInit, DoCheck {
   public id: string; //gysz.
   public srsz: string;
   public user: string;
@@ -40,7 +40,7 @@ export class PrintComponent implements OnInit {
 
     this.specProduct$ = this.productService.getSpecProduct(this.id);
     this.specPr$ = this.specProduct$;
-    setTimeout(() => {
+  setTimeout(() => {
        this.specProduct$.subscribe(x => x.forEach(y => {
         setTimeout(() => {
           this.productService.getProduct(y.fid);
@@ -48,13 +48,37 @@ export class PrintComponent implements OnInit {
         }));
     }, 800);
 
-    this.product$ = this.productService.pr$;
+
+
+
     this.productService.getRec(this.srsz);
     this.record$ = this.productService.rec$;
     this.productService.getUser(this.user);
     this.user$ = this.productService.user$;
     this.productService.getRemark(this.srsz, this.id);
     this.remark$ = this.productService.remark$;
+
+
+
+/*     setTimeout(() => {
+       this.specProduct$.subscribe(x => x.forEach(y => {
+        setTimeout(() => {
+          this.productService.getProduct(y.fid);
+        }, 500);
+        }));
+    }, 800);
+
+      this.product$ = this.productService.pr$; */
+
+  }
+
+  ngDoCheck(): void {
+    //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+    //Add 'implements DoCheck' to the class.
+    this.specProduct$ = this.productService.getSpecProduct(this.id);
+
+
+     this.product$ = this.productService.pr$;
   }
 
 
