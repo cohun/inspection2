@@ -6,7 +6,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { ErrorHandlerService } from "../../shared/error-handler.service";
 import {Router  } from "@angular/router";
-import { AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-register-list',
@@ -21,7 +20,7 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(private registerService: RegisterService, private db: AngularFirestore,
+  constructor(private registerService: RegisterService,
               private errorService: ErrorHandlerService, private router: Router) { }
 
   ngOnInit() {
@@ -38,6 +37,11 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
 
   public redirectToDetail = (user: string, id: string) => {
     this.router.navigate([`/register/detail`],
+    {queryParams: {user,
+                  id}});
+  }
+  public redirectToProductList = (user: string, id: string) => {
+    this.router.navigate([`/register/list`],
     {queryParams: {user,
                   id}});
   }

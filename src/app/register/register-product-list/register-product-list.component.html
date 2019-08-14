@@ -1,0 +1,15 @@
+<p>register-product-list works!</p>
+{{srsz}}
+{{user}}
+{{gysz}}
+<ul>
+    <li *ngFor="let spec of specObservable | async">
+        {{ spec.user }}  {{ spec.fid }} {{spec.id}}
+    </li>
+</ul>
+<ul>
+    <li *ngFor="let rem of remObservable | async">
+        {{ rem.id }}  {{ rem.kind }} {{ rem.fid }}
+
+    </li>
+</ul>

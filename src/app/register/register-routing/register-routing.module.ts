@@ -7,10 +7,12 @@ import { UserComponent } from '../user/user.component';
 import { UserCreateComponent } from '../user-create/user-create.component';
 import { RegisterUpdateComponent } from '../register-update/register-update.component';
 import { RegisterDeleteComponent } from '../register-delete/register-delete.component';
+import { RegisterProductListComponent } from '../register-product-list/register-product-list.component';
 
 const routes: Routes = [
   { path: 'records', component: RegisterListComponent },
   { path: 'detail', component: RegisterDetailComponent },
+  { path: 'list', component: RegisterProductListComponent },
   { path: 'create', component: UserComponent},
   { path: 'user', component: UserCreateComponent},
   { path: 'update/:id', component: RegisterUpdateComponent},
