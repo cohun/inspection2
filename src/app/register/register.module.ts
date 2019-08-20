@@ -14,9 +14,12 @@ import { UserCreateComponent } from './user-create/user-create.component';
 import { RegisterUpdateComponent } from './register-update/register-update.component';
 import { RegisterDeleteComponent } from './register-delete/register-delete.component';
 import { RegisterProductListComponent } from './register-product-list/register-product-list.component';
+import { RegisterProductGyszComponent } from './register-product-list/register-product-gysz/register-product-gysz.component';
 
 @NgModule({
-  declarations: [RegisterListComponent, RegisterDetailComponent, UserDataComponent, RegisterCreateComponent, UserComponent, UserCreateComponent, RegisterUpdateComponent, RegisterDeleteComponent, RegisterProductListComponent],
+  declarations: [RegisterListComponent, RegisterDetailComponent, UserDataComponent,
+                 RegisterCreateComponent, UserComponent, UserCreateComponent, RegisterUpdateComponent,
+                 RegisterDeleteComponent, RegisterProductListComponent, RegisterProductGyszComponent],
   imports: [
     CommonModule,
     RegisterRoutingModule,

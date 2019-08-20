@@ -1,10 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Record } from "./../_interface/record.model";
 import { RecordCreation } from "./../_interface/record-creation";
 import { User } from "../_interface/user";
 import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
-import { AngularFirestore } from '@angular/fire/firestore';
+import { map, merge } from "rxjs/operators";
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument
+ } from '@angular/fire/firestore';
+import { SpecProduct } from "../_interface/specProduct";
+import { Product } from "../_interface/product";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +24,12 @@ export class RegisterService {
   public users$: Observable<User[]>;
   user = [];
   public ide: string;
+  gyszCollection: AngularFirestoreCollection<SpecProduct>;
+  productDoc: AngularFirestoreDocument<Product>;
+  public productId = [];
+  public type: string;
+  public length = [];
+  public descreption = [];
 
   constructor(private db: AngularFirestore) { }
 
@@ -76,5 +88,25 @@ export class RegisterService {
           }as Record;
         });
        }));
+    }
+
+    findProductId(gyszArray) {
+      for (const gy of gyszArray) {
+        this.gyszCollection = this.db.collection('specProduct', ref => ref.where('id', '==', gy));
+        this.gyszCollection.valueChanges().subscribe(x => x.forEach(y => this.productId.push(y.fid)));
+      }
+      console.log(this.productId);
+    }
+    getProduct(fid) {
+      console.log(fid);
+
+      this.productDoc = this.db.doc(`products/${fid}`);
+      this.productDoc.valueChanges().subscribe(x => {
+        console.log(x.type, x.length, x.descreption);
+
+
+        this.length.push(x.length);
+        this.descreption.push(x.descreption);
+       });
     }
   }

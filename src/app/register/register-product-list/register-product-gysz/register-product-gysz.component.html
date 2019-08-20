@@ -1,0 +1,26 @@
+
+<div fxLayout="row">
+  <div fxFlex>
+    <div fxLayout="column">
+      <div fxFlex *ngFor="let item of fidArray">
+        <p>{{item}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <div fxLayout="column">
+      <div fxFlex *ngFor="let gysz of gyszArray">
+        <p>{{gysz}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <div fxLayout="column">
+      <div fxFlex *ngFor="let kind of kindArray">
+        <p>{{kind}}</p>
+      </div>
+    </div>
+  </div>
+</div>

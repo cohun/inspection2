@@ -1,15 +1,6 @@
-<p>register-product-list works!</p>
-{{srsz}}
-{{user}}
-{{gysz}}
-<ul>
-    <li *ngFor="let spec of specObservable | async">
-        {{ spec.user }}  {{ spec.fid }} {{spec.id}}
-    </li>
-</ul>
-<ul>
-    <li *ngFor="let rem of remObservable | async">
-        {{ rem.id }}  {{ rem.kind }} {{ rem.fid }}
+<div fxLayout="column" fxLayoutAlign="center center">
+  <span class="mat-title" style="margin: 8px 0">{{user | uppercase}} üzemeltető részére</span>
+  <span class="mat-subtitle" style="margin-bottom: 8px"><strong>{{srsz}}. </strong> sorszámú munkalapon az alábbiak lettek elvégezve:</span>
+</div>
 
-    </li>
-</ul>
+<app-register-product-gysz *ngIf="remObservable | async as gysz" [gysz]="gysz"></app-register-product-gysz>
