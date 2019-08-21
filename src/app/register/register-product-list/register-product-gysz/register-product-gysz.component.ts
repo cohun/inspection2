@@ -46,4 +46,8 @@ export class RegisterProductGyszComponent implements OnInit {
 
   }
 
+  refresh(): void {
+    window.location.reload();
+}
+
 }
