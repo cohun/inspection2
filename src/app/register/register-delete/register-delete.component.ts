@@ -27,7 +27,7 @@ export class RegisterDeleteComponent implements OnInit {
 
   }
 
-  onCancel(val) {
+  onCancel() {
     this.location.back();
   }
 

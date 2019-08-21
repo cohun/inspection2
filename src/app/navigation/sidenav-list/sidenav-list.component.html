@@ -17,7 +17,7 @@
         <button mat-menu-item><mat-icon>how_to_reg</mat-icon>
         <span class="nav-caption" class="mat-small">Bejelentkezés</span></button>
       </a>
-      <a routerLink="/signup" mat-menu-item (click)="onSidenavClose()">
+      <a routerLink="/signup" mat-menu-item (click)="onSidenavClose()" *ngIf="false">
         <button mat-menu-item><mat-icon>assignment_ind</mat-icon>
         <span class="nav-caption" class="mat-small">Új felhasználó</span></button>
       </a>

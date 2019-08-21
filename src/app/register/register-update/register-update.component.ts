@@ -35,8 +35,11 @@ export class RegisterUpdateComponent implements OnInit {
 
   }
 
-  onCancel(val) {
+  onCancel() {
     this.location.back();
+  }
+  createRec() {
+
   }
 
 }
