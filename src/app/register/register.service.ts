@@ -3,7 +3,7 @@ import { Record } from "./../_interface/record.model";
 import { RecordCreation } from "./../_interface/record-creation";
 import { User } from "../_interface/user";
 import { Observable } from 'rxjs';
-import { map, merge } from "rxjs/operators";
+import { map, merge, first } from "rxjs/operators";
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -27,7 +27,7 @@ export class RegisterService {
   gyszCollection: AngularFirestoreCollection<SpecProduct>;
   productDoc: AngularFirestoreDocument<Product>;
   public productId = [];
-  public type: string;
+  public type = [];
   public length = [];
   public descreption = [];
 
@@ -95,16 +95,11 @@ export class RegisterService {
         this.gyszCollection = this.db.collection('specProduct', ref => ref.where('id', '==', gy));
         this.gyszCollection.valueChanges().subscribe(x => x.forEach(y => this.productId.push(y.fid)));
       }
-      console.log(this.productId);
     }
     getProduct(fid) {
-      console.log(fid);
-
       this.productDoc = this.db.doc(`products/${fid}`);
       this.productDoc.valueChanges().subscribe(x => {
-        console.log(x.type, x.length, x.descreption);
-
-
+        this.type.push(x.type);
         this.length.push(x.length);
         this.descreption.push(x.descreption);
        });

@@ -1,23 +1,45 @@
-
+<br>
 <div fxLayout="row">
   <div fxFlex>
     <div fxLayout="column">
-      <div fxFlex *ngFor="let item of fidArray">
-        <p>{{item}}</p>
-      </div>
-    </div>
-  </div>
-
-  <div fxFlex>
-    <div fxLayout="column">
+      <span><strong>gyáriszám</strong></span>
+      <mat-divider></mat-divider>
       <div fxFlex *ngFor="let gysz of gyszArray">
         <p>{{gysz}}</p>
       </div>
     </div>
   </div>
-
   <div fxFlex>
     <div fxLayout="column">
+      <span><strong>típus</strong></span>
+      <mat-divider></mat-divider>
+      <div fxFlex *ngFor="let type of typeArray">
+        <p>{{type}}</p>
+      </div>
+    </div>
+  </div>
+  <div fxFlex>
+    <div fxLayout="column">
+      <span><strong>hossz</strong></span>
+      <mat-divider></mat-divider>
+      <div fxFlex *ngFor="let length of lengthArray">
+        <p>{{length}}</p>
+      </div>
+    </div>
+  </div>
+  <div fxFlex>
+    <div fxLayout="column">
+      <span><strong>megnevezés</strong></span>
+      <mat-divider></mat-divider>
+      <div fxFlex *ngFor="let descreption of descreptionArray">
+        <p>{{descreption}}</p>
+      </div>
+    </div>
+  </div>
+  <div fxFlex>
+    <div fxLayout="column">
+      <span><strong>munka</strong></span>
+      <mat-divider></mat-divider>
       <div fxFlex *ngFor="let kind of kindArray">
         <p>{{kind}}</p>
       </div>

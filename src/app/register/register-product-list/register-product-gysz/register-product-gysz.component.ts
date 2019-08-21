@@ -15,6 +15,8 @@ export class RegisterProductGyszComponent implements OnInit {
   public kindArray = [];
   public fidArray = [];
   public typeArray = [];
+  public lengthArray = [];
+  public descreptionArray = [];
   public specProduct$: Observable<SpecProduct[]>;
 
   constructor(private registerService: RegisterService) { }
@@ -30,24 +32,17 @@ export class RegisterProductGyszComponent implements OnInit {
       for (let i = 0; i < this.registerService.productId.length; i++) {
         const element = this.registerService.productId[i];
         console.log(element);
-
         this.registerService.getProduct(element);
-        setTimeout(() => {
-          this.typeArray.push(this.registerService.type);
-        }, 300);
       }
-      setTimeout(() => {
-        console.log(this.typeArray[1]);
-
-        for (const i of this.typeArray) {
-          console.log(i);
-        }
-      }, 300);
-
-
     }, 300);
-
-
+    setTimeout(() => {
+      this.typeArray = this.registerService.type;
+      this.lengthArray = this.registerService.length;
+      this.descreptionArray = this.registerService.descreption;
+      this.typeArray.length = this.gyszArray.length;
+      this.lengthArray.length = this.gyszArray.length;
+      this.descreptionArray.length = this.gyszArray.length;
+    }, 500);
 
   }
 
