@@ -1,6 +1,2 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-  <span class="mat-title" style="margin: 8px 0">{{user | uppercase}} üzemeltető részére</span>
-  <span class="mat-subtitle" style="margin-bottom: 8px"><strong>{{srsz}}. </strong> sorszámú munkalapon az alábbiak lettek elvégezve:</span>
-</div>
 
-<app-register-product-gysz *ngIf="remObservable | async as gysz" [gysz]="gysz"></app-register-product-gysz>
+<app-register-product-gysz *ngIf="remObservable | async as gysz" [gysz]="gysz" [srsz]="srsz" [user]="user"></app-register-product-gysz>

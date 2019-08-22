@@ -3,6 +3,8 @@ import { Remark } from '../../../_interface/remark';
 import { SpecProduct } from '../../../_interface/specProduct';
 import { RegisterService } from "../../register.service";
 import { Observable } from 'rxjs';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-register-product-gysz',
@@ -11,6 +13,8 @@ import { Observable } from 'rxjs';
 })
 export class RegisterProductGyszComponent implements OnInit {
   @Input() gysz: Remark[];
+  @Input() srsz: string;
+  @Input() user: string;
   public gyszArray = [];
   public kindArray = [];
   public fidArray = [];
@@ -48,6 +52,23 @@ export class RegisterProductGyszComponent implements OnInit {
 
   refresh(): void {
     window.location.reload();
+}
+public print()
+{
+  var data = document.getElementById('pdf');
+  html2canvas(data).then(canvas => {
+    // Few necessary setting options
+    var imgWidth = 208;
+    var pageHeight = 295;
+    var imgHeight = canvas.height * imgWidth / canvas.width;
+    var heightLeft = imgHeight;
+
+    const contentDataURL = canvas.toDataURL('image/png')
+    let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+    var position = 0;
+    pdf.addImage(contentDataURL, 'PNG', 5, position, imgWidth, imgHeight)
+    pdf.save(`${this.user}/${this.srsz}.pdf`); // Generated PDF
+  });
 }
 
 }

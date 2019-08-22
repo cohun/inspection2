@@ -8,6 +8,8 @@ import { Product } from 'src/app/_interface/product';
 import { RecordCreation } from "src/app/_interface/record-creation";
 import { User } from 'src/app/_interface/user';
 import { RemarkCert } from 'src/app/_interface/remarkCert';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-print',
@@ -79,6 +81,26 @@ export class PrintComponent implements OnInit, DoCheck {
 
 
      this.product$ = this.productService.pr$;
+  }
+  back() {
+    this.location.back();
+  }
+  public print()
+  {
+    var data = document.getElementById('pdf');
+    html2canvas(data).then(canvas => {
+      // Few necessary setting options
+      var imgWidth = 208;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.save(`${this.id}/${this.srsz}.pdf`); // Generated PDF
+    });
   }
 
 

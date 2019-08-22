@@ -1,4 +1,9 @@
-<article style="border: black solid 1px;">
+<div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="50px">
+  <button mat-raised-button (click)="back()" color="warn">Vissza</button>
+  <button  mat-raised-button (click)="print()" color="primary">Nyomtat</button>
+</div>
+<br>
+<article id="pdf" style="border: black solid 1px;">
   <div style="margin-left: 5px; margin-top: 5px;">
 <div *ngFor="let remark of remark$ | async">
 <div *ngFor="let record of record$ | async">
