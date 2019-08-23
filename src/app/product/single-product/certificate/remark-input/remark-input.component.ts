@@ -19,7 +19,7 @@ export class RemarkInputComponent implements OnInit {
   public kindArray = ['szerkezeti vizsgálat', 'fővizsgálat', 'vizsgálatot követő javítás', 'rendszeres karbantartás',
                       'rendkívüli javítás', 'üzembehelyezés', 'biztonságtechnikai felülvizsgálat'];
   public resultArray = ['Megfelelt', 'Javítás után megfelelet', 'Nem felelt meg', 'Működőképesen átadva'];
-  public doneArray = ['Gerőy Iván', 'Szadlon Norbert', 'Nagy Imre', 'Boros Norbert'];
+  public doneArray = ['Gerőly Iván', 'Szadlon Norbert', 'Nagy Imre', 'Boros Norbert'];
   public text = 'Figyelem! A vizsgálat csak az elvégzett javítást igazoló jegyzőkönyvvel együtt érvényes!';
   private part = [''];
 

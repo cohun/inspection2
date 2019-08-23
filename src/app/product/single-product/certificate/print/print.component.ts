@@ -50,27 +50,12 @@ export class PrintComponent implements OnInit, DoCheck {
         }));
     }, 800);
 
-
-
-
     this.productService.getRec(this.srsz);
     this.record$ = this.productService.rec$;
     this.productService.getUser(this.user);
     this.user$ = this.productService.user$;
     this.productService.getRemark(this.srsz, this.id);
     this.remark$ = this.productService.remark$;
-
-
-
-/*     setTimeout(() => {
-       this.specProduct$.subscribe(x => x.forEach(y => {
-        setTimeout(() => {
-          this.productService.getProduct(y.fid);
-        }, 500);
-        }));
-    }, 800);
-
-      this.product$ = this.productService.pr$; */
 
   }
 
@@ -98,7 +83,7 @@ export class PrintComponent implements OnInit, DoCheck {
       const contentDataURL = canvas.toDataURL('image/png')
       let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
       var position = 0;
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.addImage(contentDataURL, 'PNG', 1, position, imgWidth, imgHeight)
       pdf.save(`${this.id}/${this.srsz}.pdf`); // Generated PDF
     });
   }

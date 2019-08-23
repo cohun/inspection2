@@ -49,7 +49,7 @@ export class CertificateComponent implements OnInit {
       if (this.num !== 0) {
         this.router.navigate(['/product/print'],
         {queryParams: {id: this.gysz,
-                       srsz: this.srsz,
+                       srsz: this.favoriteSeason,
                        user: this.user}});
       } else {
         this.router.navigate(['/product/remark'],
