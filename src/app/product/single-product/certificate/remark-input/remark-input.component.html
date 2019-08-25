@@ -56,17 +56,28 @@
 
     <h4>Felhasznált anyagok</h4>
     <div formArrayName="parts">
+
       <div *ngFor="let part of partsForms.controls; let i=index" [formGroupName]="i">
         <mat-form-field appearance="standard">
           <mat-label>Mennyiség:</mat-label>
             <input matInput formControlName="db"
-                  type="text">
+                  type="text" [matAutocomplete]="pcs">
         <mat-hint align="end">Mennyiségi egységet is meg kell adni! (pl. m vagy db)</mat-hint>
+        <mat-autocomplete #pcs="matAutocomplete">
+          <mat-option *ngFor="let opt0 of items" [value]="opt0">
+            {{opt0}}
+          </mat-option>
+        </mat-autocomplete>
         </mat-form-field>
         <mat-form-field appearance="standard">
           <mat-label>Megnevezés:</mat-label>
               <input matInput formControlName="mi"
-                      type="text">
+                      type="text" [matAutocomplete]="type">
+              <mat-autocomplete #type="matAutocomplete">
+                <mat-option *ngFor="let opt1 of val" [value]="opt1">
+                  {{opt1}}
+                </mat-option>
+              </mat-autocomplete>
         </mat-form-field>
         <button mat-fab (click)="deleteParts(i)" color="warn">Töröl</button>
       </div>

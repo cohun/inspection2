@@ -22,6 +22,8 @@ export class RemarkInputComponent implements OnInit {
   public doneArray = ['Gerőly Iván', 'Szadlon Norbert', 'Nagy Imre', 'Boros Norbert'];
   public text = 'Figyelem! A vizsgálat csak az elvégzett javítást igazoló jegyzőkönyvvel együtt érvényes!';
   private part = [''];
+  public items = ['1 db', '2 db', '3 db', ' 1 m'];
+  public val = ['Érvényességi tábla', 'Kapcsoló szem', 'Adattábla', 'Kiakadásgátló'];
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -78,7 +80,7 @@ export class RemarkInputComponent implements OnInit {
       done: form.done,
       comment: form.comment,
       parts: form.parts
-      }
+      };
 
     this.productService.addRemark(newRem);
     console.log(newRem);

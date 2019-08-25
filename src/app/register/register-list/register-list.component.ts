@@ -16,15 +16,25 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
 
   public records: Array<Record> = [];
   public displayedColumns: string[] = ['id', 'user', 'action', 'dateOfAction', 'details', 'list', 'update', 'delete'];
+  public smColumns: string[] = ['id', 'dateOfAction', 'details', 'list', 'update', 'delete'];
   public dataSource = new MatTableDataSource<any>();
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  public w = 0;
 
   constructor(private registerService: RegisterService,
               private errorService: ErrorHandlerService, private router: Router) { }
 
   ngOnInit() {
     this.registerService.getRecords(this.dataSource);
+    const width = window.innerWidth;
+    if (width <= 768) {
+      console.log('mobile device detected');
+      this.w = 0;
+    } else {
+      console.log('desktop detected');
+      this.w = 1;
+    }
   }
 
   ngAfterViewInit(): void {

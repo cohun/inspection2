@@ -5,6 +5,7 @@ import { RegisterService } from "../../register.service";
 import { Observable } from 'rxjs';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-product-gysz',
@@ -23,7 +24,7 @@ export class RegisterProductGyszComponent implements OnInit {
   public descreptionArray = [];
   public specProduct$: Observable<SpecProduct[]>;
 
-  constructor(private registerService: RegisterService) { }
+  constructor(private registerService: RegisterService, router: Router) { }
 
   ngOnInit() {
     this.gysz.forEach(x => {
@@ -55,17 +56,17 @@ export class RegisterProductGyszComponent implements OnInit {
 }
 public print()
 {
-  var data = document.getElementById('pdf');
+  const data = document.getElementById('pdf');
   html2canvas(data).then(canvas => {
     // Few necessary setting options
-    var imgWidth = 208;
-    var pageHeight = 295;
-    var imgHeight = canvas.height * imgWidth / canvas.width;
-    var heightLeft = imgHeight;
+    const imgWidth = 208;
+    const pageHeight = 295;
+    const imgHeight = canvas.height * imgWidth / canvas.width;
+    const heightLeft = imgHeight;
 
     const contentDataURL = canvas.toDataURL('image/png')
-    let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
-    var position = 0;
+    const pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+    const position = 0;
     pdf.addImage(contentDataURL, 'PNG', 5, position, imgWidth, imgHeight)
     pdf.save(`${this.user}/${this.srsz}.pdf`); // Generated PDF
   });

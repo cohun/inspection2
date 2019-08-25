@@ -9,16 +9,17 @@
 </div>
 <br>
 <div fxLayout="row">
-  <div fxFlex>
+  <div fxFlex fxFlex.lt-sm="35">
     <div fxLayout="column">
-      <span><strong>gyáriszám</strong></span>
+      <span><strong>gy.szám</strong></span>
       <mat-divider></mat-divider>
       <div fxFlex *ngFor="let gysz of gyszArray">
         <p>{{gysz}}</p>
       </div>
     </div>
   </div>
-  <div fxFlex>
+
+  <div fxFlex fxHide.lt-sm>
     <div fxLayout="column">
       <span><strong>típus</strong></span>
       <mat-divider></mat-divider>
@@ -27,7 +28,7 @@
       </div>
     </div>
   </div>
-  <div fxFlex>
+  <div fxFlex fxHide.lt-sm>
     <div fxLayout="column">
       <span><strong>hossz</strong></span>
       <mat-divider></mat-divider>
@@ -36,7 +37,7 @@
       </div>
     </div>
   </div>
-  <div fxFlex>
+  <div fxFlex fxHide.lt-md>
     <div fxLayout="column">
       <span><strong>megnevezés</strong></span>
       <mat-divider></mat-divider>

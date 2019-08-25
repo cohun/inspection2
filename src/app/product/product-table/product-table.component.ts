@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
 import { Product } from "../../_interface/product";
 import { ProductService } from '../product.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,22 +11,32 @@ import {Router  } from "@angular/router";
   templateUrl: './product-table.component.html',
   styleUrls: ['./product-table.component.css']
 })
-export class ProductTableComponent implements OnInit {
+export class ProductTableComponent implements OnInit, AfterViewInit {
   @Input() public group: string;
   @Input() public user: string;
   @Input() public id: string;
 
   public displayedColumns: string[] = ['type', 'length', 'descreption', 'capacity', 'manufacturer',
                                        'details', 'update', 'delete'];
+  public smColumns: string[] = ['type', 'length', 'manufacturer', 'details', 'update', 'delete'];
   public dataSource = new MatTableDataSource<any>();
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  public w = 0;
 
   constructor(private productService: ProductService,
               private router: Router) { }
 
   ngOnInit() {
     this.productService.getProducts(this.dataSource, this.group);
+    const width = window.innerWidth;
+    if (width <= 768) {
+      console.log('mobile device detected');
+      this.w = 0;
+    } else {
+      console.log('desktop detected');
+      this.w = 1;
+    }
   }
 
   ngAfterViewInit(): void {

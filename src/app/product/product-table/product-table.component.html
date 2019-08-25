@@ -66,8 +66,15 @@
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <div *ngIf="w === 1">
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </div>
+   <div *ngIf="w === 0">
+    <tr mat-header-row *matHeaderRowDef="smColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: smColumns;"></tr>
+  </div>
+
 </table>
 
 <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]='true'>
