@@ -103,7 +103,7 @@
 <br>
 <section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
   <div fxFlex="20">
-    Eredménye:
+    A munka elvégzésének időpontjában:
   </div>
   <div fxFlex="60" fxLayoutAlign="center center">
     <span class="mat-headline"><strong>{{remark.result| uppercase}}</strong></span>
@@ -126,7 +126,12 @@
     </div>
   </div>
   <div fxFlex="99" fxLayoutAlign="start start"  fxLayoutGap="16px">
-    <div>Felhasznált anyagok:</div>
+    <div *ngIf="remark.result==='Javítás után megfelelet'; else part">
+      Megfelelőség helyreállításához szükséges anyagok:
+    </div>
+    <ng-template #part>
+      Felhasznált anyagok:
+    </ng-template>
     <div fxLayout="row wrap" fxLayoutGap="28px">
       <div *ngFor="let time of remark.parts">
         <strong>{{time.db }}</strong>

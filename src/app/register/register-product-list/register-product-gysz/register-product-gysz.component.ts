@@ -18,6 +18,7 @@ export class RegisterProductGyszComponent implements OnInit {
   @Input() user: string;
   public gyszArray = [];
   public kindArray = [];
+  public resultArray = [];
   public fidArray = [];
   public typeArray = [];
   public lengthArray = [];
@@ -33,14 +34,18 @@ export class RegisterProductGyszComponent implements OnInit {
     this.gysz.forEach(x => {
       this.gyszArray.push(x.fid);
       this.kindArray.push(x.kind);
+      this.resultArray.push(x.result);
 
       for (const key in x.parts) {
+        if (x.result === 'Javítás után megfelelt') {
+          continue;
+        }
         if (x.parts.hasOwnProperty(key)) {
-          let element = x.parts[key];
+          const element = x.parts[key];
           this.p1Array.push(x.fid);
           this.p2Array.push(element['db']);
           this.p3Array.push(element['mi']);
-        }};
+        }}
     });
 
     this.registerService.findProductId(this.gyszArray);

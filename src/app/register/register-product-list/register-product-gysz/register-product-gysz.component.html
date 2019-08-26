@@ -55,6 +55,15 @@
       </div>
     </div>
   </div>
+  <div fxFlex fxHide.lt-md>
+    <div fxLayout="column">
+      <span><strong>eredmény</strong></span>
+      <mat-divider></mat-divider>
+      <div fxFlex *ngFor="let result of resultArray">
+        <p>{{result}}</p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <br>
