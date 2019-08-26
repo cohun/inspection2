@@ -56,4 +56,45 @@
     </div>
   </div>
 </div>
+
+<br>
+<mat-divider></mat-divider>
+<br>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <span class="mat-subtitle" style="margin-bottom: 8px">Beépített alkatrészek gyáriszámonkénti bontásban:</span>
+</div>
+<br>
+<div fxLayout="row wrap">
+  <div fxFlex>
+    <span><strong>gy.szám</strong></span>
+    <mat-divider></mat-divider>
+  </div>
+  <div fxFlex>
+    <span><strong>mennyiség</strong></span>
+    <mat-divider></mat-divider>
+  </div>
+  <div fxFlex>
+    <span><strong>megnevezés</strong></span>
+    <mat-divider></mat-divider>
+  </div>
+</div>
+
+<div fxLayout="row wrap" fxLayoutAlign="center start">
+  <div fxFlex>
+    <div fxLayout="column" *ngFor="let item of p1Array">
+      <div fxFlex>{{item}}</div>
+    </div>
+  </div>
+  <div fxFlex>
+    <div fxLayout="column" *ngFor="let item of p2Array">
+      <div fxFlex>{{item}}</div>
+    </div>
+  </div>
+  <div fxFlex>
+    <div fxLayout="column" *ngFor="let item of p3Array">
+      <div fxFlex>{{item}}</div>
+    </div>
+  </div>
+
+</div>
 </section>

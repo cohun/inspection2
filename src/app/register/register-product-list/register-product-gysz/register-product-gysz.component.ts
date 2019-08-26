@@ -23,6 +23,9 @@ export class RegisterProductGyszComponent implements OnInit {
   public lengthArray = [];
   public descreptionArray = [];
   public specProduct$: Observable<SpecProduct[]>;
+  public p1Array = [];
+  public p2Array = [];
+  public p3Array = [];
 
   constructor(private registerService: RegisterService, router: Router) { }
 
@@ -30,6 +33,14 @@ export class RegisterProductGyszComponent implements OnInit {
     this.gysz.forEach(x => {
       this.gyszArray.push(x.fid);
       this.kindArray.push(x.kind);
+
+      for (const key in x.parts) {
+        if (x.parts.hasOwnProperty(key)) {
+          let element = x.parts[key];
+          this.p1Array.push(x.fid);
+          this.p2Array.push(element['db']);
+          this.p3Array.push(element['mi']);
+        }};
     });
 
     this.registerService.findProductId(this.gyszArray);
