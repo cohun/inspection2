@@ -55,13 +55,18 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
     {queryParams: {user,
                   id}});
   }
-  public redirectToUpdate = (id: string) => {
-    const url = `/register/update/${id}`;
-    this.router.navigate([url]);
+  public redirectToUpdate = (id: string, user:string) => {
+    const url = `/register/update`;
+    this.router.navigate([url],
+    {queryParams: {id,
+                  user}});
   }
-  public redirectToDelete = (id: string) => {
-    const url = `/register/delete/${id}`;
-    this.router.navigate([url]);
+  public redirectToDelete = (id: string, user:string) => {
+    const url = `/register/delete`;
+    this.router.navigate([url],
+      {queryParams: {id,
+        user}}
+      );
   }
 
 }

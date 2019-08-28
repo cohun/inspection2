@@ -18,7 +18,7 @@ import { Product } from "../_interface/product";
 export class RegisterService {
   public records: Record[];
   records$: Observable<Record[]>;
-  public recUpdate$: Observable<RecordCreation[]>;
+  public recUpdate$: Observable<Record[]>;
   public fid: string;
   public user$: Observable<User[]>;
   public users$: Observable<User[]>;
@@ -40,6 +40,9 @@ export class RegisterService {
   addRecords(rec) {
     this.db.collection('records').add(rec);
   }
+  upRecords(id, rec) {
+    this.db.collection('records').doc('id').update(rec);
+  }
 
   addUsers(use) {
     this.db.collection('users').add(use);
@@ -56,13 +59,30 @@ export class RegisterService {
      }));
   }
 
-  getToUpdate(ide) {
-    this.recUpdate$ = this.db.collection('records', ref => ref.where('id', '==', ide)).snapshotChanges()
+  getIdRec(id) {
+    return this.db.collection('records', ref => ref.where('id', '==', id))
+  .snapshotChanges()
+  .pipe(map(snaps => {
+  return snaps.map(snap => {
+  return {
+  fid: snap.payload.doc.id
+  }
+  });
+  }));
+  }
+
+  getToUpdate(ide, user) {
+    console.log(ide, user);
+
+    this.recUpdate$ = this.db.collection('records', ref => ref.where('id', '==', ide)
+                                                              .where('user', '==', user))
+    .snapshotChanges()
     .pipe(map(snaps => {
       return snaps.map(snap => {
         return {
+          fid: snap.payload.doc.id,
           ...snap.payload.doc.data()
-        }as RecordCreation;
+        }as Record;
       });
      }));
   }
@@ -91,12 +111,16 @@ export class RegisterService {
     }
 
     findProductId(gyszArray) {
+      this.productId = [];
       for (const gy of gyszArray) {
         this.gyszCollection = this.db.collection('specProduct', ref => ref.where('id', '==', gy));
         this.gyszCollection.valueChanges().subscribe(x => x.forEach(y => this.productId.push(y.fid)));
       }
     }
     getProduct(fid) {
+      this.type = [];
+      this.length = [];
+      this.descreption = [];
       this.productDoc = this.db.doc(`products/${fid}`);
       this.productDoc.valueChanges().subscribe(x => {
         this.type.push(x.type);

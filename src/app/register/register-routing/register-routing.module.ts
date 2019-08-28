@@ -15,8 +15,8 @@ const routes: Routes = [
   { path: 'list', component: RegisterProductListComponent },
   { path: 'create', component: UserComponent},
   { path: 'user', component: UserCreateComponent},
-  { path: 'update/:id', component: RegisterUpdateComponent},
-  { path: 'delete/:id', component: RegisterDeleteComponent}
+  { path: 'update', component: RegisterUpdateComponent},
+  { path: 'delete', component: RegisterDeleteComponent}
 ];
 
 @NgModule({

@@ -3,31 +3,41 @@
     <mat-card fxFlex="400px" fxFlex.xs="100%">
       <mat-card-title>Adatok szerkesztése</mat-card-title>
    <form [formGroup] = "recordForm" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px"
-         (ngSubmit)="createRec(recordForm.value)">
+         (ngSubmit)="updateRec(recordForm.value)">
     <mat-card-content *ngFor="let item of record | async as list">
 
       <mat-form-field appearance="fill">
         <mat-label>Sorszám</mat-label>
-        <input matInput type="text" formControlName="id" value="{{item.id}}">
+        <input matInput type="text" formControlName="id" [matAutocomplete]="id" >
+        <mat-autocomplete #id="matAutocomplete">
+          <mat-option [value]="item.id">{{item.id}}</mat-option>
+        </mat-autocomplete>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Üzemeltető</mat-label>
-        <input matInput type="text" formControlName="user" value="{{item.user}}">
+        <input matInput type="text" formControlName="user" [matAutocomplete]="user">
+        <mat-autocomplete #user="matAutocomplete">
+          <mat-option [value]="item.user">{{item.user}}</mat-option>
+        </mat-autocomplete>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Esemény</mat-label>
-        <input matInput type="text" formControlName="action" value="{{item.action}}">
+        <input matInput type="text" formControlName="action" [matAutocomplete]="action">
+        <mat-autocomplete #action="matAutocomplete">
+          <mat-option [value]="item.action">{{item.action}}</mat-option>
+        </mat-autocomplete>
       </mat-form-field>
-       <mat-form-field appearance="fill">
-        <input matInput [matDatepicker]="picker" placeholder="Időpont megadása"
-            readonly (click)="picker.open()" formControlName="dateOfAction" value="{{item.dateOfAction}}">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+      <mat-form-field  appearance="fill" class="example-full-width">
+        <input matInput [matDatepicker]="picker" placeholder="Időpont megadása" formControlName="dateOfAction"
+         >
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+      <button type="button" mat-raised-button (click)="picker.open()">{{item.dateOfAction}}</button>
 
     </mat-card-content>
     <mat-card-actions align="center">
-        <button [disabled]="true" mat-raised-button color="primary">Feltölt</button>
+        <button [disabled]="!recordForm.valid" mat-raised-button color="primary">Feltölt</button>
     </mat-card-actions>
    </form>
    <mat-card-footer align="center">

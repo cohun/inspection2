@@ -34,7 +34,7 @@ export class RegisterProductListComponent implements OnInit {
     this.srsz = this.activeRoute.snapshot.queryParams.id;
     this.user = this.activeRoute.snapshot.queryParams.user;
 
-    this.remCollection = this.afs.collection('remarks', ref => ref.where('id', '==', this.srsz));
+    this.remCollection = this.afs.collection('remarks', ref => ref.orderBy('fid').where('id', '==', this.srsz));
     this.remObservable = this.remCollection.snapshotChanges().pipe(map(arr => {
       return arr.map(snap => {
         const data = snap.payload.doc.data();

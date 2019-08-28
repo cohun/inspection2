@@ -20,9 +20,10 @@ export class RegisterDeleteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const ide: string = this.activeRoute.snapshot.params.id;
+    const ide: string = this.activeRoute.snapshot.queryParams.id;
+    const user: string = this.activeRoute.snapshot.queryParams.user;
 
-    this.register.getToUpdate(ide);
+    this.register.getToUpdate(ide, user);
     this.record = this.register.recUpdate$;
 
   }
