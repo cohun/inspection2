@@ -29,22 +29,16 @@ export class RegisterUpdateComponent implements OnInit {
     const user: string = this.activeRoute.snapshot.queryParams.user;
     this.idOld = ide;
 
-    // get the id of the register of idOld
-    this.register.getIdRec(this.idOld).pipe(map(x => x.forEach(x => {this.fid = x.fid})));
-
 
     this.register.getToUpdate(ide, user);
     this.record = this.register.recUpdate$;
-    setTimeout(() => {
-      this.record.pipe(map(x => x.forEach(x => {this.fid = x.fid})));
-    }, 800);
-
 
     this.recordForm = new FormGroup({
+      fid: new FormControl(''),
       id: new FormControl('', [Validators.required]),
       user: new FormControl('', [Validators.required]),
       action: new FormControl('', [Validators.required]),
-      dateOfAction: new FormControl('', [Validators.required])
+      dateOfAction: new FormControl(new Date(), [Validators.required])
     });
 
   }
@@ -53,16 +47,16 @@ export class RegisterUpdateComponent implements OnInit {
     this.location.back();
   }
   updateRec(f) {
-    let upRec: RecordCreation = {
+    const upRec: RecordCreation = {
       id: f.id,
       user: f.user,
       action: f.action,
-      dateOfAction: f.dateOfAction,
-    }
-    this.register.upRecords(this.fid, upRec);
+      dateOfAction: f.dateOfAction.toISOString().substring(0, 10),
+    };
+    this.register.upRecords(f.fid, upRec);
 
 
-    console.log(upRec, f.id, this.fid);
+    console.log(upRec, f.id, f.fid);
     alert('Sikeres adatbevitel');
     this.location.back();
 

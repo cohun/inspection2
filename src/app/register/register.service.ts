@@ -41,7 +41,7 @@ export class RegisterService {
     this.db.collection('records').add(rec);
   }
   upRecords(id, rec) {
-    this.db.collection('records').doc('id').update(rec);
+    this.db.collection('records').doc(id).update(rec);
   }
 
   addUsers(use) {
@@ -59,20 +59,7 @@ export class RegisterService {
      }));
   }
 
-  getIdRec(id) {
-    return this.db.collection('records', ref => ref.where('id', '==', id))
-  .snapshotChanges()
-  .pipe(map(snaps => {
-  return snaps.map(snap => {
-  return {
-  fid: snap.payload.doc.id
-  }
-  });
-  }));
-  }
-
   getToUpdate(ide, user) {
-    console.log(ide, user);
 
     this.recUpdate$ = this.db.collection('records', ref => ref.where('id', '==', ide)
                                                               .where('user', '==', user))
