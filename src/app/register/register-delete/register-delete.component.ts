@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RegisterService } from '../register.service';
 import { Observable } from 'rxjs';
 import { RecordCreation } from 'src/app/_interface/record-creation';
+import { Record } from "../../_interface/record.model";
 import { Location } from '@angular/common';
 
 @Component({
@@ -11,7 +12,10 @@ import { Location } from '@angular/common';
   styleUrls: ['./register-delete.component.css']
 })
 export class RegisterDeleteComponent implements OnInit {
-  public record: Observable<RecordCreation[]>;
+  public record: Observable<Record[]>;
+  public isSure = false;
+  private fid: string;
+
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -30,6 +34,15 @@ export class RegisterDeleteComponent implements OnInit {
 
   onCancel() {
     this.location.back();
+  }
+  onSure(fid) {
+    console.log(fid);
+    this.fid = fid;
+    this.isSure = !this.isSure;
+
+  }
+  deleteRec() {
+
   }
 
 }

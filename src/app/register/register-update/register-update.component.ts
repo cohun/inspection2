@@ -17,6 +17,7 @@ export class RegisterUpdateComponent implements OnInit {
   public recordForm: FormGroup;
   public idOld: string;
   public fid: string;
+  private dat: string;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -27,6 +28,7 @@ export class RegisterUpdateComponent implements OnInit {
   ngOnInit() {
     const ide: string = this.activeRoute.snapshot.queryParams.id;
     const user: string = this.activeRoute.snapshot.queryParams.user;
+    this.dat = this.activeRoute.snapshot.queryParams.date;
     this.idOld = ide;
 
 
@@ -34,11 +36,11 @@ export class RegisterUpdateComponent implements OnInit {
     this.record = this.register.recUpdate$;
 
     this.recordForm = new FormGroup({
-      fid: new FormControl(''),
+      fid: new FormControl('', [Validators.required]),
       id: new FormControl('', [Validators.required]),
       user: new FormControl('', [Validators.required]),
       action: new FormControl('', [Validators.required]),
-      dateOfAction: new FormControl(new Date(), [Validators.required])
+      dateOfAction: new FormControl(new Date(this.dat), [Validators.required])
     });
 
   }
@@ -46,7 +48,17 @@ export class RegisterUpdateComponent implements OnInit {
   onCancel() {
     this.location.back();
   }
+
   updateRec(f) {
+    // add one day in order to avoid js strange date behaviour
+    console.log(f.dateOfAction, new Date(this.dat));
+
+    if (f.dateOfAction.getTime() !== new Date(this.dat).getTime()) {
+      const days = f.dateOfAction.getDate()+1;
+      console.log(days);
+      f.dateOfAction.setDate(days);
+    }
+
     const upRec: RecordCreation = {
       id: f.id,
       user: f.user,
@@ -54,9 +66,6 @@ export class RegisterUpdateComponent implements OnInit {
       dateOfAction: f.dateOfAction.toISOString().substring(0, 10),
     };
     this.register.upRecords(f.fid, upRec);
-
-
-    console.log(upRec, f.id, f.fid);
     alert('Sikeres adatbevitel');
     this.location.back();
 

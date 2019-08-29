@@ -22,11 +22,19 @@
       <div fxFlex><strong>Időpont</strong></div>
       <div fxFlex>{{item.dateOfAction}}</div>
     </div>
+    <div fxLayout="row" fxLayoutAlign="center start">
+      <button mat-fab (click)="onSure(item.fid)" color="accent">
+          <mat-icon class="mat-24">?</mat-icon>
+      </button>
+    </div>
+
   </div>
+
+
 </mat-card-content>
 
   <mat-card-actions align="center">
-    <button [disabled]="true" mat-raised-button color="warn">Töröl</button>
+    <button [disabled]="!isSure" mat-raised-button color="warn" (click)="deleteRec">Töröl</button>
     <button mat-raised-button color="primary" (click)="onCancel()">Mégse</button>
   </mat-card-actions>
 

@@ -6,12 +6,11 @@
          (ngSubmit)="updateRec(recordForm.value)">
     <mat-card-content *ngFor="let item of record | async as list">
 
-      <div>{{item.fid}}</div>
       <mat-form-field appearance="fill">
-        <mat-label>fid</mat-label>
+        <mat-label>Adatok módosítása?</mat-label>
         <input matInput type="text" formControlName="fid" [matAutocomplete]="fid" >
         <mat-autocomplete #fid="matAutocomplete">
-          <mat-option [value]="item.fid">{{item.fid}}</mat-option>
+          <mat-option [value]="item.fid">Módosít!</mat-option>
         </mat-autocomplete>
       </mat-form-field>
 
@@ -42,7 +41,7 @@
          >
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-      <button type="button" mat-raised-button (click)="picker.open()">{{item.dateOfAction}}</button>
+      <button type="button" mat-raised-button (click)="picker.open()">Új dátum</button>
 
     </mat-card-content>
     <mat-card-actions align="center">

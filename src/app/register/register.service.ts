@@ -43,7 +43,9 @@ export class RegisterService {
   upRecords(id, rec) {
     this.db.collection('records').doc(id).update(rec);
   }
-
+  delRecords(id) {
+    this.db.collection('records').doc(id).delete();
+  }
   addUsers(use) {
     this.db.collection('users').add(use);
   }
