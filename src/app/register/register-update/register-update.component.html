@@ -4,7 +4,7 @@
       <mat-card-title>Adatok szerkesztése</mat-card-title>
    <form [formGroup] = "recordForm" fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px"
          (ngSubmit)="updateRec(recordForm.value)">
-    <mat-card-content *ngFor="let item of record | async as list">
+    <mat-card-content *ngFor="let item of record$ | async as list">
 
       <mat-form-field appearance="fill">
         <mat-label>Adatok módosítása?</mat-label>

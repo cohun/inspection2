@@ -60,7 +60,7 @@ export class ProductListInputComponent implements OnInit {
         alert('Sikeres adatbevitel');
         this.location.back();
       }
-    }, 1000);
+    }, 800);
 
   }
 

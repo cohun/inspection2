@@ -117,4 +117,15 @@ export class RegisterService {
         this.descreption.push(x.descreption);
        });
     }
+  //update
+  updateIdInRemarks(idOld, idNew) {
+
+  }
+  updateUserInUsers(userOld, userNew) {
+
+  }
+  updateSpecProduct(actionOld, actionNew, dateOld, dateNew, idOld, idNew) {
+
+  }
+
   }
