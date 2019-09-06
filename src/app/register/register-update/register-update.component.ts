@@ -24,7 +24,7 @@ export class RegisterUpdateComponent implements OnInit {
   public userNew: string;
   public actionNew: string;
   public dateNew: string;
-
+  public actions = ['Vizsgálat', 'Javítás', 'Karbantartás', 'Üzembehelyezés'];
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -76,23 +76,31 @@ export class RegisterUpdateComponent implements OnInit {
     //Updating users:
     if (this.userOld != this.userNew) {
       this.register.updateUserInUsers(this.userOld, this.userNew);
+      this.register.updateUserInSpecproduct(this.userOld, this.userNew);
     }
     //Updating specProduct
     if (this.actionOld != this.actionNew || this.idOld != this.idNew || this.dateOld != this.dateNew) {
+      console.log('id was changed in specProduct');
+
       this.register.updateSpecProduct(this.actionOld, this.actionNew, this.dateOld, this.dateNew,
       this.idOld, this.idNew);
     }
 
+    setTimeout(() => {
 
-    const upRec: RecordCreation = {
-      id: this.idNew,
-      user: this.userNew,
-      action: this.actionNew,
-      dateOfAction: this.dateNew,
-    };
-    this.register.upRecords(f.fid, upRec);
-    alert('Sikeres adatbevitel');
-    this.location.back();
+      const upRec: RecordCreation = {
+        id: this.idNew,
+        user: this.userNew,
+        action: this.actionNew,
+        dateOfAction: this.dateNew,
+      };
+      this.register.upRecords(f.fid, upRec);
+      alert('Sikeres adatbevitel');
+      this.location.back();
+
+    }, 200);
+
+
 
   }
 

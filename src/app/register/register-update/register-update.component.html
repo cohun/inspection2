@@ -33,6 +33,9 @@
         <input matInput type="text" formControlName="action" [matAutocomplete]="action">
         <mat-autocomplete #action="matAutocomplete">
           <mat-option [value]="item.action">{{item.action}}</mat-option>
+          <mat-option *ngFor="let opt of actions" [value]="opt">
+            {{opt}}
+          </mat-option>
         </mat-autocomplete>
       </mat-form-field>
 

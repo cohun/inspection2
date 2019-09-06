@@ -3,7 +3,7 @@ import { Record } from "./../_interface/record.model";
 import { RecordCreation } from "./../_interface/record-creation";
 import { User } from "../_interface/user";
 import { Observable } from 'rxjs';
-import { map, merge, first } from "rxjs/operators";
+import { map, merge, first, tap, take } from "rxjs/operators";
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -30,6 +30,8 @@ export class RegisterService {
   public type = [];
   public length = [];
   public descreption = [];
+  private di: string;
+  private f: string;
 
   constructor(private db: AngularFirestore) { }
 
@@ -119,13 +121,28 @@ export class RegisterService {
     }
   //update
   updateIdInRemarks(idOld, idNew) {
-
+    let doc = this.db.collection('remarks', ref => ref.where('id', '==', idOld));
+    let doc$ = doc.snapshotChanges().pipe(map(snaps => snaps.map(snap => {
+      return snap.payload.doc.id})));
+    const sub = doc$.subscribe(value => {
+      if (value.length > 0) {
+        let val = value.forEach(x => {
+          console.log(x);
+          this.db.collection('remarks').doc(x).update({id: idNew});
+        })
+      }
+    sub.unsubscribe();
+    });
   }
+
   updateUserInUsers(userOld, userNew) {
 
   }
-  updateSpecProduct(actionOld, actionNew, dateOld, dateNew, idOld, idNew) {
+  updateUserInSpecproduct(userOld, userNew) {
 
+  }
+  updateSpecProduct(actionOld, actionNew, dateOld, dateNew, idOld, idNew) {
+    let doc = this.db.collection('specProduct', ref => ref.where('id', '==', idOld));
   }
 
   }
