@@ -11,6 +11,7 @@ import {
  } from '@angular/fire/firestore';
 import { SpecProduct } from "../_interface/specProduct";
 import { Product } from "../_interface/product";
+import { firestore } from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -119,30 +120,87 @@ export class RegisterService {
         this.descreption.push(x.descreption);
        });
     }
-  //update
+    // update
   updateIdInRemarks(idOld, idNew) {
-    let doc = this.db.collection('remarks', ref => ref.where('id', '==', idOld));
-    let doc$ = doc.snapshotChanges().pipe(map(snaps => snaps.map(snap => {
-      return snap.payload.doc.id})));
+    const doc = this.db.collection('remarks', ref => ref.where('id', '==', idOld));
+    const doc$ = doc.snapshotChanges().pipe(map(snaps => snaps.map(snap => {
+      return snap.payload.doc.id; })));
     const sub = doc$.subscribe(value => {
       if (value.length > 0) {
-        let val = value.forEach(x => {
+        value.forEach(x => {
           console.log(x);
           this.db.collection('remarks').doc(x).update({id: idNew});
-        })
+        });
       }
-    sub.unsubscribe();
+      sub.unsubscribe();
     });
   }
 
-  updateUserInUsers(userOld, userNew) {
+  updateSpecProduct(actOld, actNew, dateOld, dateNew, idOld, idNew, userOld, userNew) {
+    console.log(actOld);
 
-  }
-  updateUserInSpecproduct(userOld, userNew) {
+    const doc = this.db.collection('specProduct', ref => ref.where('user', '==', userOld)
+                                                  .where(actOld, 'array-contains', idOld));
+    const doc$ = doc.snapshotChanges().pipe(map(snaps => snaps.map(snap => {
+      return snap.payload.doc.id; })));
+    const sub = doc$.subscribe(value => {
+      if (value.length > 0) {
+        value.forEach(x => {
+          console.log('from specProduct', x, actOld, actNew, idOld, idNew, dateOld, dateNew);
 
+          this.db.collection('specProduct').doc(x)
+       .update(
+         {[actOld]: firestore.FieldValue.arrayRemove(idOld, dateOld)}
+       );
+          this.db.collection('specProduct').doc(x)
+       .update(
+         {[actNew]: firestore.FieldValue.arrayUnion(idNew, dateNew)}
+       );
+          this.db.collection('specProduct').doc(x).update({user: userNew});
+
+        });
+      }
+      sub.unsubscribe();
+    });
   }
-  updateSpecProduct(actionOld, actionNew, dateOld, dateNew, idOld, idNew) {
-    let doc = this.db.collection('specProduct', ref => ref.where('id', '==', idOld));
+
+  deleteRec(fid, id, user, action, dateOfAction) {
+    // deleting records with the help of fid
+    this.db.collection('records').doc(fid).delete();
+
+    // deleting specProduct with the help of user and id
+    const doc = this.db.collection('specProduct', ref => ref.where('user', '==', user)
+                                                  .where(action, 'array-contains', id));
+    const doc$ = doc.snapshotChanges().pipe(map(snaps => snaps.map(snap => {
+      return snap.payload.doc.id; })));
+    const sub = doc$.subscribe(value => {
+      if (value.length > 0) {
+        value.forEach(x => {
+          console.log('from specProduct', x);
+
+          this.db.collection('specProduct').doc(x)
+       .update(
+         {[action]: firestore.FieldValue.arrayRemove(id, dateOfAction)}
+       );
+      });
+    }
+      sub.unsubscribe();
+    });
+
+    // deleting remarks with the help of id
+    const dock = this.db.collection('remarks', ref => ref.where('id', '==', id));
+    const do$ = dock.snapshotChanges().pipe(map(snapsr => snapsr.map(snapr => {
+      return snapr.payload.doc.id; })));
+    const su = doc$.subscribe(value => {
+      if (value.length > 0) {
+        value.forEach(xr => {
+          console.log('from remarks', xr);
+
+          this.db.collection('remarks').doc(xr).delete();
+      });
+    }
+      su.unsubscribe();
+    });
   }
 
   }

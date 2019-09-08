@@ -15,7 +15,10 @@ export class RegisterDeleteComponent implements OnInit {
   public record: Observable<Record[]>;
   public isSure = false;
   private fid: string;
-
+  private id: string;
+  private user: string;
+  private action: string;
+  private dateOfAction: string;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -35,14 +38,38 @@ export class RegisterDeleteComponent implements OnInit {
   onCancel() {
     this.location.back();
   }
-  onSure(fid) {
+  onSure(fid, id, user, action, dateOfAction) {
     console.log(fid);
     this.fid = fid;
+    this.id = id;
+    this.user = user;
+    this.action = action;
+    this.dateOfAction = dateOfAction;
     this.isSure = !this.isSure;
-
+  }
+  actionTransform(act) {
+    switch (act) {
+      case 'Vizsgálat':
+        this.action = 'inspections';
+        break;
+      case 'Javítás':
+        this.action = 'repair';
+        break;
+      case 'Karbantartás':
+        this.action = 'maintenance';
+        break;
+      case 'Üzembehelyezés':
+        this.action = 'operationStart';
+        break;
+      default:
+        break;
+    }
   }
   deleteRec() {
-
+    this.actionTransform(this.action);
+    this.register.deleteRec(this.fid, this.id, this.user, this.action, this.dateOfAction);
+    alert('Sikeres adatbevitel');
+    this.location.back();
   }
 
 }

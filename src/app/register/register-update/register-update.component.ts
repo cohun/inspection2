@@ -7,6 +7,7 @@ import { Record } from "../../_interface/record.model";
 import { Location } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 @Component({
   selector: 'app-register-update',
   templateUrl: './register-update.component.html',
@@ -18,11 +19,13 @@ export class RegisterUpdateComponent implements OnInit {
   public idOld: string;
   public userOld: string;
   public actionOld: string;
+  public actOld: string;
   public dateOld: string;
-  public fid: string;
+  public fid = '';
   public idNew: string;
   public userNew: string;
   public actionNew: string;
+  public actNew: string;
   public dateNew: string;
   public actions = ['Vizsgálat', 'Javítás', 'Karbantartás', 'Üzembehelyezés'];
 
@@ -50,6 +53,10 @@ export class RegisterUpdateComponent implements OnInit {
     });
 
   }
+  onChange(val) {
+    this.fid = val;
+    console.log(this.fid);
+  }
 
   onCancel() {
     this.location.back();
@@ -69,21 +76,17 @@ export class RegisterUpdateComponent implements OnInit {
     this.actionNew = f.action;
     this.dateNew = f.dateOfAction.toISOString().substring(0, 10);
 
-    // Updating remarks:
-    if (this.idOld != this.idNew) {
-      this.register.updateIdInRemarks(this.idOld, this.idNew)
+    // Updating id:
+    if (this.idOld !== this.idNew) {
+      this.register.updateIdInRemarks(this.idOld, this.idNew);
     }
-    //Updating users:
-    if (this.userOld != this.userNew) {
-      this.register.updateUserInUsers(this.userOld, this.userNew);
-      this.register.updateUserInSpecproduct(this.userOld, this.userNew);
-    }
-    //Updating specProduct
-    if (this.actionOld != this.actionNew || this.idOld != this.idNew || this.dateOld != this.dateNew) {
-      console.log('id was changed in specProduct');
-
-      this.register.updateSpecProduct(this.actionOld, this.actionNew, this.dateOld, this.dateNew,
-      this.idOld, this.idNew);
+    // Updating specProduct
+    if (this.actionOld !== this.actionNew || this.idOld !== this.idNew || this.dateOld !== this.dateNew) {
+      console.log('specProduct needs to be updated as well');
+      this.actionOldTransform(this.actionOld);
+      this.actionNewTransform(this.actionNew)
+      this.register.updateSpecProduct(this.actOld, this.actNew, this.dateOld, this.dateNew,
+      this.idOld, this.idNew, this.userOld, this.userNew);
     }
 
     setTimeout(() => {
@@ -94,7 +97,7 @@ export class RegisterUpdateComponent implements OnInit {
         action: this.actionNew,
         dateOfAction: this.dateNew,
       };
-      this.register.upRecords(f.fid, upRec);
+      this.register.upRecords(this.fid, upRec);
       alert('Sikeres adatbevitel');
       this.location.back();
 
@@ -102,6 +105,42 @@ export class RegisterUpdateComponent implements OnInit {
 
 
 
+  }
+  actionOldTransform(act) {
+    switch (act) {
+      case 'Vizsgálat':
+        this.actOld = 'inspections';
+        break;
+      case 'Javítás':
+        this.actOld = 'repair';
+        break;
+      case 'Karbantartás':
+        this.actOld = 'maintenance';
+        break;
+      case 'Üzembehelyezés':
+        this.actOld = 'operationStart';
+        break;
+      default:
+        break;
+    }
+  }
+  actionNewTransform(act) {
+    switch (act) {
+      case 'Vizsgálat':
+        this.actNew = 'inspections';
+        break;
+      case 'Javítás':
+        this.actNew = 'repair';
+        break;
+      case 'Karbantartás':
+        this.actNew = 'maintenance';
+        break;
+      case 'Üzembehelyezés':
+        this.actNew = 'operationStart';
+        break;
+      default:
+        break;
+    }
   }
 
 }

@@ -7,10 +7,12 @@
     <mat-card-content *ngFor="let item of record$ | async as list">
 
       <mat-form-field appearance="fill">
-        <mat-label>Adatok módosítása?</mat-label>
-        <input matInput type="text" formControlName="fid" [matAutocomplete]="fid" >
+        <mat-label>Klikk az egyedi azonosító megkereséséhez:</mat-label>
+        <input matInput type="text" formControlName="fid" [matAutocomplete]="fid">
         <mat-autocomplete #fid="matAutocomplete">
-          <mat-option [value]="item.fid">Módosít!</mat-option>
+          <mat-option [value]="item.fid" (click)="onChange(item.fid)">
+              Mehet!
+          </mat-option>
         </mat-autocomplete>
       </mat-form-field>
 

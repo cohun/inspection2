@@ -78,6 +78,10 @@
     <tr mat-header-row *matHeaderRowDef="smColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: smColumns;"></tr>
   </div>
+  <div *ngIf="w === 2">
+    <tr mat-header-row *matHeaderRowDef="xsColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: xsColumns;"></tr>
+  </div>
 
 </table>
 

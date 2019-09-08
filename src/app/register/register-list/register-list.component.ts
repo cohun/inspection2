@@ -17,6 +17,7 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
   public records: Array<Record> = [];
   public displayedColumns: string[] = ['id', 'user', 'action', 'dateOfAction', 'details', 'list', 'update', 'delete'];
   public smColumns: string[] = ['id', 'dateOfAction', 'details', 'list', 'update', 'delete'];
+  public xsColumns: string[] = ['id', 'details', 'list', 'update', 'delete'];
   public dataSource = new MatTableDataSource<any>();
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -28,7 +29,10 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.registerService.getRecords(this.dataSource);
     const width = window.innerWidth;
-    if (width <= 768) {
+    if (width <= 411) {
+      console.log('phone detected');
+      this.w = 2;
+    } else if (width <= 768) {
       console.log('mobile device detected');
       this.w = 0;
     } else {
@@ -55,7 +59,7 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
     {queryParams: {user,
                   id}});
   }
-  public redirectToUpdate = (id: string, user:string, action:string, date:string) => {
+  public redirectToUpdate = (id: string, user: string, action: string, date: string) => {
     const url = `/register/update`;
     this.router.navigate([url],
     {queryParams: {id,
@@ -63,7 +67,7 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
                   action,
                   date}});
   }
-  public redirectToDelete = (id: string, user:string) => {
+  public redirectToDelete = (id: string, user: string) => {
     const url = `/register/delete`;
     this.router.navigate([url],
       {queryParams: {id,

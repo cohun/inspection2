@@ -1,7 +1,7 @@
 
 <section fxLayout="row wrap" fxLayoutAlign="center center">
   <mat-card fxFlex="500px" fxFlex.xs="100%">
-      <mat-card-title>Az alábbi adatok kerülnek törlésre</mat-card-title>
+      <mat-card-title>Az alábbi munkalaphoz bevitt valamennyi adat törlése</mat-card-title>
       <mat-card-subtitle  align="center">(Figyelem! A művelet nem vonható vissza!)</mat-card-subtitle>
   <mat-card-content>
   <div fxLayout="column wrap" fxLayoutGap="40px" *ngFor="let item of record | async as list">
@@ -23,7 +23,7 @@
       <div fxFlex>{{item.dateOfAction}}</div>
     </div>
     <div fxLayout="row" fxLayoutAlign="center start">
-      <button mat-fab (click)="onSure(item.fid)" color="accent">
+      <button mat-fab (click)="onSure(item.fid, item.id, item.user, item.action, item.dateOfAction)" color="accent">
           <mat-icon class="mat-24">?</mat-icon>
       </button>
     </div>
@@ -34,7 +34,7 @@
 </mat-card-content>
 
   <mat-card-actions align="center">
-    <button [disabled]="!isSure" mat-raised-button color="warn" (click)="deleteRec">Töröl</button>
+    <button [disabled]="!isSure" mat-raised-button color="warn" (click)="deleteRec()">Töröl</button>
     <button mat-raised-button color="primary" (click)="onCancel()">Mégse</button>
   </mat-card-actions>
 
