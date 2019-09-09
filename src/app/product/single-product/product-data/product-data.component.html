@@ -110,7 +110,7 @@
     </div>
   </mat-card-content>
   <mat-card-actions style="text-align: center">
-    <button mat-button color="primary">Szerkeszt</button>
+    <button mat-button color="primary" (click)="del(item.id)">Töröl</button>
     <button mat-button color="warn" (click)="certificate(item.user, item.id)">Jegyzőkönyv</button>
   </mat-card-actions>
 </mat-card>

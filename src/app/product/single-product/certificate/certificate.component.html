@@ -22,7 +22,7 @@
           <div fxFlex="50" *ngFor="let time of item.inspections as list; let i = index">
             <span style="padding-top: 6px"> {{time}}</span>
             <div fxFlex="20" fxFlexOffset="80px" fxLayoutAlign="start start">
-              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='list[i-1]' (click)="f('Vizsgálat')">
+              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='list[i-1]' (click)="f('Vizsgálat', list[i])">
               </mat-radio-button>
               <br>
               <mat-divider></mat-divider>
@@ -33,7 +33,7 @@
           <div fxFlex="50" *ngFor="let time of item.repair as list; let i = index">
               <span style="padding-top: 6px"> {{time}}</span>
             <div fxFlex="20" fxFlexOffset="80px" fxLayoutAlign="start start">
-              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='list[i-1]' (click)="f('Javítás')">
+              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='list[i-1]' (click)="f('Javítás', list[i])">
               </mat-radio-button>
               <br>
               <mat-divider></mat-divider>
@@ -44,7 +44,7 @@
           <div fxFlex="50" *ngFor="let time of item.maintenance as list; let i = index">
               <span style="padding-top: 6px"> {{time}}</span>
             <div fxFlex="20" fxFlexOffset="80px" fxLayoutAlign="start start">
-              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='list[i-1]' (click)="f('Karbantartás')">
+              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='list[i-1]' (click)="f('Karbantartás', list[i])">
               </mat-radio-button>
               <br>
               <mat-divider></mat-divider>
@@ -55,7 +55,7 @@
           <div fxFlex="50" *ngFor="let time of item.operationStart as list; let i = index">
               <span style="padding-top: 6px"> {{time}}</span>
             <div fxFlex="20" fxFlexOffset="80px" fxLayoutAlign="start start">
-              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='list[i-1]' (click)="f('Üzembehelyezés')">
+              <mat-radio-button *ngIf="i % 2 !== 0" class="example-radio-button" [value]='list[i-1]' (click)="f('Üzembehelyezés', list[i])">
               </mat-radio-button>
               <br>
               <mat-divider></mat-divider>

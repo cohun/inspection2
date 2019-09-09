@@ -90,5 +90,9 @@ export class ProductDataComponent implements OnInit {
                   id,
                   i: this.i}});
   }
+  del(gysz) {
+    alert('Végérvényesen törlődik ez a termék!');
+    this.productService.delProduct(gysz);
+  }
 
 }

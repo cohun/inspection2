@@ -48,7 +48,7 @@
       </textarea>
       <mat-hint align="end">Ha nincs észrevétel, üresen hagyható! Max 150 karakter!</mat-hint>
       <mat-autocomplete #comment="matAutocomplete">
-        <mat-option *ngIf="remarkForm.value.result === 'Javítás után megfelelet'" [value]="text">
+        <mat-option *ngIf="remarkForm.value.result === 'Javítás után megfelelt'" [value]="text">
           {{text}}
         </mat-option>
       </mat-autocomplete>

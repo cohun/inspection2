@@ -213,4 +213,33 @@ getProduct(fid) {
 addRemark(prod) {
   this.db.collection('remarks').add(prod);
 }
+delProduct(gysz) {
+  const doc = this.db.collection('specProduct', ref => ref.where('id', '==', gysz));
+    const doc$ = doc.snapshotChanges().pipe(map(snaps => snaps.map(snap => {
+      return snap.payload.doc.id; })));
+    const sub = doc$.subscribe(value => {
+      if (value.length > 0) {
+        value.forEach(x => {
+          console.log('from specProduct', x);
+
+          this.db.collection('specProduct').doc(x).delete();
+      });
+    }
+      sub.unsubscribe();
+    });
+
+    const dock = this.db.collection('remarks', ref => ref.where('fid', '==', gysz));
+    const do$ = dock.snapshotChanges().pipe(map(snapsr => snapsr.map(snapr => {
+      return snapr.payload.doc.id; })));
+    const su = do$.subscribe(value => {
+      if (value.length > 0) {
+        value.forEach(xr => {
+          console.log('from remarks', xr);
+
+          this.db.collection('remarks').doc(xr).delete();
+      });
+    }
+      su.unsubscribe();
+    });
+}
 }

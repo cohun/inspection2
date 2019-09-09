@@ -3,7 +3,7 @@ import { Record } from "./../_interface/record.model";
 import { RecordCreation } from "./../_interface/record-creation";
 import { User } from "../_interface/user";
 import { Observable } from 'rxjs';
-import { map, merge, first, tap, take } from "rxjs/operators";
+import { map, merge, first, tap, take, subscribeOn } from "rxjs/operators";
 import {
   AngularFirestore,
   AngularFirestoreCollection,

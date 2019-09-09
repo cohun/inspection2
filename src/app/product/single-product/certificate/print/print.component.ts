@@ -28,6 +28,7 @@ export class PrintComponent implements OnInit, DoCheck {
   public user$: Observable<User[]>;
   public remark$: Observable<RemarkCert[]>;
   public today = new Date();
+  public datey: number;
 
   constructor(private activeRoute: ActivatedRoute,
               private location: Location,
@@ -38,6 +39,7 @@ export class PrintComponent implements OnInit, DoCheck {
     this.id = this.activeRoute .snapshot.queryParams.id;
     this.srsz = this.activeRoute .snapshot.queryParams.srsz;
     this.user = this.activeRoute .snapshot.queryParams.user;
+    this.datey = this.activeRoute .snapshot.queryParams.datey;
     console.log(this.user);
 
     this.specProduct$ = this.productService.getSpecProduct(this.id);

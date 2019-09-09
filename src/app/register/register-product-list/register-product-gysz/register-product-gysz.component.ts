@@ -75,6 +75,7 @@ export class RegisterProductGyszComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+
 /*     this.gysz.forEach(x => {
       this.gyszArray.push(x.fid);
       this.kindArray.push(x.kind);

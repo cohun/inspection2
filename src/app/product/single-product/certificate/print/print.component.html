@@ -115,7 +115,12 @@
     {{remark.kind}} időpontja: <strong>{{record.dateOfAction}}</strong>
   </div>
   <div fxFlex="49.5" class="border">
-    Érvényesség vége: <strong> 2020{{record.dateOfAction | slice: 4:10}}</strong>
+    Érvényesség vége: <span *ngIf="remark.result === 'Nem felelt meg'" style="color: red">tilos továbbhasználni</span>
+    <span *ngIf="remark.kind === 'vizsgálatot követő javítás'">vizsgálati jegyzőkönyv szerint</span>
+    <span *ngIf="remark.result !== 'Nem felelt meg' && remark.kind !== 'vizsgálatot követő javítás'">
+      <strong>{{datey}}{{record.dateOfAction | slice: 4:10}}</strong>
+    </span>
+
   </div>
   <div fxFlex="100"></div>
   <br>

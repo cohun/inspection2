@@ -18,6 +18,7 @@ export class CertificateComponent implements OnInit {
   public gysz: string;
   public act: string;
   public num: number;
+  public datey: number;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -37,8 +38,9 @@ export class CertificateComponent implements OnInit {
     this.location.back();
   }
 
-  f(data) {
+  f(data, date) {
     this.act = data;
+    this.datey = +date.slice(0, 4) + 1;
   }
 
    onGo() {
@@ -50,7 +52,8 @@ export class CertificateComponent implements OnInit {
         this.router.navigate(['/product/print'],
         {queryParams: {id: this.gysz,
                        srsz: this.favoriteSeason,
-                       user: this.user}});
+                       user: this.user,
+                      datey: this.datey}});
       } else {
         this.router.navigate(['/product/remark'],
         {queryParams: {id: this.gysz,
