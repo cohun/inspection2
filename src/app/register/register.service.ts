@@ -136,31 +136,43 @@ export class RegisterService {
     });
   }
 
-  updateSpecProduct(actOld, actNew, dateOld, dateNew, idOld, idNew, userOld, userNew) {
+  updateSpecProduct(actOld: string, actNew: string, dateOld: string, dateNew: string, idOld: string, idNew: string, userOld: string, userNew: string) {
     console.log(actOld);
 
     const doc = this.db.collection('specProduct', ref => ref.where('user', '==', userOld)
                                                   .where(actOld, 'array-contains', idOld));
     const doc$ = doc.snapshotChanges().pipe(map(snaps => snaps.map(snap => {
       return snap.payload.doc.id; })));
-    const sub = doc$.subscribe(value => {
+    const sub = doc$.pipe(take(1)).subscribe(value => {
       if (value.length > 0) {
         value.forEach(x => {
           console.log('from specProduct', x, actOld, actNew, idOld, idNew, dateOld, dateNew);
+          console.log(actOld, idOld);
+          this.db.collection('specProduct').doc(x)
+       .update(
+         {[actOld]: firestore.FieldValue.arrayRemove(idOld)}
+       );
+       console.log(actOld, idOld);
+       console.log(actNew, idNew, dateNew);
 
-          this.db.collection('specProduct').doc(x)
+       this.db.collection('specProduct').doc(x)
        .update(
-         {[actOld]: firestore.FieldValue.arrayRemove(idOld, dateOld)}
+         {[actOld]: firestore.FieldValue.arrayRemove(dateOld)}
        );
-          this.db.collection('specProduct').doc(x)
-       .update(
-         {[actNew]: firestore.FieldValue.arrayUnion(idNew, dateNew)}
-       );
+
+       this.db.collection('specProduct').doc(x)
+        .update(
+          {[actNew]: firestore.FieldValue.arrayUnion(idNew, dateNew)}
+        );
+
           this.db.collection('specProduct').doc(x).update({user: userNew});
 
         });
       }
-      sub.unsubscribe();
+      setTimeout(() => {
+        sub.unsubscribe();
+      }, 100);
+
     });
   }
 

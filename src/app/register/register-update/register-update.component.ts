@@ -6,8 +6,7 @@ import { RecordCreation } from 'src/app/_interface/record-creation';
 import { Record } from "../../_interface/record.model";
 import { Location } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { map } from 'rxjs/operators';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 @Component({
   selector: 'app-register-update',
   templateUrl: './register-update.component.html',
@@ -98,7 +97,6 @@ export class RegisterUpdateComponent implements OnInit {
         dateOfAction: this.dateNew,
       };
       this.register.upRecords(this.fid, upRec);
-      alert('Sikeres adatbevitel');
       this.location.back();
 
     }, 200);
