@@ -6,7 +6,7 @@
   </div>
   <div>
     <a routerLink="/home" routerLinkActive="active" fxLayout="row" fxLayoutAlign="start center">
-      <h3>ETAR</h3>
+      <h3>ETAR</h3> <strong class="mat-subheading-1">&#174;</strong>
       <span>
         <img src="./../../../assets/H-ITB_logo_Stencil.jpg" alt="logo" class="logo">
       </span>
@@ -16,7 +16,19 @@
   <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
     <ul fxLayout fxLayoutGap="15px" class="navigation-items">
       <li *ngIf="isAuth">
-        <a routerLink="/register/records" routerLinkActive="active">Nyilvántartás</a>
+        <button mat-button [matMenuTriggerFor]="menu">
+          <h2 >Nyilvántartás</h2>
+        </button>
+        <mat-menu #menu="matMenu">
+            <a routerLink="/register/records" routerLinkActive="active">
+          <button mat-menu-item><mat-icon class="mat-18">list</mat-icon>
+          <span class="nav-caption" class="mat-small">Elvégzett munkálatok</span></button>
+            </a>
+            <a routerLink="">
+          <button mat-menu-item><mat-icon>unarchive</mat-icon>
+          <span class="nav-caption" class="mat-small">Emelőgépek, eszközök</span></button>
+            </a>
+        </mat-menu>
       </li>
       <li *ngIf="!isAuth">
         <button mat-button [matMenuTriggerFor]="menu">
