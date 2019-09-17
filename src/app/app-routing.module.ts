@@ -6,7 +6,6 @@ import { ServerErrorComponent } from './error-pages/server-error/server-error.co
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from "./auth/signup/signup.component";
 import { NewComponent } from './new/new.component';
-import { ProductModule } from './product/product.module';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,6 +14,7 @@ const routes: Routes = [
   { path: 'new', component: NewComponent},
   { path: 'register', loadChildren: () => import('./register/register.module').then(mo => mo.RegisterModule) },
   { path: 'product', loadChildren: () => import('./product/product.module').then(m => m.ProductModule) },
+  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: '404', component: NotFoundComponent },
   { path: '500', component: ServerErrorComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full'},
