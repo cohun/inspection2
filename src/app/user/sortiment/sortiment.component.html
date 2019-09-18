@@ -3,7 +3,7 @@
     <img src="../../../assets/indít.jpg" alt="" class="img">
 </div>
 <section fxLayout="row wrap" fxLayoutAlign="space-around start" style="margin-top: 20px">
-    <mat-card fxFlex="300px" fxFlex.xs="100%">
+    <mat-card fxFlex="300px" fxFlex.xs="100%" id='card'>
         <mat-card-header>
             <img matCardAvatar src="../../../assets/worker-icon.png">
             <span class="mat-subtitle-2">
@@ -14,12 +14,9 @@
         <div fxLayout="row" fxLayoutAlign="space-around start" style="margin-top: 20px">
             <img matCardImage src="../../../assets/factory-plant.png" fxFlex="70%">
         </div>
-
-        <mat-card-actions align="center">
-            <button mat-raised-button (click)="onAction(event)" color="warn">Lista</button>
-        </mat-card-actions>
     </mat-card>
-    <mat-card fxFlex="300px" fxFlex.xs="100%">
+    <a [routerLink]="['/user/detail']" routerLinkActive="router-link-active" >
+        <mat-card fxFlex="300px" fxFlex.xs="100%" id='card'>
             <mat-card-header>
                 <img matCardAvatar src="../../../assets/Manual_800_600.svg">
                 <span class="mat-subtitle-2">
@@ -30,9 +27,7 @@
             <div fxLayout="row" fxLayoutAlign="space-around start" style="margin-top: 35px">
                 <img matCardImage src="../../../assets/LA.svg" fxFlex="85%">
             </div>
-
-            <mat-card-actions align="center">
-                <button mat-raised-button (click)="onAction(event)" color="warn">Lista</button>
-            </mat-card-actions>
         </mat-card>
+    </a>
+
 </section>

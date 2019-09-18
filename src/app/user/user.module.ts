@@ -4,9 +4,11 @@ import { SortimentComponent } from './sortiment/sortiment.component';
 import { UserRoutingModule } from './user-routing/user-routing.module';
 import { MaterialModule } from "../material/material.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { ProductGroupComponent } from './product-group/product-group.component';
+import { LaComponent } from './la/la.component';
 
 @NgModule({
-  declarations: [SortimentComponent],
+  declarations: [SortimentComponent, ProductGroupComponent, LaComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

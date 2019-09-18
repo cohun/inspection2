@@ -1,0 +1,9 @@
+img {
+    height: 100%;
+}
+#trigger {
+    background-color: lightgray;
+}
+#trigger:hover {
+    background-color: #fed130;
+}
