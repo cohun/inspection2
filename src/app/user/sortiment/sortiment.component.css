@@ -1,7 +1,28 @@
-.img {
+.imgstart {
     width: 100%;
   }
 
-  #card:hover {
-      background-color:#fed130;
+  #card {
+      background-color:#37474F;
   }
+  #card a {
+    text-decoration: none;
+  }
+  #back {
+    background-color: #607D8B;
+    margin-left: -10px;
+    margin-right: -10px;
+    overflow: hidden;
+  }
+  .img {
+    opacity: 0.9;
+    width: 100%;
+    height: auto;
+    transform: scale(0.97);
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.img:hover {
+    opacity: 1;
+    transform: scale(1.03);
+}

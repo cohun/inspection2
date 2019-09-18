@@ -1,33 +1,38 @@
 
 <div style="margin: -10px -10px; width: 100vw; padding: -10px">
-    <img src="../../../assets/indít.jpg" alt="" class="img">
+    <img src="../../../assets/indít.jpg" alt="" class="imgstart">
 </div>
-<section fxLayout="row wrap" fxLayoutAlign="space-around start" style="margin-top: 20px">
+<div style="margin-top: 5px">
+  <mat-divider style="background-color: #fed130; margin-left: -10px; margin-right: -10px"></mat-divider>
+  <mat-divider style="background-color: #fed130; margin-left: -10px; margin-right: -10px"></mat-divider>
+  <mat-divider style="background-color: #fed130; margin-left: -10px; margin-right: -10px"></mat-divider>
+</div>
+
+<section fxLayout="row wrap" fxLayoutAlign="space-around start" id='back' >
+
     <mat-card fxFlex="300px" fxFlex.xs="100%" id='card'>
         <mat-card-header>
             <img matCardAvatar src="../../../assets/worker-icon.png">
-            <span class="mat-subtitle-2">
-                <strong>Üzemeltetés helyszínei, felhasználók</strong>
-            </span>
+            <span class="mat-subtitle-2" style="color: white">Üzemeltetés helyszínei, felhasználók</span>
             <mat-card-subtitle></mat-card-subtitle>
         </mat-card-header>
         <div fxLayout="row" fxLayoutAlign="space-around start" style="margin-top: 20px">
-            <img matCardImage src="../../../assets/factory-plant.png" fxFlex="70%">
+            <img matCardImage src="../../../assets/factory-plant.png" fxFlex="70%" class="img">
         </div>
     </mat-card>
     <a [routerLink]="['/user/detail']" routerLinkActive="router-link-active" >
         <mat-card fxFlex="300px" fxFlex.xs="100%" id='card'>
             <mat-card-header>
                 <img matCardAvatar src="../../../assets/Manual_800_600.svg">
-                <span class="mat-subtitle-2">
-                    <strong>Emelőgépek, teherfelvevő eszközök</strong>
-                </span>
+                <span class="mat-subtitle-2" style="color: white">Emelőgépek, teherfelvevő eszközök</span>
                 <mat-card-subtitle></mat-card-subtitle>
             </mat-card-header>
             <div fxLayout="row" fxLayoutAlign="space-around start" style="margin-top: 35px">
-                <img matCardImage src="../../../assets/LA.svg" fxFlex="85%">
+                <img matCardImage src="../../../assets/LA.svg" fxFlex="85%" class="img">
             </div>
         </mat-card>
     </a>
-
 </section>
+<mat-divider style="background-color: #fed130; margin-left: -10px; margin-right: -10px"></mat-divider>
+<mat-divider style="background-color: #fed130; margin-left: -10px; margin-right: -10px"></mat-divider>
+<mat-divider style="background-color: #fed130; margin-left: -10px; margin-right: -10px"></mat-divider>

@@ -1,9 +1,22 @@
 img {
     height: 100%;
 }
-#trigger {
-    background-color: lightgray;
+.meal-photo {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  background-color: #37474F;
 }
-#trigger:hover {
-    background-color: #fed130;
+
+.meal-photo img {
+  opacity: 0.9;
+  width: 100%;
+  height: auto;
+  transform: scale(0.97);
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.meal-photo img:hover {
+  opacity: 1;
+  transform: scale(1.03);
 }
