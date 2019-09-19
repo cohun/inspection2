@@ -4,8 +4,18 @@
   </a>
 
   <div *ngIf="isAuth">
-  <a mat-list-item routerLink="/register/records" (click)="onSidenavClose()">
+  <a mat-list-item routerLink="/register/records" [matMenuTriggerFor]="menu">
     <mat-icon>assignment_ind</mat-icon> <span class="nav-caption">Nyílvántartás</span>
+    <mat-menu #menu="matMenu" yPosition="below">
+      <a routerLink="/register/records" (click)="onSidenavClose()">
+    <button mat-menu-item><mat-icon class="mat-18">list</mat-icon>
+    <span class="nav-caption" class="mat-small">Elvégzett munkálatok</span></button>
+      </a>
+      <a routerLink="/user/user" (click)="onSidenavClose()">
+    <button mat-menu-item><mat-icon>unarchive</mat-icon>
+    <span class="nav-caption" class="mat-small">Emelőgépek, eszközök</span></button>
+      </a>
+  </mat-menu>
   </a>
   </div>
 

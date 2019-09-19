@@ -8,9 +8,9 @@
   <mat-divider style="background-color: #fed130; margin-left: -10px; margin-right: -10px"></mat-divider>
 </div>
 
-<section fxLayout="row wrap" fxLayoutAlign="space-around start" id='back' >
+<section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' >
 
-    <mat-card fxFlex="300px" fxFlex.xs="100%" id='card'>
+    <mat-card fxFlex="300px" fxFlex.xs="100vw" id='card'>
         <mat-card-header>
             <img matCardAvatar src="../../../assets/worker-icon.png">
             <span class="mat-subtitle-2" style="color: white">Üzemeltetés helyszínei, felhasználók</span>
@@ -20,8 +20,9 @@
             <img matCardImage src="../../../assets/factory-plant.png" fxFlex="70%" class="img">
         </div>
     </mat-card>
+    <mat-divider></mat-divider>
     <a [routerLink]="['/user/detail']" routerLinkActive="router-link-active" >
-        <mat-card fxFlex="300px" fxFlex.xs="100%" id='card'>
+        <mat-card fxFlex="300px" fxFlex.xs="100vw" id='card'>
             <mat-card-header>
                 <img matCardAvatar src="../../../assets/Manual_800_600.svg">
                 <span class="mat-subtitle-2" style="color: white">Emelőgépek, teherfelvevő eszközök</span>

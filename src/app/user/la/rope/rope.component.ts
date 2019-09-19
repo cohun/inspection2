@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-la',
-  templateUrl: './la.component.html',
-  styleUrls: ['./la.component.css']
+  selector: 'app-rope',
+  templateUrl: './rope.component.html',
+  styleUrls: ['./rope.component.css']
 })
-export class LaComponent implements OnInit {
+export class RopeComponent implements OnInit {
 
   constructor(private location: Location) { }
 

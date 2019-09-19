@@ -6,9 +6,13 @@ import { MaterialModule } from "../material/material.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ProductGroupComponent } from './product-group/product-group.component';
 import { LaComponent } from './la/la.component';
+import { TextileComponent } from './la/textile/textile.component';
+import { ChainComponent } from './la/chain/chain.component';
+import { RopeComponent } from './la/rope/rope.component';
+import { ManualComponent } from './manual/manual.component';
 
 @NgModule({
-  declarations: [SortimentComponent, ProductGroupComponent, LaComponent],
+  declarations: [SortimentComponent, ProductGroupComponent, LaComponent, TextileComponent, ChainComponent, RopeComponent, ManualComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
