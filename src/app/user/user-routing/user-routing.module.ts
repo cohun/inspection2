@@ -8,6 +8,7 @@ import { TextileComponent } from '../la/textile/textile.component';
 import { RopeComponent } from '../la/rope/rope.component';
 import { ChainComponent } from '../la/chain/chain.component';
 import { ManualComponent } from '../manual/manual.component';
+import { PoweredComponent } from '../powered/powered.component';
 
 const routes: Routes = [
   { path: 'user', component: SortimentComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'la/textile', component: TextileComponent},
   { path: 'la/chain', component: ChainComponent},
   { path: 'la/rope', component: RopeComponent},
-  { path: 'manual', component: ManualComponent}
+  { path: 'manual', component: ManualComponent},
+  { path: 'powered', component: PoweredComponent}
 ]
 
 
