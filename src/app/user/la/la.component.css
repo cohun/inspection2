@@ -8,7 +8,10 @@
     width: 100%;
     margin: 0;
     overflow: hidden;
-    background-color: #37474F;
+    background-color: #3f51b5;
+}
+.meal-photo:hover {
+  background-color: orange;
 }
 
 .meal-photo img {
@@ -22,4 +25,7 @@
 .meal-photo img:hover {
     opacity: 1;
     transform: scale(1.03);
+}
+button:hover {
+  background-color: orange;
 }

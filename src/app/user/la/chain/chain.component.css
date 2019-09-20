@@ -1,23 +1,29 @@
 .img {
-    height: 100%;
-  }
+  height: 100%;
+}
 
 .meal-photo {
-    width: 100%;
-    margin: 0;
-    overflow: hidden;
-    background-color: #37474F;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  background-color: #3f51b5;
+}
+.meal-photo:hover {
+background-color: orange;
 }
 
 .meal-photo img {
-    opacity: 0.9;
-    width: 100%;
-    height: auto;
-    transform: scale(0.97);
-    transition: transform 0.5s, opacity 0.5s;
+  opacity: 0.9;
+  width: 100%;
+  height: auto;
+  transform: scale(0.97);
+  transition: transform 0.5s, opacity 0.5s;
 }
 
 .meal-photo img:hover {
-    opacity: 1;
-    transform: scale(1.03);
+  opacity: 1;
+  transform: scale(1.03);
+}
+button:hover {
+background-color: orange;
 }
