@@ -7,6 +7,10 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { User } from "./user.model";
 import { AuthData } from "./auth-data";
 import { RegisterService } from '../register/register.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { UserUid } from '../_interface/userUid';
 
 
 @Injectable({
@@ -14,10 +18,13 @@ import { RegisterService } from '../register/register.service';
 })
 export class AuthService {
   authChange = new Subject<boolean>();
+  authUser = new Subject<string>();
   private isAuthenticated = false;
+  us$: Observable<UserUid[]>;
 
   constructor(private router: Router,
-              private afAuth: AngularFireAuth) { }
+              private afAuth: AngularFireAuth,
+              private db: AngularFirestore) { }
 
   initAuthListener() {
     this.afAuth.authState.subscribe(user => {
@@ -25,6 +32,11 @@ export class AuthService {
         this.isAuthenticated = true;
         this.authChange.next(true);
         this.router.navigate(['/home']);
+        this.getUserName(user.uid);
+
+        this.us$.subscribe(us => us.forEach(val => {
+          this.authUser.next(val.user);
+        }))
       } else {
         this.authChange.next(false);
         this.router.navigate(['/login']);
@@ -58,5 +70,14 @@ export class AuthService {
 
   isAuth() {
     return this.isAuthenticated;
+  }
+  getUserName(id: string) {
+    this.us$ = this.db.collection('users', ref => ref.where('uid', 'array-contains', id))
+    .snapshotChanges().pipe(map(dat => {
+      return dat.map(x => {
+        return {
+          ...x.payload.doc.data() as UserUid
+      }})
+    }))
   }
 }

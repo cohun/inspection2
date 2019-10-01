@@ -52,7 +52,7 @@
 
       <li *ngIf="isAuth">
         <button mat-button [matMenuTriggerFor]="menu">
-          <h2>Felhasználó</h2>
+          <h2>{{userUid}}</h2>
         </button>
         <mat-menu #menu="matMenu">
             <a routerLink="/home" (click)="onLogout()">

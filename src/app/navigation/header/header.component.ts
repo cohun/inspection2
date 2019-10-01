@@ -11,6 +11,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Output() public sidenavToggle = new EventEmitter();
   isAuth = false;
   authSubscription: Subscription;
+  userUid = 'Felhasználó';
+  authUser: Subscription;
 
   constructor(private authService: AuthService) { }
 
@@ -18,6 +20,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authSubscription = this.authService.authChange.subscribe(authStatus => {
       this.isAuth = authStatus;
     });
+    this.authUser = this.authService.authUser.subscribe(user => {
+      this.userUid = user;
+    })
   }
   onToggleSidenav() {
     this.sidenavToggle.emit();
