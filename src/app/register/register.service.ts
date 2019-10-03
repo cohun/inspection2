@@ -2,6 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Record } from "./../_interface/record.model";
 import { RecordCreation } from "./../_interface/record-creation";
 import { User } from "../_interface/user";
+import { UserUid } from '../_interface/userUid';
 import { Observable } from 'rxjs';
 import { map, merge, first, tap, take, subscribeOn } from "rxjs/operators";
 import {
@@ -23,6 +24,7 @@ export class RegisterService {
   public fid: string;
   public user$: Observable<User[]>;
   public users$: Observable<User[]>;
+  public us$: Observable<UserUid[]>;
   user = [];
   public ide: string;
   gyszCollection: AngularFirestoreCollection<SpecProduct>;
@@ -36,8 +38,21 @@ export class RegisterService {
 
   constructor(private db: AngularFirestore) { }
 
+  getUserName(id: string) {
+    this.us$ = this.db.collection('users', ref => ref.where('uid', 'array-contains', id))
+    .snapshotChanges().pipe(map(dat => {
+      return dat.map(x => {
+        return {
+          ...x.payload.doc.data() as UserUid
+      }})
+    }))
+  }
   getRecords(data) {
     return this.db.collection('records').valueChanges()
+      .subscribe(dat => data.data = dat);
+  }
+  getUserRecords(data, id) {
+    return this.db.collection('records', ref => ref.where('user', '==', id)).valueChanges()
       .subscribe(dat => data.data = dat);
   }
   addRecords(rec) {

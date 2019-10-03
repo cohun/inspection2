@@ -3,10 +3,7 @@ import { Router } from "@angular/router";
 import { Subject } from "rxjs/Subject";
 import { AngularFireAuth } from "@angular/fire/auth";
 
-
-import { User } from "./user.model";
 import { AuthData } from "./auth-data";
-import { RegisterService } from '../register/register.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -21,6 +18,7 @@ export class AuthService {
   authUser = new Subject<string>();
   private isAuthenticated = false;
   us$: Observable<UserUid[]>;
+  id: string;
 
   constructor(private router: Router,
               private afAuth: AngularFireAuth,
@@ -33,6 +31,7 @@ export class AuthService {
         this.authChange.next(true);
         this.router.navigate(['/home']);
         this.getUserName(user.uid);
+        this.id = user.uid;
 
         this.us$.subscribe(us => us.forEach(val => {
           this.authUser.next(val.user);

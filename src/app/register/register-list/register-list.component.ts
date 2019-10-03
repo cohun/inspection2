@@ -6,6 +6,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { ErrorHandlerService } from "../../shared/error-handler.service";
 import {Router  } from "@angular/router";
+import { Subscription, Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
+import { UserUid } from 'src/app/_interface/userUid';
 
 @Component({
   selector: 'app-register-list',
@@ -16,18 +19,42 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
 
   public records: Array<Record> = [];
   public displayedColumns: string[] = ['id', 'user', 'action', 'dateOfAction', 'details', 'list', 'update', 'delete'];
+  public displayedUserColumns: string[] = ['id', 'user', 'action', 'dateOfAction', 'details', 'list'];
   public smColumns: string[] = ['id', 'dateOfAction', 'details', 'list', 'update', 'delete'];
+  public smUserColumns: string[] = ['id', 'action', 'dateOfAction', 'details', 'list'];
   public xsColumns: string[] = ['id', 'details', 'list', 'update', 'delete'];
+  public xsUserColumns: string[] = ['id', 'dateOfAction', 'details', 'list'];
   public dataSource = new MatTableDataSource<any>();
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   public w = 0;
+  userUid = 'Felhasználó';
+  us: Observable<UserUid[]>;
+  authUser: Subscription;
 
   constructor(private registerService: RegisterService,
-              private errorService: ErrorHandlerService, private router: Router) { }
+    private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.registerService.getRecords(this.dataSource);
+    console.log(this.authService.id);
+    this.registerService.getUserName(this.authService.id);
+    this.us = this.registerService.us$;
+    this.registerService.us$.subscribe(x => {
+      x.forEach(y => {
+        this.userUid = y.user;
+        console.log(this.userUid);
+
+      })
+    })
+    setTimeout(() => {
+      console.log(this.userUid);
+      if (this.userUid === 'Admin') {
+        this.registerService.getRecords(this.dataSource);
+      } else {
+        this.registerService.getUserRecords(this.dataSource, this.userUid);
+      }
+    }, 500);
+
     const width = window.innerWidth;
     if (width <= 411) {
       console.log('phone detected');
@@ -41,7 +68,9 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
     }
   }
 
+
   ngAfterViewInit(): void {
+
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }

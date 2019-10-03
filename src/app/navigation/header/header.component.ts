@@ -23,6 +23,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authUser = this.authService.authUser.subscribe(user => {
       this.userUid = user;
     })
+
+
   }
   onToggleSidenav() {
     this.sidenavToggle.emit();
@@ -34,6 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
+    this.authUser.unsubscribe();
   }
 
 }
