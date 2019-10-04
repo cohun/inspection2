@@ -48,7 +48,7 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
     })
     setTimeout(() => {
       console.log(this.userUid);
-      if (this.userUid === 'Admin') {
+      if (this.userUid === 'Admin' || 'ReadOnly') {
         this.registerService.getRecords(this.dataSource);
       } else {
         this.registerService.getUserRecords(this.dataSource, this.userUid);
