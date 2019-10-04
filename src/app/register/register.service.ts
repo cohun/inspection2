@@ -4,7 +4,7 @@ import { RecordCreation } from "./../_interface/record-creation";
 import { User } from "../_interface/user";
 import { UserUid } from '../_interface/userUid';
 import { Observable } from 'rxjs';
-import { map, merge, first, tap, take, subscribeOn } from "rxjs/operators";
+import { map, merge, first, tap, take, subscribeOn, takeWhile } from "rxjs/operators";
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -158,26 +158,30 @@ export class RegisterService {
                                                   .where(actOld, 'array-contains', idOld));
     const doc$ = doc.snapshotChanges().pipe(map(snaps => snaps.map(snap => {
       return snap.payload.doc.id; })));
-    const sub = doc$.pipe(take(1)).subscribe(value => {
+    const sub = doc$.pipe(takeWhile(val => val.length > 0)).subscribe(value => {
       if (value.length > 0) {
         value.forEach(x => {
           console.log('from specProduct', x, actOld, actNew, idOld, idNew, dateOld, dateNew);
           console.log(actOld, idOld);
           this.db.collection('specProduct').doc(x)
        .update(
-         {[actOld]: firestore.FieldValue.arrayRemove(idOld)}
+         {[actOld]: firestore.FieldValue.arrayRemove(idOld, dateOld)}
        );
        console.log(actOld, idOld);
        console.log(actNew, idNew, dateNew);
 
-       this.db.collection('specProduct').doc(x)
+/*        this.db.collection('specProduct').doc(x)
        .update(
          {[actOld]: firestore.FieldValue.arrayRemove(dateOld)}
        );
-
+ */
        this.db.collection('specProduct').doc(x)
         .update(
-          {[actNew]: firestore.FieldValue.arrayUnion(idNew, dateNew)}
+          {[actNew]: firestore.FieldValue.arrayUnion(idNew)}
+        );
+        this.db.collection('specProduct').doc(x)
+        .update(
+          {[actNew]: firestore.FieldValue.arrayUnion(dateNew)}
         );
 
           this.db.collection('specProduct').doc(x).update({user: userNew});
