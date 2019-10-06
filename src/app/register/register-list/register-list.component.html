@@ -4,11 +4,9 @@
     <input matInput type="text" (keyup)="doFilter($event.target.value)"
     placeholder="Keresés">
   </mat-form-field>
-<div *ngFor="let item of us | async">
-  <div *ngIf="item.user === 'Admin'">
+  <div *ngIf="userUid === 'Admin'">
     <a [routerLink]="['/register/create']" mat-button color="primary">Új felvétele</a>
   </div>
-</div>
 </div>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
@@ -72,9 +70,7 @@
     </td>
   </ng-container>
 
-  <div *ngFor="let item of us | async">
-
-  <ng-container *ngIf="item.user === 'Admin' ; else elseTemplate">
+  <ng-container *ngIf="userUid === 'Admin' ; else elseTemplate">
     <div *ngIf="w === 1">
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -87,7 +83,7 @@
       <tr mat-header-row *matHeaderRowDef="xsColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: xsColumns;"></tr>
     </div>
-  </ng-container>
+ </ng-container>
   <ng-template #elseTemplate>
     <div *ngIf="w === 1">
       <tr mat-header-row *matHeaderRowDef="displayedUserColumns"></tr>
@@ -102,7 +98,6 @@
       <tr mat-row *matRowDef="let row; columns: xsUserColumns;"></tr>
     </div>
   </ng-template>
-</div>
 </table>
 
 <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]='true'>

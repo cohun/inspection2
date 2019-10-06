@@ -44,14 +44,18 @@ export class RegisterService {
       return dat.map(x => {
         return {
           ...x.payload.doc.data() as UserUid
-      }})
-    }))
+      };
+    });
+    }));
+    console.log(this.us$);
   }
   getRecords(data) {
     return this.db.collection('records').valueChanges()
       .subscribe(dat => data.data = dat);
   }
   getUserRecords(data, id) {
+    console.log('id:', id);
+
     return this.db.collection('records', ref => ref.where('user', '==', id)).valueChanges()
       .subscribe(dat => data.data = dat);
   }

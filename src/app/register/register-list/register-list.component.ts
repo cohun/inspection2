@@ -33,27 +33,46 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
   authUser: Subscription;
 
   constructor(private registerService: RegisterService,
-    private authService: AuthService, private router: Router) { }
+              private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    console.log(this.authService.id);
-    this.registerService.getUserName(this.authService.id);
-    this.us = this.registerService.us$;
-    this.registerService.us$.subscribe(x => {
-      x.forEach(y => {
-        this.userUid = y.user;
-        console.log(this.userUid);
+    setTimeout(() => {
+      console.log(this.authService.id);
+      this.registerService.getUserName(this.authService.id);
+      this.registerService.us$.subscribe(x => {
+        x.forEach(y => {
+          this.userUid = y.user;
+          console.log(this.userUid);
+        });
+      });
+    }, 400);
 
-      })
-    })
     setTimeout(() => {
       console.log(this.userUid);
-      if (this.userUid === 'Admin' || 'ReadOnly') {
+      this.us = this.registerService.us$;
+      const who = this.userUid;
+      if (who === 'Admin') {
+        console.log('if');
+        console.log(who);
         this.registerService.getRecords(this.dataSource);
-      } else {
-        this.registerService.getUserRecords(this.dataSource, this.userUid);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
       }
-    }, 500);
+      else if(who === 'ReadOnly') {
+        console.log('if');
+        console.log(who);
+        this.registerService.getRecords(this.dataSource);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      }
+      else {
+        console.log('else');
+        console.log(who);
+        this.registerService.getUserRecords(this.dataSource, this.userUid);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      }
+    }, 800);
 
     const width = window.innerWidth;
     if (width <= 411) {
@@ -70,10 +89,8 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit(): void {
-
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
+
   public doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }

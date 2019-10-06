@@ -32,10 +32,10 @@ export class AuthService {
         this.router.navigate(['/home']);
         this.getUserName(user.uid);
         this.id = user.uid;
-
+        console.log(this.id);
         this.us$.subscribe(us => us.forEach(val => {
           this.authUser.next(val.user);
-        }))
+        }));
       } else {
         this.authChange.next(false);
         this.router.navigate(['/login']);
