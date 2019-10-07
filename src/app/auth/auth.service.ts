@@ -24,7 +24,7 @@ export class AuthService {
               private afAuth: AngularFireAuth,
               private db: AngularFirestore) { }
 
-  initAuthListener() {
+ initAuthListener() {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.isAuthenticated = true;
@@ -64,6 +64,8 @@ export class AuthService {
   }
 
   logout() {
+    this.afAuth.auth.signOut();
+    location.reload(true);
     this.afAuth.auth.signOut();
   }
 
