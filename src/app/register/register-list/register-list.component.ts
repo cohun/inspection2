@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { Record } from "./../../_interface/record.model";
 import { RegisterService } from '../register.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,7 +15,7 @@ import { UserUid } from 'src/app/_interface/userUid';
   templateUrl: './register-list.component.html',
   styleUrls: ['./register-list.component.css']
 })
-export class RegisterListComponent implements OnInit, AfterViewInit {
+export class RegisterListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public records: Array<Record> = [];
   public displayedColumns: string[] = ['id', 'user', 'action', 'dateOfAction', 'details', 'list', 'update', 'delete'];
@@ -31,6 +31,7 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
   userUid = 'Felhasználó';
   us: Observable<UserUid[]>;
   authUser: Subscription;
+  hUser: Subscription;
 
   constructor(private registerService: RegisterService,
               private authService: AuthService, private router: Router) { }
@@ -39,7 +40,7 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       console.log(this.authService.id);
       this.registerService.getUserName(this.authService.id);
-      this.registerService.us$.subscribe(x => {
+      this.hUser = this.registerService.us$.subscribe(x => {
         x.forEach(y => {
           this.userUid = y.user;
           console.log(this.userUid);
@@ -119,6 +120,11 @@ export class RegisterListComponent implements OnInit, AfterViewInit {
       {queryParams: {id,
         user}}
       );
+  }
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.hUser.unsubscribe();
   }
 
 }

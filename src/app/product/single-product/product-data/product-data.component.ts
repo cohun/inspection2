@@ -1,18 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ProductService } from '../../product.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, timer } from 'rxjs';
 import { SpecProduct } from 'src/app/_interface/specProduct';
 import { ProductFid } from 'src/app/_interface/product-fid';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { RecordCreation } from "../../../_interface/record-creation";
+import { AuthService } from 'src/app/auth/auth.service';
+import { takeUntil } from 'rxjs/operators';
+import { RegisterService } from 'src/app/register/register.service';
 
 @Component({
   selector: 'app-product-data',
   templateUrl: './product-data.component.html',
   styleUrls: ['./product-data.component.css']
 })
-export class ProductDataComponent implements OnInit {
+export class ProductDataComponent implements OnInit, OnDestroy {
   @Input() products: ProductFid;
   @Input() user: string;
   @Input() id: string;
@@ -27,10 +30,12 @@ export class ProductDataComponent implements OnInit {
   public dateOfAction: string;
   public specProduct$: Observable<SpecProduct[]>;
   public act: string;
+  userUid = 'Felhasználó';
+  hUser: Subscription;
 
 
   constructor(private productService: ProductService, private location: Location,
-              private router: Router) { }
+              private router: Router, private authService: AuthService, private registerService: RegisterService) { }
 
   ngOnInit() {
     this.out(this.products, this.user, this.id);
@@ -40,6 +45,16 @@ export class ProductDataComponent implements OnInit {
     this.specProduct$ = this.productService.specProduct$;
     this.action = this.record[0].action;
     this.dateOfAction = this.record[0].dateOfAction;
+    setTimeout(() => {
+      console.log(this.authService.id);
+      this.registerService.getUserName(this.authService.id);
+      this.hUser = this.registerService.us$.subscribe(x => {
+        x.forEach(y => {
+          this.userUid = y.user;
+          console.log(this.userUid);
+        });
+      });
+    }, 400);
   }
 
   out(prod: ProductFid, us: string, i: string) {
@@ -93,6 +108,9 @@ export class ProductDataComponent implements OnInit {
   del(gysz) {
     alert('Végérvényesen törlődik ez a termék!');
     this.productService.delProduct(gysz);
+  }
+  ngOnDestroy(): void {
+    this.hUser.unsubscribe();
   }
 
 }

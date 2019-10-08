@@ -32,7 +32,7 @@
         <div fxFlex>{{item.id}}</div>
       </div>
       <br>
-      <div fxLayout="column" fxLayoutAlign="center center" class="check">
+      <div *ngIf="userUid ==='Admin'" fxLayout="column" fxLayoutAlign="center center" class="check">
         <mat-card-subtitle *ngIf="!p.checked" fxFlex>
           <strong> Feltöltésre kijelöl:</strong>
         </mat-card-subtitle>
