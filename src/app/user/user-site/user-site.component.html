@@ -1,0 +1,37 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="margin-bottom: 10px">
+  <span fxFlex='40' style="background-color: #607D8B"><mat-divider></mat-divider></span>
+<button (click)="onCancel()" fxFlex mat-raised-button><mat-icon class="mat-18">skip_previous</mat-icon></button>
+  <span fxFlex='40' style="background-color: #607D8B"><mat-divider></mat-divider></span>
+</div>
+<section fxLayout="column wrap">
+  <div fxFlexAlign="center" fxFlex="50">
+    <p>{{user}}</p>
+  </div>
+  <a mat-raised-button href="" color="warn">Új helyszin felvétele</a>
+    <p style="text-align: center">Helyszinekre kiadott eszközök:</p>
+</section>
+
+<section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' >
+  <mat-card fxFlex="300px" fxFlex.xs="100vw" id='card' *ngFor="let item of site">
+      <mat-card-header>
+          <mat-card-title>{{item}}</mat-card-title>
+          <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-header>
+      <div fxLayout="row" fxLayoutAlign="space-around start" style="margin-top: 20px">
+          <img matCardImage src="../../../assets/factory-plant.png" fxFlex="70%" class="img">
+      </div>
+  </mat-card>
+</section>
+<p style="text-align: center">Dolgozóknak kiadott eszközök:</p>
+<section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' >
+
+    <mat-card fxFlex="300px" fxFlex.xs="100vw" id='card' *ngFor="let item of person">
+      <mat-card-header>
+          <mat-card-title>{{item.name}}</mat-card-title>
+          <mat-card-subtitle>{{item.title}}</mat-card-subtitle>
+      </mat-card-header>
+      <div fxLayout="row" fxLayoutAlign="space-around start" style="margin-top: 20px">
+          <img matCardImage src="../../../assets/worker-icon.png" fxFlex="70%" class="img">
+      </div>
+  </mat-card>
+  </section>

@@ -8,9 +8,9 @@
   <mat-divider style="background-color: #fed130; margin-left: -10px; margin-right: -10px"></mat-divider>
 </div>
 
-<section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' >
-
-    <mat-card fxFlex="300px" fxFlex.xs="100vw" id='card'>
+<section fxLayout="row wrap" fxLayout.sm="column" fxLayoutAlign="space-around center" id='back' >
+    <a href="" [routerLink]="['/user/sites']" (click)="redirectToSites()">
+    <mat-card fxFlex="300px" fxFlex.sm="100vw" id='card'>
         <mat-card-header>
             <img matCardAvatar src="../../../assets/worker-icon.png">
             <span class="mat-subtitle-2">Üzemeltetés helyszínei, felhasználók</span>
@@ -20,9 +20,10 @@
             <img matCardImage src="../../../assets/factory-plant.png" fxFlex="70%" class="img">
         </div>
     </mat-card>
-    <mat-divider></mat-divider>
+    </a>
+    <a fxFlex="200px" fxFlex.sm="100vw" mat-raised-button href="" color="warn" class="mat-18">Összesítés</a>
     <a [routerLink]="['/user/detail']" routerLinkActive="router-link-active" >
-        <mat-card fxFlex="300px" fxFlex.xs="100vw" id='card'>
+        <mat-card fxFlex="300px" fxFlex.sm="100vw" id='card'>
             <mat-card-header>
                 <img matCardAvatar src="../../../assets/Manual_800_600.svg">
                 <span class="mat-subtitle-2">Emelőgépek, teherfelvevő eszközök</span>
@@ -40,11 +41,11 @@
 
 <section fxLayout="column wrap">
   <div fxFlexAlign="center" fxFlex="50">
-    <p>'Felhasználó' Emelőgép Nyilvántartás</p>
+    <p>{{userUid}} Emelőgép Nyilvántartás</p>
   </div>
     <p style="text-align: center">Üzemeltetési helyszínek, termékek felvétele és csoportosított nyilvántartásuk</p>
 </section>
-  <br><br>
+
   <div style="margin: 8px auto; width: 90%">
     <img src="../../../assets/image.png" alt="" class="img">
   </div>

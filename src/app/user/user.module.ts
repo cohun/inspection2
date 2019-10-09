@@ -11,9 +11,10 @@ import { ChainComponent } from './la/chain/chain.component';
 import { RopeComponent } from './la/rope/rope.component';
 import { ManualComponent } from './manual/manual.component';
 import { PoweredComponent } from './powered/powered.component';
+import { UserSiteComponent } from './user-site/user-site.component';
 
 @NgModule({
-  declarations: [SortimentComponent, ProductGroupComponent, LaComponent, TextileComponent, ChainComponent, RopeComponent, ManualComponent, PoweredComponent],
+  declarations: [SortimentComponent, ProductGroupComponent, LaComponent, TextileComponent, ChainComponent, RopeComponent, ManualComponent, PoweredComponent, UserSiteComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

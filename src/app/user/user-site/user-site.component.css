@@ -1,0 +1,57 @@
+.imgstart {
+  width: 100%;
+}
+
+#card {
+  background-color: #3f51b5;
+}
+#card:hover {
+  background-color:orange;
+}
+a {
+  text-decoration: none !important;
+}
+#back {
+  background-color: #607D8B;
+  overflow: hidden;
+  margin: -10px;
+  padding-top: 20px;
+}
+.img {
+  opacity: 0.9;
+  width: 100%;
+  height: auto;
+  transform: scale(0.97);
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.img:hover {
+  opacity: 1;
+  transform: scale(1.03);
+}
+
+section div p {
+color: #3f51b5;
+font-size: 30px;
+text-shadow: 2px 3px 5px grey;
+margin: 20px 0 10px 0;
+}
+section div + p {
+color: #3f51b5;
+font-weight: bold;
+font-size: 20px;
+padding-bottom: 15px;
+}
+p {
+  color: #3f51b5;
+  font-weight: bold;
+  font-size: 20px;
+  padding-bottom: 15px;
+}
+
+.pos {
+text-align: center;
+}
+button:hover {
+  background-color: orange;
+}

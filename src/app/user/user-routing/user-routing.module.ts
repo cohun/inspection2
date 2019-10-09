@@ -9,10 +9,12 @@ import { RopeComponent } from '../la/rope/rope.component';
 import { ChainComponent } from '../la/chain/chain.component';
 import { ManualComponent } from '../manual/manual.component';
 import { PoweredComponent } from '../powered/powered.component';
+import { UserSiteComponent } from '../user-site/user-site.component';
 
 const routes: Routes = [
   { path: 'user', component: SortimentComponent },
   { path: 'detail', component: ProductGroupComponent},
+  { path: 'sites', component: UserSiteComponent},
   { path: 'la', component: LaComponent},
   { path: 'la/textile', component: TextileComponent},
   { path: 'la/chain', component: ChainComponent},

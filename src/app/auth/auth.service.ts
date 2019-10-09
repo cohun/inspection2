@@ -6,7 +6,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AuthData } from "./auth-data";
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { UserUid } from '../_interface/userUid';
 
 
@@ -19,6 +19,7 @@ export class AuthService {
   private isAuthenticated = false;
   us$: Observable<UserUid[]>;
   id: string;
+  hUser: Subscription;
 
   constructor(private router: Router,
               private afAuth: AngularFireAuth,
@@ -33,7 +34,7 @@ export class AuthService {
         this.getUserName(user.uid);
         this.id = user.uid;
         console.log(this.id);
-        this.us$.subscribe(us => us.forEach(val => {
+        this.hUser = this.us$.subscribe(us => us.forEach(val => {
           this.authUser.next(val.user);
         }));
       } else {
@@ -65,8 +66,8 @@ export class AuthService {
 
   logout() {
     this.afAuth.auth.signOut();
-    location.reload(true);
-    this.afAuth.auth.signOut();
+/*     location.reload(true);
+    this.afAuth.auth.signOut(); */
   }
 
   isAuth() {
@@ -80,5 +81,10 @@ export class AuthService {
           ...x.payload.doc.data() as UserUid
       }})
     }))
+  }
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.hUser.unsubscribe();
   }
 }
