@@ -12,6 +12,9 @@
   a {
     text-decoration: none !important;
   }
+  a:hover, a:active {
+    color: lightgray;
+    }
   #back {
     background-color: #607D8B;
     margin-left: -10px;
@@ -46,4 +49,7 @@ section div + p {
 
 .pos {
 text-align: center;
+}
+.height {
+  height: 80px;
 }

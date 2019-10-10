@@ -7,9 +7,13 @@
   <div fxFlexAlign="center" fxFlex="50">
     <p>{{user}}</p>
   </div>
-  <a mat-raised-button href="" color="warn">Új helyszin felvétele</a>
-    <p style="text-align: center">Helyszinekre kiadott eszközök:</p>
 </section>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <span fxFlex>
+    <a mat-raised-button href="" color="warn">Új helyszin felvétele</a>
+  </span>
+    <p style="text-align: center">Helyszinekre kiadott eszközök:</p>
+</div>
 
 <section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' >
   <mat-card fxFlex="300px" fxFlex.xs="100vw" id='card' *ngFor="let item of site">
@@ -22,7 +26,14 @@
       </div>
   </mat-card>
 </section>
-<p style="text-align: center">Dolgozóknak kiadott eszközök:</p>
+<br><br>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <span fxFlex>
+    <a  mat-raised-button href="" color="warn">Új személy felvétele</a>
+  </span>
+  <p fxFlex style="text-align: center">Dolgozóknak kiadott eszközök:</p>
+</div>
+
 <section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' >
 
     <mat-card fxFlex="300px" fxFlex.xs="100vw" id='card' *ngFor="let item of person">

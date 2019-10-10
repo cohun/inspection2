@@ -11,6 +11,9 @@
 a {
   text-decoration: none !important;
 }
+a:hover, a:active {
+  color: lightgray;
+  }
 #back {
   background-color: #607D8B;
   overflow: hidden;
