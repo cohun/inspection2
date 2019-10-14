@@ -16,7 +16,7 @@
 </div>
 
 <section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' >
-  <mat-card fxFlex="300px" fxFlex.xs="100vw" id='card' *ngFor="let item of site">
+  <mat-card cdkDrag fxFlex="300px" fxFlex.xs="100vw" id='card' *ngFor="let item of site">
       <mat-card-header>
           <mat-card-title>{{item}}</mat-card-title>
           <mat-card-subtitle></mat-card-subtitle>
@@ -36,7 +36,7 @@
 
 <section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' >
 
-    <mat-card fxFlex="300px" fxFlex.xs="100vw" id='card' *ngFor="let item of person">
+    <mat-card cdkDrag fxFlex="300px" fxFlex.xs="100vw" id='card' *ngFor="let item of person">
       <mat-card-header>
           <mat-card-title>{{item.name}}</mat-card-title>
           <mat-card-subtitle>{{item.title}}</mat-card-subtitle>

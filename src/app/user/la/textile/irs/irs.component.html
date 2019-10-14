@@ -10,11 +10,11 @@
     <div class="list"
     cdkDropList
     #todoList="cdkDropList"
-    [cdkDropListData]="new"
-    [cdkDropListConnectedTo]="[doneList]"
+    [cdkDropListData]="new[0].products"
+    [cdkDropListConnectedTo]="doneList"
     (cdkDropListDropped)="onDrop($event)">
-      <h2>Kiadandó termékek</h2>
-      <mat-card *ngFor="let item of new" cdkDrag>
+      <h2>{{new[0].site}}</h2>
+      <mat-card *ngFor="let item of new[0].products" cdkDrag>
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
@@ -28,11 +28,11 @@
     <div class="list"
     cdkDropList
     #doneList="cdkDropList"
-    [cdkDropListData]="moved"
-    [cdkDropListConnectedTo]="[todoList]"
+    [cdkDropListData]="new[1].products"
+    [cdkDropListConnectedTo]="todoList"
     (cdkDropListDropped)="onDrop($event)">
-      <h2>Kiadott termékek</h2>
-      <mat-card *ngFor="let item of moved">
+      <h2>{{new[1].site}}</h2>
+      <mat-card cdkDrag *ngFor="let item of new[1].products">
         <mat-card-header>
           <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
           <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
