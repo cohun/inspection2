@@ -12,9 +12,10 @@ import { RopeComponent } from './la/rope/rope.component';
 import { ManualComponent } from './manual/manual.component';
 import { PoweredComponent } from './powered/powered.component';
 import { UserSiteComponent } from './user-site/user-site.component';
+import { IrsComponent } from './la/textile/irs/irs.component';
 
 @NgModule({
-  declarations: [SortimentComponent, ProductGroupComponent, LaComponent, TextileComponent, ChainComponent, RopeComponent, ManualComponent, PoweredComponent, UserSiteComponent],
+  declarations: [SortimentComponent, ProductGroupComponent, LaComponent, TextileComponent, ChainComponent, RopeComponent, ManualComponent, PoweredComponent, UserSiteComponent, IrsComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

@@ -13,7 +13,7 @@
     text-decoration: none !important;
   }
   a:hover, a:active {
-    color: lightgray;
+    color: white;
     }
   #back {
     background-color: #607D8B;
@@ -51,5 +51,6 @@ section div + p {
 text-align: center;
 }
 .height {
-  height: 80px;
+  height: 150px;
+  color: lightgray;
 }

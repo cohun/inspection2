@@ -21,7 +21,11 @@
         </div>
     </mat-card>
     </a>
-    <a fxFlex="250px" fxFlex.sm="100vw" mat-raised-button href="" color="warn" class="height">Összesítés <br>felhasználó minden eszköze</a>
+    <a fxFlex="250px" fxFlex.sm="100vw" mat-raised-button href="" color="warn" class="height">
+      <strong class="mat-subtitle-1">Csoportosítás:</strong>
+      <br>nyilvántartott eszközök <br> felhasználási helyszinek szerint <br>
+      <mat-divider></mat-divider>
+    </a>
     <a [routerLink]="['/user/detail']" routerLinkActive="router-link-active" >
         <mat-card fxFlex="300px" fxFlex.sm="100vw" id='card'>
             <mat-card-header>

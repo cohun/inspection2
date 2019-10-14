@@ -1,0 +1,43 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="margin-bottom: 10px">
+  <span fxFlex='40' style="background-color: #607D8B"><mat-divider></mat-divider></span>
+<button (click)="onCancel()" fxFlex mat-raised-button><mat-icon class="mat-18">skip_previous</mat-icon></button>
+  <span fxFlex='40' style="background-color: #607D8B"><mat-divider></mat-divider></span>
+</div>
+<br>
+
+<div class="list-container">
+  <div class="todo-container column-container">
+    <div class="list"
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="new"
+    [cdkDropListConnectedTo]="[doneList]"
+    (cdkDropListDropped)="onDrop($event)">
+      <h2>Kiadandó termékek</h2>
+      <mat-card *ngFor="let item of new" cdkDrag>
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
+          <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="done-container column-container">
+    <div class="list"
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="moved"
+    [cdkDropListConnectedTo]="[todoList]"
+    (cdkDropListDropped)="onDrop($event)">
+      <h2>Kiadott termékek</h2>
+      <mat-card *ngFor="let item of moved">
+        <mat-card-header>
+          <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
+          <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+</div>
