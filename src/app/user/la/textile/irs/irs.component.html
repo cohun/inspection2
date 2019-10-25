@@ -14,6 +14,7 @@
     [cdkDropListConnectedTo]="doneList"
     (cdkDropListDropped)="onDrop($event)">
       <h2>{{new[0].site}}</h2>
+      <p>{{new[0].info}}</p>
       <mat-card *ngFor="let item of new[0].products" cdkDrag>
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
@@ -32,6 +33,25 @@
     [cdkDropListConnectedTo]="todoList"
     (cdkDropListDropped)="onDrop($event)">
       <h2>{{new[1].site}}</h2>
+      <p>{{new[1].info}}</p>
+      <mat-card cdkDrag *ngFor="let item of new[1].products">
+        <mat-card-header>
+          <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
+          <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="done-container column-container">
+    <div class="list"
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="new[1].products"
+    [cdkDropListConnectedTo]="todoList"
+    (cdkDropListDropped)="onDrop($event)">
+      <h2>{{new[2].site}}</h2>
+      <p>{{new[2].info}}</p>
       <mat-card cdkDrag *ngFor="let item of new[1].products">
         <mat-card-header>
           <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>

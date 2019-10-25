@@ -47,7 +47,7 @@ export class AuthService {
   registerUser(authData: AuthData) {
     this.afAuth.auth
       .createUserWithEmailAndPassword(authData.email, authData.password)
-      .then(result => {
+      .then(result => { console.log(result );
       })
       .catch(error => {
         console.log(error);

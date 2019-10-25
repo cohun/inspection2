@@ -11,8 +11,8 @@ export class IrsComponent implements OnInit {
 
   new = [
     {
-    site: '1. műhely',
-    info: 'Mátranovák',
+    site: 'Új beszerzés',
+    info: 'Központi raktár',
     products: [
     {
       type: 'irs 10',
@@ -49,6 +49,28 @@ export class IrsComponent implements OnInit {
   ]
   },
   {
+    site: '1. műhely',
+    info: 'Mátranovák',
+    products: [
+    {
+      type: 'irs 10',
+      length: '5/10 m',
+      descreption: 'körkötél',
+      capacity: '10000 kg',
+      manufacturer: 'Gutman',
+      gysz: '990'
+    },
+    {
+      type: 'irs 20',
+      length: '4/8 m',
+      descreption: 'körkötél',
+      capacity: '20000 kg',
+      manufacturer: 'Gutman',
+      gysz: '990'
+    },
+    ]
+  },
+  {
     site: '2. műhely',
     info: 'Mátranovák',
     products: [
@@ -75,6 +97,8 @@ export class IrsComponent implements OnInit {
   constructor(private location: Location) { }
 
   ngOnInit() {
+    console.log(this.new.length);
+
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
