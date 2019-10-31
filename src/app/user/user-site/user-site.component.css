@@ -7,6 +7,7 @@
 }
 #card:hover {
   background-color:orange;
+  color: white;
 }
 a {
   text-decoration: none !important;

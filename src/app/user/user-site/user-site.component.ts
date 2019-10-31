@@ -31,12 +31,13 @@ export class UserSiteComponent implements OnInit {
   newSite(sites: [UserSite]) {
     console.log(sites);
 
-    this.router.navigate([`user/newSites`],
+    this.router.navigate([`user/newSites`, sites],
     {queryParams: {sites}
-  })}
+    });
+  }
 
-     onCancel() {
-      this.location.back();
-    }
+  onCancel() {
+    this.location.back();
+  }
 
 }

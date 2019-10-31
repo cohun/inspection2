@@ -27,12 +27,6 @@ export class NewSiteComponent implements OnInit {
     this.sites = this.activeRoute.snapshot.queryParams.sites;
     console.log(this.sites);
 
-    this.sites.map(x => {
-      this.site.push(x.sites);
-      console.log(this.site);
-    }
-
-     )
   }
 
   onCancel() {
