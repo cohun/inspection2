@@ -3,22 +3,19 @@
 <button (click)="onCancel()" fxFlex mat-raised-button><mat-icon class="mat-18">skip_previous</mat-icon></button>
   <span fxFlex='40' style="background-color: #607D8B"><mat-divider></mat-divider></span>
 </div>
-<section fxLayout="column wrap">
-  <div fxFlexAlign="center" fxFlex="50">
-    <p>{{user}}</p>
-  </div>
-</section>
+<br>
+<div *ngFor="let item of site$ | async">
+
 <div fxLayout="column" fxLayoutAlign="center center">
   <span fxFlex>
-    <a mat-raised-button href="" color="warn">Új helyszin felvétele</a>
+    <a mat-raised-button (click)="newSite(item.sites)" color="warn">Új helyszin felvétele</a>
   </span>
-    <p style="text-align: center">Helyszinekre kiadott eszközök:</p>
+    <p style="text-align: center"><u> Helyszinekre kiadott eszközök:</u></p>
 </div>
 
-<div *ngFor="let item of site$ | async">
 <section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' >
 
-  <mat-card cdkDrag fxFlex="200px" fxFlex.xs="100vw" id='card' *ngFor="let i of item.sites">
+  <mat-card cdkDrag fxFlex="180px" fxFlex.xs="100vw" id='card' *ngFor="let i of item.sites">
     <mat-card-header>
         <mat-card-subtitle><strong>{{i.name}}</strong></mat-card-subtitle>
         <mat-card-subtitle>{{i.info}}</mat-card-subtitle>
@@ -29,19 +26,18 @@
   </mat-card>
 
 </section>
-<br><br>
 <div fxLayout="column" fxLayoutAlign="center center">
   <span fxFlex>
-    <a  mat-raised-button href="" color="warn">Új személy felvétele</a>
+
   </span>
-  <p fxFlex style="text-align: center">Dolgozóknak kiadott eszközök:</p>
+  <p fxFlex style="text-align: center"><u> Dolgozóknak kiadott eszközök:</u></p>
 </div>
 
 <section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' >
 
-    <mat-card cdkDrag fxFlex="200px" fxFlex.xs="100vw" id='card' *ngFor="let i of item.operators">
+    <mat-card cdkDrag fxFlex="180px" fxFlex.xs="100vw" id='card' *ngFor="let i of item.operators">
       <mat-card-header>
-          <mat-card-title>{{i.name}}</mat-card-title>
+          <mat-card-subtitle><strong>{{i.name}}</strong></mat-card-subtitle>
           <mat-card-subtitle>{{i.position}}</mat-card-subtitle>
       </mat-card-header>
       <div fxLayout="row" fxLayoutAlign="space-around start" style="margin-top: 20px">

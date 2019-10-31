@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
 import { UserSite } from 'src/app/_interface/user-site';
+import {Router  } from "@angular/router";
 import { map, tap } from 'rxjs/operators';
 
 @Component({
@@ -17,14 +18,22 @@ export class UserSiteComponent implements OnInit {
   person = [{name: "Kovács István", title: 'művezető'}, {name: "Kis József", title: 'műhelyfőnök'}];
 
   constructor(private activeRoute: ActivatedRoute, private location: Location,
-              private userService: UserService) { }
+              private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.user = this.activeRoute.snapshot.queryParams.user;
+
     this.userService.getSites(this.user);
     this.site$ = this.userService.sites$;
 
   }
+
+  newSite(sites: [UserSite]) {
+    console.log(sites);
+
+    this.router.navigate([`user/newSites`],
+    {queryParams: {sites}
+  })}
 
      onCancel() {
       this.location.back();

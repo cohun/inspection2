@@ -11,11 +11,13 @@ import { ManualComponent } from '../manual/manual.component';
 import { PoweredComponent } from '../powered/powered.component';
 import { UserSiteComponent } from '../user-site/user-site.component';
 import { IrsComponent } from '../la/textile/irs/irs.component';
+import { NewSiteComponent } from '../user-site/new-site/new-site.component';
 
 const routes: Routes = [
   { path: 'user', component: SortimentComponent },
   { path: 'detail', component: ProductGroupComponent},
   { path: 'sites', component: UserSiteComponent},
+  { path: 'newSites', component: NewSiteComponent},
   { path: 'la', component: LaComponent},
   { path: 'la/textile', component: TextileComponent},
   { path: 'la/textile/irs', component: IrsComponent},

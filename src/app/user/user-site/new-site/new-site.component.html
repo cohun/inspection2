@@ -1,0 +1,41 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="margin-bottom: 10px">
+  <span fxFlex='40' style="background-color: #607D8B"><mat-divider></mat-divider></span>
+<button (click)="onCancel()" fxFlex mat-raised-button><mat-icon class="mat-18">skip_previous</mat-icon></button>
+  <span fxFlex='40' style="background-color: #607D8B"><mat-divider></mat-divider></span>
+</div>
+<br>
+<div fxLayout="row wrap" fxLayoutAlign="space-around start">
+  <form [formGroup] = "siteForm" class="example-form">
+    <fieldset>
+      <legend>Új felhasználási helyszín: </legend>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Megnevezés" value="Központi raktár" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Egyéb jelölés" value="" formControlName="info">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Feltölt</button>
+  </fieldset>
+  </form>
+
+  <form [formGroup] = "operatorForm" class="example-form">
+    <fieldset>
+      <legend>Új dolgozó: </legend>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Név" value="" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Beosztás" value="" formControlName="position">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Feltölt</button>
+  </fieldset>
+  </form>
+</div>
+<pre>site: {{siteForm.value | json}}</pre>
+<pre>operator: {{operatorForm.value | json}}</pre>
+<div *ngFor="let item of site">
+
+{{item}}
+</div>
