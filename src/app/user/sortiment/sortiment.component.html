@@ -9,7 +9,7 @@
 </div>
 
 <section fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-around center" id='back' >
-    <a href="" [routerLink]="['/user/sites']" (click)="redirectToSites()">
+    <a (click)="redirectToSites()">
     <mat-card fxFlex="300px" fxFlex.lt-md="100vw" id='card'>
         <mat-card-header>
             <img matCardAvatar src="../../../assets/worker-icon.png">
@@ -21,7 +21,7 @@
         </div>
     </mat-card>
     </a>
-    <a fxFlex="250px" fxFlex.lt-md="100vw" mat-raised-button href="" color="warn" class="height">
+    <a fxFlex="250px" fxFlex.lt-md="100vw" mat-raised-button href="" color="primary" class="height">
       <strong class="mat-subtitle-1">Csoportosítás:</strong>
       <br>nyilvántartott eszközök <br> felhasználási helyszinek szerint <br>
       <mat-divider></mat-divider>

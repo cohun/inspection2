@@ -15,12 +15,12 @@
 
   <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
     <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-      <li *ngIf="isAuth">
+      <li *ngIf="isAuth" routerLinkActive="active">
         <button mat-button [matMenuTriggerFor]="menu">
           <h2 >Nyilvántartás</h2>
         </button>
         <mat-menu #menu="matMenu">
-            <a routerLink="/register/records" routerLinkActive="active">
+            <a routerLink="/register/records">
           <button mat-menu-item><mat-icon class="mat-18">list</mat-icon>
           <span class="nav-caption" class="mat-small">Elvégzett munkálatok</span></button>
             </a>
@@ -30,7 +30,7 @@
             </a>
         </mat-menu>
       </li>
-      <li *ngIf="!isAuth">
+      <li *ngIf="!isAuth" routerLinkActive="active">
         <button mat-button [matMenuTriggerFor]="menu">
           <h2 >Felhasználó</h2>
         </button>
