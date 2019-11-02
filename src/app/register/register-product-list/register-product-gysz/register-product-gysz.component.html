@@ -1,13 +1,13 @@
 
 <button mat-button (click)="refresh()">Frissít</button>
 <button mat-raised-button (click)="print()" color="primary">PDF</button>
-<br>
+<br><br>
 <section id="pdf" style="margin-left: 8px">
 <div fxLayout="column" fxLayoutAlign="center center">
   <span class="mat-title" style="margin: 8px 0">{{user | uppercase}} üzemeltető részére</span>
   <span class="mat-subtitle" style="margin-bottom: 8px"><strong>{{srsz}}. </strong> sorszámú munkalapon az alábbiak lettek elvégezve:</span>
 </div>
-<br>
+<hr>
 <div fxLayout="row">
   <div fxFlex fxFlex.lt-sm="35">
     <div fxLayout="column">
@@ -66,11 +66,13 @@
   </div>
 </div>
 
-<br>
-<mat-divider></mat-divider>
-<br>
-<div fxLayout="column" fxLayoutAlign="center center">
-  <span class="mat-subtitle" style="margin-bottom: 8px">Beépített alkatrészek gyáriszámonkénti bontásban:</span>
+<hr>
+<div fxLayout="column" fxLayoutAlign="start start">
+  <span class="mat-subtitle" style="margin-bottom: 8px">
+    <u>
+        Beépített alkatrészek gyáriszámonkénti bontásban:
+    </u>
+  </span>
 </div>
 <br>
 <div fxLayout="row wrap">
