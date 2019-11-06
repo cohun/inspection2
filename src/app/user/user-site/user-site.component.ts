@@ -15,7 +15,7 @@ import { map, tap } from 'rxjs/operators';
 export class UserSiteComponent implements OnInit {
   user: string;
   site$: Observable<UserSite[]>;
-  person = [{name: "Kovács István", title: 'művezető'}, {name: "Kis József", title: 'műhelyfőnök'}];
+
 
   constructor(private activeRoute: ActivatedRoute, private location: Location,
               private userService: UserService, private router: Router) { }
@@ -28,11 +28,11 @@ export class UserSiteComponent implements OnInit {
 
   }
 
-  newSite(sites: [UserSite]) {
-    console.log(sites);
+  newSite(id: string, user = this.user) {
+    console.log('id' + id );
 
-    this.router.navigate([`user/newSites`, sites],
-    {queryParams: {sites}
+    this.router.navigate([`user/newSites`],
+    {queryParams: {id, user}
     });
   }
 

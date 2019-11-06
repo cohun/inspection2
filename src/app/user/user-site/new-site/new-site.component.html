@@ -5,15 +5,17 @@
 </div>
 <br>
 <div fxLayout="row wrap" fxLayoutAlign="space-around start">
-  <form [formGroup] = "siteForm" class="example-form">
+  <form [formGroup] = "siteForm" class="example-form" (ngSubmit)="onSiteAdd(siteForm.value)" >
     <fieldset>
       <legend>Új felhasználási helyszín: </legend>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Megnevezés" value="Központi raktár" formControlName="name">
+      <input matInput placeholder="Megnevezés" value="" formControlName="name">
+      <div *ngIf="siteName.touched && siteName.invalid">Kötelező nevet adni!</div>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Egyéb jelölés" value="" formControlName="info">
+      <mat-hint align="end">* Opcionális </mat-hint>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Feltölt</button>
   </fieldset>
@@ -24,10 +26,12 @@
       <legend>Új dolgozó: </legend>
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Név" value="" formControlName="name">
+      <div *ngIf="operatorName.touched && operatorName.invalid">Kötelező nevet adni!</div>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Beosztás" value="" formControlName="position">
+      <mat-hint align="end">* Opcionális </mat-hint>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Feltölt</button>
   </fieldset>

@@ -1,4 +1,5 @@
 export interface UserSite {
+  id: string,
   user: string;
   address: string;
   partner: string;
