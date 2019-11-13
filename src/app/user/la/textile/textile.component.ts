@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-textile',
@@ -9,7 +10,7 @@ import { Location } from '@angular/common';
 export class TextileComponent implements OnInit {
   public w: number;
 
-  constructor(private location: Location) { }
+  constructor(private location: Location, private router: Router) { }
 
   ngOnInit() {
     const width = window.innerWidth;
@@ -24,6 +25,14 @@ export class TextileComponent implements OnInit {
       this.w = 4;
     }
   }
+
+  routeToProducts() {
+    this.router.navigate(['/product/products'],
+    {queryParams: {user: 'B',
+                  group: 'körkötelek',
+                  id: '10'  }});
+  }
+
   onCancel() {
     this.location.back();
   }

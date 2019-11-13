@@ -48,9 +48,15 @@ export class NewSiteComponent implements OnInit {
       info: form.info
     };
     console.log(newSite.name);
-
     this.userService.addSites(this.id, this.user, newSite);
-
+  }
+  onOperatorAdd(form) {
+    console.log(form);
+    const newOperator = {
+      name: form.name,
+      position: form.position
+    };
+    this.userService.addOperators(this.id, this.user, newOperator);
   }
 
   onCancel() {

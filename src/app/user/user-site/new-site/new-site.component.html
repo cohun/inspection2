@@ -17,11 +17,11 @@
       <input matInput placeholder="Egyéb jelölés" value="" formControlName="info">
       <mat-hint align="end">* Opcionális </mat-hint>
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Feltölt</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!siteForm.valid">Feltölt</button>
   </fieldset>
   </form>
 
-  <form [formGroup] = "operatorForm" class="example-form">
+  <form [formGroup] = "operatorForm" class="example-form" (ngSubmit)="onOperatorAdd(operatorForm.value)">
     <fieldset>
       <legend>Új dolgozó: </legend>
     <mat-form-field class="example-full-width">
@@ -33,13 +33,7 @@
       <input matInput placeholder="Beosztás" value="" formControlName="position">
       <mat-hint align="end">* Opcionális </mat-hint>
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Feltölt</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!operatorForm.valid">Feltölt</button>
   </fieldset>
   </form>
-</div>
-<pre>site: {{siteForm.value | json}}</pre>
-<pre>operator: {{operatorForm.value | json}}</pre>
-<div *ngFor="let item of site">
-
-{{item}}
 </div>

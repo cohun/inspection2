@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { Product } from 'src/app/_interface/product';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-irs',
@@ -8,6 +11,11 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   styleUrls: ['./irs.component.css']
 })
 export class IrsComponent implements OnInit {
+
+  products: Product;
+  pr: string;
+  gh = "típus kiválasztva";
+  bh = 'Hi';
 
   new = [
     {
@@ -94,10 +102,18 @@ export class IrsComponent implements OnInit {
   }
   ];
 
-  constructor(private location: Location) { }
+  constructor(private location: Location, private _snackBar: MatSnackBar ) { }
 
   ngOnInit() {
     console.log(this.new.length);
+    this.products = {
+      group: 'körkötelek',
+      type: 'irs',
+      length: 'm',
+      descreption: 'körkötél',
+      capacity: 'kg',
+      manufacturer: ''
+    }
 
   }
 
@@ -111,6 +127,13 @@ export class IrsComponent implements OnInit {
         event.container.data,
         event.previousIndex, event.currentIndex);
     }
+  }
+
+  openSnackBar(type: string) {
+    this.products.type = type;
+    this._snackBar.open(this.products.type, 'kiválasztva', {
+      duration: 2000,
+    });
   }
 
   onCancel() {

@@ -4,7 +4,85 @@
   <span fxFlex='40' style="background-color: #607D8B"><mat-divider></mat-divider></span>
 </div>
 <br>
+<mat-accordion displayMode="default">
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="20px">
+  <mat-expansion-panel [hideToggle]="false">
+      <mat-expansion-panel-header>
+          <mat-panel-title>Megengedett teherbírás?</mat-panel-title>
+          <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-chip-list aria-label="Roundsling selection">
+        <mat-chip style="background-color: 	#a11477;" (click)="openSnackBar('irs 10')">1000 kg</mat-chip>
+        <mat-chip style="background-color: 	#008000;" (click)="openSnackBar('irs 20')">2000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffff00;" (click)="openSnackBar('irs 30')">3000 kg</mat-chip>
+        <mat-chip (click)="openSnackBar('irs 40')">4000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ff4040;" (click)="openSnackBar('irs 50')">5000 kg</mat-chip>
+        <mat-chip style="background-color: 	#8b0000;" (click)="openSnackBar('irs 60')">6000 kg</mat-chip>
+        <mat-chip style="background-color: 	#0000ff;" (click)="openSnackBar('irs 80')">8000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('irs 100')">10000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('irs 120')">12000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('irs 150')">15000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('irs 200')">20000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('irs 250')">25000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('irs 300')">30000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('irs 400')">40000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('irs 500')">50000 kg</mat-chip>
+      </mat-chip-list>
+  </mat-expansion-panel>
 
+</div>
+
+<br>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="20px">
+  <mat-expansion-panel [hideToggle]="false">
+      <mat-expansion-panel-header>
+          <mat-panel-title>Hossz?</mat-panel-title>
+          <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-chip-list aria-label="Roundsling selection">
+        <mat-chip (click)="products.length = '0,5/1 m'">0,5/1 m</mat-chip>
+        <mat-chip (click)="products.length = '1/2 m'">1/2 m</mat-chip>
+        <mat-chip (click)="products.length = '1,5/3 m'">1,5/3 m</mat-chip>
+        <mat-chip (click)="products.length = '2/4 m'">2/4 m</mat-chip>
+        <mat-chip (click)="products.length = '2,5/5 m'">2,5/5 m</mat-chip>
+        <mat-chip (click)="products.length = '3/6 m'">3/6 m</mat-chip>
+        <mat-chip (click)="products.length = '3,5/7 m'">3,5/7 m</mat-chip>
+        <mat-chip (click)="products.length = '4/8 m'">4/8 m</mat-chip>
+        <mat-chip (click)="products.length = '4,5/9 m'">4,5/9 m</mat-chip>
+        <mat-chip (click)="products.length = '5/10 m'">5/10 m</mat-chip>
+      </mat-chip-list>
+  </mat-expansion-panel>
+
+</div>
+
+<br>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="20px">
+  <form >
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title color="warn">
+          {{products.type}} {{products.length}} {{products.descreption}}
+        </mat-panel-title>
+        <mat-panel-description>
+          Gyáriszám és gyártó megadása!
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <input matInput placeholder="Gyáriszám:">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Gyártó:">
+      </mat-form-field>
+      <mat-action-row>
+          <button mat-raised-button color="accent">Adatbevitel</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </form>
+  <img style="max-width: 250px;" src="../../../../../assets/IRS-körkötél.webp" alt="IRS">
+</div>
+</mat-accordion>
 <div class="list-container">
   <div class="todo-container column-container">
     <div class="list"

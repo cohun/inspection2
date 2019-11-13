@@ -90,3 +90,6 @@ button:hover {
     text-decoration: none;
     color: dodgerblue;
   }
+  mat-panel-title {
+    color: dodgerblue;
+  }

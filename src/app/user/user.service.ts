@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, Subscription, pipe } from 'rxjs';
 import { UserSite } from '../_interface/user-site';
 import { map, tap, first } from 'rxjs/operators';
@@ -12,7 +11,7 @@ import * as firebase from 'firebase/app';
 })
 export class UserService {
   sites$: Observable<UserSite[]>;
-  si$: Subscription
+  si$: Subscription;
   operators$: Observable<UserSite[]>;
 
   constructor(private db: AngularFirestore) { }
@@ -34,7 +33,17 @@ export class UserService {
     this.db.collection('users')
     .doc(id).update({
       ['sites']: firebase.firestore.FieldValue.arrayUnion(newSite)
-    })
+    });
+    alert('Sikeres adatbevitel...')
+}
+addOperators(id:string, user: string, newOperator) {
+  console.log(id, user, newOperator);
+
+  this.db.collection('users')
+  .doc(id).update({
+    ['operators']: firebase.firestore.FieldValue.arrayUnion(newOperator)
+  });
+  alert('Sikeres adatbevitel...')
 }
 
 }
