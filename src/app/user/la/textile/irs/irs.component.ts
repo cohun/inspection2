@@ -129,9 +129,13 @@ export class IrsComponent implements OnInit {
     }
   }
 
-  openSnackBar(type: string) {
-    this.products.type = type;
-    this._snackBar.open(this.products.type, 'kiválasztva', {
+  openSnackBar(typ: string, val: string) {
+    if (typ === 'type') {
+      this.products.type = val;
+    } else {
+      this.products.length = val;
+    }
+    this._snackBar.open(JSON.stringify(this.products.type), JSON.stringify(this.products.length), {
       duration: 2000,
     });
   }

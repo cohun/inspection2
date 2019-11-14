@@ -13,7 +13,7 @@
     <p style="text-align: center"><u> Helyszinekre kiadott eszközök:</u></p>
 </div>
 
-<section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' >
+<section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' fxLayoutGap="10px" >
 
   <mat-card cdkDrag fxFlex="180px" fxFlex.xs="100vw" id='card' *ngFor="let i of item.sites">
     <mat-card-header>
@@ -34,7 +34,7 @@
   <p fxFlex style="text-align: center"><u> Dolgozóknak kiadott eszközök:</u></p>
 </div>
 
-<section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' >
+<section fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around start" id='back' fxLayoutGap="10px" >
 
     <mat-card cdkDrag fxFlex="180px" fxFlex.xs="100vw" id='card' *ngFor="let i of item.operators">
       <mat-card-header>
