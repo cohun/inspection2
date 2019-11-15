@@ -13,9 +13,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class IrsComponent implements OnInit {
 
   products: Product;
-  pr: string;
-  gh = "típus kiválasztva";
-  bh = 'Hi';
+  pr: Product[];
+  tooltipposition = 'right';
+  form: FormGroup;
 
   new = [
     {
@@ -105,7 +105,16 @@ export class IrsComponent implements OnInit {
   constructor(private location: Location, private _snackBar: MatSnackBar ) { }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      id: new FormControl('', [Validators.required]),
+      manufacturer: new FormControl('')
+    })
     console.log(this.new.length);
+    this.productIni();
+
+  }
+
+  productIni() {
     this.products = {
       group: 'körkötelek',
       type: 'irs',
@@ -114,7 +123,6 @@ export class IrsComponent implements OnInit {
       capacity: 'kg',
       manufacturer: ''
     }
-
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
@@ -140,6 +148,12 @@ export class IrsComponent implements OnInit {
     });
   }
 
+  onSubmit(f) {
+    console.log(f);
+
+    this.products.manufacturer = f.manufacturer;
+
+  }
   onCancel() {
     this.location.back();
   }

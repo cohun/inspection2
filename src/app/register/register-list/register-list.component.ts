@@ -46,7 +46,7 @@ export class RegisterListComponent implements OnInit, AfterViewInit, OnDestroy {
           console.log(this.userUid);
         });
       });
-    }, 400);
+    }, 300);
 
     setTimeout(() => {
       console.log(this.userUid);
@@ -73,7 +73,7 @@ export class RegisterListComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       }
-    }, 800);
+    }, 500);
 
     const width = window.innerWidth;
     if (width <= 411) {

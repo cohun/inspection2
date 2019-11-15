@@ -59,26 +59,27 @@
 
 <br>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="20px">
-  <form >
+  <form [formGroup]="form" ngSubmit="onSubmit(form.value)">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title color="warn">
           {{products.type}} {{products.length}} {{products.descreption}}
         </mat-panel-title>
         <mat-panel-description>
-          Gyáriszám és gyártó megadása!
+          Gyáriszám és gyártó megadása:
         </mat-panel-description>
       </mat-expansion-panel-header>
-
-      <mat-form-field>
-        <input matInput placeholder="Gyáriszám:">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="Gyártó:">
-      </mat-form-field>
+      <div fxLayout="row wrap"fxLayoutGap="20px">
+        <mat-form-field>
+          <input matInput placeholder="Gyáriszám:" formControlName="id">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Gyártó:" formControlName="manufacturer">
+        </mat-form-field>
+      </div>
       <mat-action-row>
-          <button mat-raised-button color="accent">Adatbevitel</button>
+          <button [disabled]="!form.valid" type="submit" mat-raised-button matTooltip="Az itt bevitt termék az üzembehelyezendők listába kerül!"
+          [matTooltipPosition]="tooltipposition" color="accent">Adatbevitel</button>
       </mat-action-row>
     </mat-expansion-panel>
   </form>
@@ -141,3 +142,5 @@
     </div>
   </div>
 </div>
+<pre>{{products | json}}</pre>
+<pre>{{new[0].products | json}}</pre>
