@@ -58,8 +58,8 @@
 </div>
 
 <br>
-<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="20px">
-  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="20px" *ngFor="let us of us$ | async">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, us.user)">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title color="warn">
@@ -142,4 +142,4 @@
     </div>
   </div>
 </div>
-<pre>{{products | json}}</pre>
+<pre> {{products | json}}</pre>

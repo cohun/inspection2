@@ -58,15 +58,13 @@ export class RegisterListComponent implements OnInit, AfterViewInit, OnDestroy {
         this.registerService.getRecords(this.dataSource);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-      }
-      else if(who === 'ReadOnly') {
+      } else if (who === 'ReadOnly') {
         console.log('if');
         console.log(who);
         this.registerService.getRecords(this.dataSource);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-      }
-      else {
+      } else {
         console.log('else');
         console.log(who);
         this.registerService.getUserRecords(this.dataSource, this.userUid);
@@ -122,8 +120,6 @@ export class RegisterListComponent implements OnInit, AfterViewInit, OnDestroy {
       );
   }
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.hUser.unsubscribe();
   }
 

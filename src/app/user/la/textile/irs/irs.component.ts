@@ -4,7 +4,9 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 import { Product } from 'src/app/_interface/product';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
-
+import { AuthService } from '../../../../auth/auth.service';
+import { Observable, Subscription } from 'rxjs';
+import { UserUid } from '../../../../_interface/userUid';
 @Component({
   selector: 'app-irs',
   templateUrl: './irs.component.html',
@@ -16,6 +18,8 @@ export class IrsComponent implements OnInit {
   pr: Product[];
   tooltipposition = 'right';
   form: FormGroup;
+  us$: Observable<UserUid[]>;
+  userName: string;
 
   new = [
     {
@@ -102,15 +106,18 @@ export class IrsComponent implements OnInit {
   }
   ];
 
-  constructor(private location: Location, private _snackBar: MatSnackBar ) { }
+  constructor(private location: Location, private _snackBar: MatSnackBar,
+              private auth: AuthService ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
       id: new FormControl('', [Validators.required]),
       manufacturer: new FormControl('')
-    })
+    });
     console.log(this.new.length);
     this.productIni();
+    this.auth.getUserName(this.auth.id);
+    this.us$ = this.auth.us$;
 
   }
 
@@ -122,7 +129,7 @@ export class IrsComponent implements OnInit {
       descreption: 'körkötél',
       capacity: 'kg',
       manufacturer: ''
-    }
+    };
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
@@ -137,7 +144,7 @@ export class IrsComponent implements OnInit {
     }
   }
 
-  openSnackBar(typ: string, val: string, cap: string) {
+  openSnackBar(typ: string, val: string, cap?: string) {
     if (typ === 'type') {
       this.products.type = val;
       this.products.capacity = cap;
@@ -149,10 +156,12 @@ export class IrsComponent implements OnInit {
     });
   }
 
-  onSubmit(f) {
+  onSubmit(f, user) {
     console.log(f);
-
+    console.log(user);
+    this.userName = user;
     this.products.manufacturer = f.manufacturer;
+    console.log(this.userName);
 
   }
   onCancel() {
