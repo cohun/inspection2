@@ -12,21 +12,21 @@
           <mat-panel-description></mat-panel-description>
       </mat-expansion-panel-header>
       <mat-chip-list aria-label="Roundsling selection">
-        <mat-chip style="background-color: 	#a11477;" (click)="openSnackBar('type','irs 10')">1000 kg</mat-chip>
-        <mat-chip style="background-color: 	#008000;" (click)="openSnackBar('type','irs 20')">2000 kg</mat-chip>
-        <mat-chip style="background-color: 	#ffff00;" (click)="openSnackBar('type','irs 30')">3000 kg</mat-chip>
-        <mat-chip (click)="openSnackBar('type','irs 40')">4000 kg</mat-chip>
-        <mat-chip style="background-color: 	#ff4040;" (click)="openSnackBar('type','irs 50')">5000 kg</mat-chip>
-        <mat-chip style="background-color: 	#8b0000;" (click)="openSnackBar('type','irs 60')">6000 kg</mat-chip>
-        <mat-chip style="background-color: 	#0000ff;" (click)="openSnackBar('type','irs 80')">8000 kg</mat-chip>
-        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 100')">10000 kg</mat-chip>
-        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 120')">12000 kg</mat-chip>
-        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 150')">15000 kg</mat-chip>
-        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 200')">20000 kg</mat-chip>
-        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 250')">25000 kg</mat-chip>
-        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 300')">30000 kg</mat-chip>
-        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 400')">40000 kg</mat-chip>
-        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 500')">50000 kg</mat-chip>
+        <mat-chip style="background-color: 	#a11477;" (click)="openSnackBar('type','irs 10', '1000 kg')">1000 kg</mat-chip>
+        <mat-chip style="background-color: 	#008000;" (click)="openSnackBar('type','irs 20', '2000 kg')">2000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffff00;" (click)="openSnackBar('type','irs 30', '3000 kg')">3000 kg</mat-chip>
+        <mat-chip (click)="openSnackBar('type','irs 40', '4000 kg')">4000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ff4040;" (click)="openSnackBar('type','irs 50', '5000 kg')">5000 kg</mat-chip>
+        <mat-chip style="background-color: 	#8b0000;" (click)="openSnackBar('type','irs 60', '6000 kg')">6000 kg</mat-chip>
+        <mat-chip style="background-color: 	#0000ff;" (click)="openSnackBar('type','irs 80', '8000 kg')">8000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 100', '10000 kg')">10000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 120', '12000 kg')">12000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 150', '15000 kg')">15000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 200', '20000 kg')">20000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 250', '25000 kg')">25000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 300', '30000 kg')">30000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 400', '40000 kg')">40000 kg</mat-chip>
+        <mat-chip style="background-color: 	#ffa500;" (click)="openSnackBar('type','irs 500', '50000 kg')">50000 kg</mat-chip>
       </mat-chip-list>
   </mat-expansion-panel>
 
@@ -59,7 +59,7 @@
 
 <br>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="20px">
-  <form [formGroup]="form" ngSubmit="onSubmit(form.value)">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title color="warn">
@@ -143,4 +143,3 @@
   </div>
 </div>
 <pre>{{products | json}}</pre>
-<pre>{{new[0].products | json}}</pre>
