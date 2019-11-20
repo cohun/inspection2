@@ -5,6 +5,9 @@ import { Product } from 'src/app/_interface/product';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { UserUid } from 'src/app/_interface/userUid';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-irs',
@@ -18,6 +21,7 @@ export class IrsComponent implements OnInit {
   tooltipposition = 'right';
   user: string;
   form: FormGroup;
+  us$: Observable<UserUid[]>;
   userName: string;
 
   new = [
@@ -106,7 +110,8 @@ export class IrsComponent implements OnInit {
   ];
 
   constructor(private location: Location, private _snackBar: MatSnackBar,
-              private router: Router, private activeRoute: ActivatedRoute) {}
+              private router: Router, private activeRoute: ActivatedRoute,
+              private auth: AuthService) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -115,6 +120,9 @@ export class IrsComponent implements OnInit {
     });
     console.log(this.new.length);
     this.productIni();
+    this.auth.getUserName(this.auth.id);
+    this.us$ = this.auth.us$;
+
     this.user = this.activeRoute.snapshot.queryParams.user;
     console.log(this.user);
 
