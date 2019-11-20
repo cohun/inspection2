@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from "@angular/router";
 import { Subject } from "rxjs/Subject";
 import { AngularFireAuth } from "@angular/fire/auth";
@@ -13,7 +13,7 @@ import { UserUid } from '../_interface/userUid';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService  implements OnDestroy {
   authChange = new Subject<boolean>();
   authUser = new Subject<string>();
   private isAuthenticated = false;
@@ -79,12 +79,11 @@ export class AuthService {
       return dat.map(x => {
         return {
           ...x.payload.doc.data() as UserUid
-      }})
-    }))
+        };
+      });
+    }));
   }
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.hUser.unsubscribe();
   }
 }
