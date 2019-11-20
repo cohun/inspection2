@@ -26,7 +26,7 @@
       <br>nyilvántartott eszközök <br> felhasználási helyszinek szerint <br>
       <mat-divider></mat-divider>
     </a>
-    <a [routerLink]="['/user/detail']" routerLinkActive="router-link-active" >
+    <a (click)="groupDetail()" routerLinkActive="router-link-active" >
         <mat-card fxFlex="300px" fxFlex.lt-md="100vw" id='card'>
             <mat-card-header>
                 <img matCardAvatar src="../../../assets/Manual_800_600.svg">

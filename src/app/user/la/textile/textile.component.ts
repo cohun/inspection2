@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-textile',
@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
 })
 export class TextileComponent implements OnInit {
   public w: number;
+  user: string;
 
-  constructor(private location: Location, private router: Router) { }
+  constructor(private location: Location, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
     const width = window.innerWidth;
@@ -24,13 +25,15 @@ export class TextileComponent implements OnInit {
       console.log('desktop detected');
       this.w = 4;
     }
+    this.user = this.activeRoute.snapshot.queryParams.user;
+    console.log(this.user);
+
   }
 
-  routeToProducts() {
-    this.router.navigate(['/product/products'],
-    {queryParams: {user: 'B',
-                  group: 'körkötelek',
-                  id: '10'  }});
+  irs() {
+    const user = this.user;
+    this.router.navigate([`user/la/textile/irs`],
+    {queryParams: {user}});
   }
 
   onCancel() {

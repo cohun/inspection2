@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-la',
@@ -8,7 +9,9 @@ import { Location } from '@angular/common';
 })
 export class LaComponent implements OnInit {
   public w: number;
-  constructor(private location: Location) { }
+  user: string;
+
+  constructor(private location: Location, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
     const width = window.innerWidth;
@@ -22,7 +25,17 @@ export class LaComponent implements OnInit {
       console.log('desktop detected');
       this.w = 4;
     }
+
+    this.user = this.activeRoute.snapshot.queryParams.user;
+    console.log(this.user);
   }
+
+  textile() {
+    const user = this.user;
+    this.router.navigate([`user/la/textile`],
+    {queryParams: {user}});
+  }
+
   onCancel() {
     this.location.back();
   }

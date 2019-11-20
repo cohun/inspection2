@@ -38,8 +38,11 @@ export class SortimentComponent implements OnInit, OnDestroy {
   }
 
   groupDetail() {
-    this.router.navigate([`user/detail`])
+    const user = this.userUid;
+    this.router.navigate([`user/detail`],
+    {queryParams: {user}});
   }
+
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.

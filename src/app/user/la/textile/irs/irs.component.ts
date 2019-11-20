@@ -4,6 +4,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 import { Product } from 'src/app/_interface/product';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-irs',
@@ -15,6 +16,7 @@ export class IrsComponent implements OnInit {
   products: Product;
   pr: Product[];
   tooltipposition = 'right';
+  user: string;
   form: FormGroup;
 
   new = [
@@ -102,7 +104,8 @@ export class IrsComponent implements OnInit {
   }
   ];
 
-  constructor(private location: Location, private _snackBar: MatSnackBar ) { }
+  constructor(private location: Location, private _snackBar: MatSnackBar,
+              private router: Router, private activeRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -111,6 +114,9 @@ export class IrsComponent implements OnInit {
     })
     console.log(this.new.length);
     this.productIni();
+    this.user = this.activeRoute.snapshot.queryParams.user;
+    console.log(this.user);
+
 
   }
 
@@ -158,5 +164,6 @@ export class IrsComponent implements OnInit {
   onCancel() {
     this.location.back();
   }
+
 
 }

@@ -4,7 +4,7 @@
     <span fxFlex='40' style="background-color: #607D8B"><mat-divider></mat-divider></span>
 </div>
 <mat-grid-list cols="{{w}}" rowHeight="1:1">
-    <a [routerLink]="['/user/la/textile']" routerLinkActive="router-link-active" >
+    <a (click)="textile()" routerLinkActive="router-link-active" >
         <mat-grid-tile mat-elevation-z4 matRipple id='trigger' class="meal-photo">
             <mat-grid-tile-header>Textilkötelek, -hevederek</mat-grid-tile-header>
             <img src="../../../assets/Textile_800_600.svg" alt="" style="height: 100%" >
