@@ -4,14 +4,8 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 import { Product } from 'src/app/_interface/product';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
-<<<<<<< HEAD
 import { Router, ActivatedRoute } from '@angular/router';
 
-=======
-import { AuthService } from '../../../../auth/auth.service';
-import { Observable, Subscription } from 'rxjs';
-import { UserUid } from '../../../../_interface/userUid';
->>>>>>> 3bb87116c3cb2a2831d8668a70ae614161b4e6bb
 @Component({
   selector: 'app-irs',
   templateUrl: './irs.component.html',
@@ -24,7 +18,6 @@ export class IrsComponent implements OnInit {
   tooltipposition = 'right';
   user: string;
   form: FormGroup;
-  us$: Observable<UserUid[]>;
   userName: string;
 
   new = [
