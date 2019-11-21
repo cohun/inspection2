@@ -117,6 +117,7 @@
       <p>{{new[1].info}}</p>
       <mat-card cdkDrag *ngFor="let item of new[1].products">
         <mat-card-header>
+            <div mat-card-avatar class="example-image"></div>
           <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
           <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
         </mat-card-header>
@@ -135,6 +136,7 @@
       <p>{{new[2].info}}</p>
       <mat-card cdkDrag *ngFor="let item of new[1].products">
         <mat-card-header>
+            <div mat-card-avatar class="image"></div>
           <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
           <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
         </mat-card-header>

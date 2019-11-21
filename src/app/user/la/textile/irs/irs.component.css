@@ -6,6 +6,14 @@ button:hover {
     background-image: url('../../../../../assets/green.webp');
     background-size: cover;
   }
+  .example-image {
+    background-image: url('../../../../../assets/red.webp');
+    background-size: cover;
+  }
+  .image {
+    background-image: url('../../../../../assets/orange.webp');
+    background-size: cover;
+  }
 
   .container {
     display: flex;
