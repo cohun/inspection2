@@ -20,9 +20,11 @@ export class IrsComponent implements OnInit {
   pr: Product[];
   tooltipposition = 'right';
   user: string;
+  gysz: string;
   form: FormGroup;
   us$: Observable<UserUid[]>;
   userName: string;
+  panel = false;
 
   new = [
     {
@@ -114,10 +116,7 @@ export class IrsComponent implements OnInit {
               private auth: AuthService) {}
 
   ngOnInit() {
-    this.form = new FormGroup({
-      id: new FormControl('', [Validators.required]),
-      manufacturer: new FormControl('')
-    });
+    this.formCreate()
     console.log(this.new.length);
     this.productIni();
     this.auth.getUserName(this.auth.id);
@@ -128,14 +127,20 @@ export class IrsComponent implements OnInit {
 
 
   }
+formCreate() {
+  this.form = new FormGroup({
+    id: new FormControl('', [Validators.required]),
+    manufacturer: new FormControl('')
+  });
+}
 
   productIni() {
     this.products = {
       group: 'körkötelek',
       type: 'irs',
-      length: 'm',
+      length: '',
       descreption: 'körkötél',
-      capacity: 'kg',
+      capacity: '',
       manufacturer: ''
     };
   }
@@ -165,13 +170,20 @@ export class IrsComponent implements OnInit {
   }
 
   onSubmit(f, user) {
+    this.panel = false;
     console.log(f);
     console.log(user);
+    this.gysz = f.id;
     this.userName = user;
     this.products.manufacturer = f.manufacturer;
     console.log(this.userName);
-
+    this.formCreate();
   }
+
+  onOperationStart() {
+    this.gysz = '';
+  }
+
   onCancel() {
     this.location.back();
   }

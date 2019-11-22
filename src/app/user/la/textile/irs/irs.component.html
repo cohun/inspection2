@@ -60,13 +60,12 @@
 <br>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="20px" *ngFor="let us of us$ | async">
   <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, us.user)">
-    <mat-expansion-panel>
+    <mat-expansion-panel [(expanded)]="panel">
       <mat-expansion-panel-header>
         <mat-panel-title color="warn">
-          {{products.type}} {{products.length}} {{products.descreption}}
+          Gyáriszám és gyártó megadása:
         </mat-panel-title>
         <mat-panel-description>
-          Gyáriszám és gyártó megadása:
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div fxLayout="row wrap"fxLayoutGap="20px">
@@ -83,10 +82,47 @@
       </mat-action-row>
     </mat-expansion-panel>
   </form>
-  <img style="max-width: 250px;" src="../../../../../assets/IRS-körkötél.webp" alt="IRS">
 </div>
 </mat-accordion>
+<div class="list">
+  <mat-card style="max-width: 350px;">
+    <mat-card-header>
+      <mat-card-title style="color: #E91E63;">{{products.type}} {{products.length}} {{products.descreption}}</mat-card-title>
+      <mat-card-subtitle><strong>Gyáriszám:  {{gysz}}</strong></mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="../../../../../assets/IRS-körkötél.webp" alt="IRS">
+    <mat-card-actions *ngIf="products.capacity && products.length && gysz">
+      <button mat-raised-button color="accent" matTooltip="Amennyiben a fenti terméket még üzembe kell helyezni"
+        style="margin-bottom: 10px;" (click)="onOperationStart()">Üzembehelyezendő</button>
+      <button mat-raised-button color="accent" matTooltip="Ha a fenti termék már üzembe van helyezve,
+      az utolsó érvényes vizsgálat dátumának megadása után, átkerül a kiadható termékek listájába"
+      [matTooltipPosition]="tooltipposition">Már üzembehelyezett</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
 <div class="list-container">
+
+  <div class="todo-container column-container">
+    <div class="list">
+      <h2>Üzembehelyezésre váró termékek</h2>
+      <mat-card cdkDrag>
+        <mat-card-header>
+          <div mat-card-avatar class="example-image"></div>
+          <mat-card-title>{{products.type}} {{products.length}} {{products.descreption}}</mat-card-title>
+          <button mat-icon-button color="accent" matTooltip="Üzembehelyezés">
+            <mat-icon class="mat-18">build</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" matTooltip="Törlés">
+            <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+          <mat-card-subtitle><strong>Gyáriszám:  {{gysz}}</strong></mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+
+
   <div class="todo-container column-container">
     <div class="list"
     cdkDropList
@@ -94,8 +130,8 @@
     [cdkDropListData]="new[0].products"
     [cdkDropListConnectedTo]="doneList"
     (cdkDropListDropped)="onDrop($event)">
-      <h2>{{new[0].site}}</h2>
-      <p>{{new[0].info}}</p>
+      <h2>Kiadható termékek</h2>
+      <p>központi elosztó</p>
       <mat-card *ngFor="let item of new[0].products" cdkDrag>
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
@@ -106,24 +142,6 @@
     </div>
   </div>
 
-  <div class="done-container column-container">
-    <div class="list"
-    cdkDropList
-    #doneList="cdkDropList"
-    [cdkDropListData]="new[1].products"
-    [cdkDropListConnectedTo]="todoList"
-    (cdkDropListDropped)="onDrop($event)">
-      <h2>{{new[1].site}}</h2>
-      <p>{{new[1].info}}</p>
-      <mat-card cdkDrag *ngFor="let item of new[1].products">
-        <mat-card-header>
-            <div mat-card-avatar class="example-image"></div>
-          <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
-          <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
-        </mat-card-header>
-      </mat-card>
-    </div>
-  </div>
 
   <div class="done-container column-container">
     <div class="list"
@@ -132,7 +150,7 @@
     [cdkDropListData]="new[1].products"
     [cdkDropListConnectedTo]="todoList"
     (cdkDropListDropped)="onDrop($event)">
-      <h2>{{new[2].site}}</h2>
+      <h2>Célállomás</h2>
       <p>{{new[2].info}}</p>
       <mat-card cdkDrag *ngFor="let item of new[1].products">
         <mat-card-header>
@@ -145,4 +163,3 @@
   </div>
 </div>
 {{user}}
-<pre>{{products | json}}</pre>
