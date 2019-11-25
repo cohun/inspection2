@@ -119,8 +119,6 @@ export class IrsComponent implements OnInit {
     this.formCreate()
     console.log(this.new.length);
     this.productIni();
-    this.auth.getUserName(this.auth.id);
-    this.us$ = this.auth.us$;
 
     this.user = this.activeRoute.snapshot.queryParams.user;
     console.log(this.user);
@@ -169,12 +167,11 @@ formCreate() {
     });
   }
 
-  onSubmit(f, user) {
+  onSubmit(f) {
     this.panel = false;
     console.log(f);
-    console.log(user);
     this.gysz = f.id;
-    this.userName = user;
+    this.userName = this.user;
     this.products.manufacturer = f.manufacturer;
     console.log(this.userName);
     this.formCreate();
