@@ -107,17 +107,17 @@
   <div class="todo-container column-container">
     <div class="list">
       <h2>Üzembehelyezésre váró termékek</h2>
-      <mat-card cdkDrag>
+      <mat-card cdkDrag *ngFor="let item of product$ | async">
         <mat-card-header>
           <div mat-card-avatar class="example-image"></div>
-          <mat-card-title>{{products.type}} {{products.length}} {{products.descreption}}</mat-card-title>
+          <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
           <button mat-icon-button color="accent" matTooltip="Üzembehelyezés">
             <mat-icon class="mat-18">build</mat-icon>
           </button>
           <button mat-icon-button color="warn" matTooltip="Törlés">
             <mat-icon class="mat-18">delete</mat-icon>
           </button>
-          <mat-card-subtitle><strong>Gyáriszám:  {{gysz}}</strong></mat-card-subtitle>
+          <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
         </mat-card-header>
       </mat-card>
     </div>

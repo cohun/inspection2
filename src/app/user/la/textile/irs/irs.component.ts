@@ -1,30 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Product } from 'src/app/_interface/product';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { UserUid } from 'src/app/_interface/userUid';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ProductService } from 'src/app/product/product.service';
+import { map } from 'rxjs/operators';
+import { UserService } from 'src/app/user/user.service';
+import { Productgysz } from 'src/app/_interface/product-gysz';
 
 @Component({
   selector: 'app-irs',
   templateUrl: './irs.component.html',
   styleUrls: ['./irs.component.css']
 })
-export class IrsComponent implements OnInit {
+export class IrsComponent implements OnInit, OnDestroy {
 
   products: Product;
   pr: Product[];
   tooltipposition = 'right';
   user: string;
   gysz: string;
+  fid: string;
   form: FormGroup;
-  us$: Observable<UserUid[]>;
+  public product$: Observable<Productgysz[]>;
+  sub: Subscription = new Subscription();
   userName: string;
   panel = false;
+  num: number;
 
   new = [
     {
@@ -113,7 +120,8 @@ export class IrsComponent implements OnInit {
 
   constructor(private location: Location, private _snackBar: MatSnackBar,
               private router: Router, private activeRoute: ActivatedRoute,
-              private auth: AuthService) {}
+              private auth: AuthService, private productService: ProductService,
+              private userService: UserService) {}
 
   ngOnInit() {
     this.formCreate()
@@ -169,20 +177,67 @@ formCreate() {
 
   onSubmit(f) {
     this.panel = false;
-    console.log(f);
     this.gysz = f.id;
     this.userName = this.user;
     this.products.manufacturer = f.manufacturer;
-    console.log(this.userName);
-    this.formCreate();
+
+    //Check duplicate:
+    this.productService.checkDupl(this.products.type, this.products.length, this.products.descreption,
+                                  this.products.capacity, this.products.manufacturer);
+    setTimeout(() => {
+      this.num = this.productService.length;
+      if (this.num !== 0) {
+        alert('Már van ilyen termék az adatbázisban. OK gomb megnyomása után folytatás');
+        this.formCreate();
+        this.fidBack();
+      } else {
+        this.productService.addProduct(this.products);
+        alert('Sikeres adatbevitel');
+        this.formCreate();
+        this.fidBack();
+      }
+    }, 800);
+
+    //Get fid:
+    this.productService.getFid(this.products.type, this.products.length, this.products.descreption, this.products.capacity, this.products.manufacturer)
+
+  }
+
+  private fidBack() {
+    this.sub = this.productService.product$.pipe(map(val => {
+      return val.map(x => {
+        this.fid = x.fid;
+        console.log(this.fid);
+      });
+    }))
+      .subscribe();
   }
 
   onOperationStart() {
-    this.gysz = '';
+    this.userService.checkid(this.gysz, this.user);
+    setTimeout(() => {
+      this.num = this.userService.le;
+      if (this.num !== 0) {
+        alert('Már létezik ez a gyáriszám!');
+        this.gysz = '';
+      } else {
+        // this.productService.addSpecProd(this.gysz);
+        alert('Sikeres adatbevitel');
+        this.userService.addOperantee(this.user,this.gysz, 'üzembehelyezendő', this.fid, this.products);
+        this.product$ = this.userService.product$;
+        this.gysz = '';
+      }
+    }, 800);
   }
 
   onCancel() {
     this.location.back();
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.sub.unsubscribe();
   }
 
 

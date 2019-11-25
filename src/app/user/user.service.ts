@@ -5,6 +5,8 @@ import { UserSite } from '../_interface/user-site';
 import { map, tap, first } from 'rxjs/operators';
 import { firestore } from 'firebase';
 import * as firebase from 'firebase/app';
+import { Product } from '../_interface/product';
+import { Productgysz } from '../_interface/product-gysz';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,8 @@ export class UserService {
   sites$: Observable<UserSite[]>;
   si$: Subscription;
   operators$: Observable<UserSite[]>;
+  public product$: Observable<Productgysz[]>;
+  le: number;
 
   constructor(private db: AngularFirestore) { }
 
@@ -44,6 +48,27 @@ addOperators(id:string, user: string, newOperator) {
     ['operators']: firebase.firestore.FieldValue.arrayUnion(newOperator)
   });
   alert('Sikeres adatbevitel...')
+}
+
+checkid(id, user) {
+  this.db.collection('specProduct', ref => ref.where('id', '==', id)
+                                              .where('user', '==', user))
+  .valueChanges()
+  .forEach(element => {
+      this.le = (element.length);
+  }), first();
+}
+addOperantee(user: string, gysz: string, site: string, fid: string, prod: Product) {
+  this.db.collection('operantee').add({user, gysz, site, fid, ...prod});
+  this.product$ = this.db.collection('operantee', ref => ref.where('user', '==', user))
+  .snapshotChanges().pipe(
+    map(snaps => {
+      return snaps.map(snap => {
+        return {
+      ...snap.payload.doc.data()}as Productgysz;
+    })
+  })
+  )
 }
 
 }
