@@ -20,6 +20,11 @@ import { Productgysz } from 'src/app/_interface/product-gysz';
 })
 export class IrsComponent implements OnInit, OnDestroy {
 
+  group = 'körkötelek';
+  descreption = 'körkötél';
+  public productGroup$: Observable<Product[]>;
+
+
   products: Product;
   pr: Product[];
   tooltipposition = 'right';
@@ -124,14 +129,18 @@ export class IrsComponent implements OnInit, OnDestroy {
               private userService: UserService) {}
 
   ngOnInit() {
+
+    this.userService.getProducts(this.group);
+    this.productGroup$ = this.userService.products$;
+
     this.formCreate()
     console.log(this.new.length);
     this.productIni();
 
     this.user = this.activeRoute.snapshot.queryParams.user;
     console.log(this.user);
-
-
+    this.userService.getOpperantee(this.user);
+    this.product$ = this.userService.product$;
   }
 formCreate() {
   this.form = new FormGroup({
@@ -228,6 +237,10 @@ formCreate() {
         this.gysz = '';
       }
     }, 800);
+  }
+  delOperantee(gysz) {
+    this.userService.delOperantee(gysz, this.user);
+    this.product$ = this.userService.product$;
   }
 
   onCancel() {

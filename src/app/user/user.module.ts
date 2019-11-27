@@ -16,9 +16,10 @@ import { IrsComponent } from './la/textile/irs/irs.component';
 import { NewSiteComponent } from './user-site/new-site/new-site.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ProductChoiceComponent } from './product-choice/product-choice.component';
 
 @NgModule({
-  declarations: [SortimentComponent, ProductGroupComponent, LaComponent, TextileComponent, ChainComponent, RopeComponent, ManualComponent, PoweredComponent, UserSiteComponent, IrsComponent, NewSiteComponent],
+  declarations: [SortimentComponent, ProductGroupComponent, LaComponent, TextileComponent, ChainComponent, RopeComponent, ManualComponent, PoweredComponent, UserSiteComponent, IrsComponent, NewSiteComponent, ProductChoiceComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

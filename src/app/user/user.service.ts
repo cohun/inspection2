@@ -18,6 +18,8 @@ export class UserService {
   public product$: Observable<Productgysz[]>;
   le: number;
 
+  products$: Observable<Product[]>;
+
   constructor(private db: AngularFirestore) { }
 
   getSites(user: string) {
@@ -70,5 +72,44 @@ addOperantee(user: string, gysz: string, site: string, fid: string, prod: Produc
   })
   )
 }
+getOpperantee(user: string) {
+  this.product$ = this.db.collection('operantee', ref => ref.where('user', '==', user))
+  .snapshotChanges().pipe(
+    map(snaps => {
+      return snaps.map(snap => {
+        return {
+      ...snap.payload.doc.data()}as Productgysz;
+    })
+  })
+  )
+}
+delOperantee(gysz, user) {
+ const doc = this.db.collection('operantee', ref => ref.where('gysz', '==', gysz));
+ const doc$ = doc.snapshotChanges().pipe(map(snaps => snaps.map(snap => {
+  return snap.payload.doc.id; })));
+  const sub = doc$.subscribe(value => {
+    if (value.length > 0) {
+      value.forEach(x => {
+        console.log('from specProduct', x);
 
+        this.db.collection('operantee').doc(x).delete();
+    });
+  }
+    sub.unsubscribe();
+  });
+  this.getOpperantee(user);
+
+  }
+
+  getProducts(group: string) {
+    this.products$ = this.db.collection('products', ref => ref.where('group', '==', group))
+    .snapshotChanges()
+    .pipe(map(snaps => {
+      return snaps.map(snap => {
+        return {
+          ...snap.payload.doc.data()
+        }as Product
+      })
+    }))
+  }
 }

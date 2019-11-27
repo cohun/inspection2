@@ -4,6 +4,7 @@
   <span fxFlex='40' style="background-color: #607D8B"><mat-divider></mat-divider></span>
 </div>
 <br>
+<app-product-choice *ngIf="productGroup$ | async as p" [products]="p" [user]="user" [group]="group" [descreption]="descreption"></app-product-choice>
 <mat-accordion displayMode="default">
 <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="20px">
   <mat-expansion-panel [hideToggle]="false">
@@ -85,6 +86,7 @@
   </form>
 </div>
 </mat-accordion>
+
 <div class="list">
   <mat-card style="max-width: 350px;">
     <mat-card-header>
@@ -103,7 +105,6 @@
 </div>
 
 <div class="list-container">
-
   <div class="todo-container column-container">
     <div class="list">
       <h2>Üzembehelyezésre váró termékek</h2>
@@ -114,7 +115,7 @@
           <button mat-icon-button color="accent" matTooltip="Üzembehelyezés">
             <mat-icon class="mat-18">build</mat-icon>
           </button>
-          <button mat-icon-button color="warn" matTooltip="Törlés">
+          <button mat-icon-button color="warn" matTooltip="Törlés" (click)="delOperantee(item.gysz)">
             <mat-icon class="mat-18">delete</mat-icon>
           </button>
           <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
