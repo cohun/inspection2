@@ -1,7 +1,5 @@
 
 <mat-accordion displayMode="default">
-
-  <div fxLayout="column" fxLayout.md="column" fxLayoutAlign="start start" fxLayoutGap="15px">
     <!-- //Capacity -->
     <mat-expansion-panel [hideToggle]="false">
       <mat-expansion-panel-header>
@@ -24,7 +22,6 @@
         </mat-form-field>
       </div>
     </mat-expansion-panel>
-  <br>
     <!-- //Type -->
     <mat-expansion-panel [hideToggle]="false">
       <mat-expansion-panel-header>
@@ -47,7 +44,6 @@
         </mat-form-field>
       </div>
     </mat-expansion-panel>
-    <br>
     <!-- //Length -->
     <mat-expansion-panel [hideToggle]="false">
       <mat-expansion-panel-header>
@@ -70,7 +66,6 @@
         </mat-form-field>
       </div>
     </mat-expansion-panel>
-    <br>
     <!-- //Manufacturer -->
     <mat-expansion-panel [hideToggle]="false">
       <mat-expansion-panel-header>
@@ -93,21 +88,26 @@
         </mat-form-field>
       </div>
     </mat-expansion-panel>
-    <br>
 
   <mat-expansion-panel [hideToggle]="false">
     <mat-expansion-panel-header>
       <mat-panel-title>Gyáriszám :
         <span *ngIf="gysz" style="color: #E91E63;">
+         <strong>
           {{gysz}}
+         </strong>
         </span>
       </mat-panel-title>
-      <mat-panel-description style="color: #E91E63;">{{product.manufacturer}} gyártmányú, {{product.capacity}} teherbírású
+      <mat-panel-description style="color: #E91E63;">
+        <strong>
+          {{product.manufacturer}} gyártmányú, {{product.capacity}} teherbírású
           {{product.type}} {{product.length}} {{product.descreption}}
+        </strong>
+
       </mat-panel-description>
     </mat-expansion-panel-header>
     <div class="list">
-      <mat-card style="max-width: 350px;">
+      <mat-card style="width: 80%; max-width: 350px;" >
         <mat-card-header fxLayout="row wrap" fxLayoutAlign="start center">
             <mat-form-field appearance="outline">
               <input #gy="ngModel" matInput placeholder="Gyáriszám beírása:" (keyup.enter)="onGysz(gy.value)" [(ngModel)]="empty">
@@ -127,8 +127,6 @@
       </mat-card>
     </div>
   </mat-expansion-panel>
-  <br>
-</div>
 </mat-accordion>
 
 

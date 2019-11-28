@@ -23,6 +23,7 @@ mat-card {
 .list {
   border: RGBA(46, 49, 49, .7) solid 1px;
   border-radius: 2px;
+  margin: 0 auto;
 }
 
 .list-item {
