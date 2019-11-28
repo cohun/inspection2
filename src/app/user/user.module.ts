@@ -17,9 +17,10 @@ import { NewSiteComponent } from './user-site/new-site/new-site.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ProductChoiceComponent } from './product-choice/product-choice.component';
+import { ProductContainerComponent } from './product-container/product-container.component';
 
 @NgModule({
-  declarations: [SortimentComponent, ProductGroupComponent, LaComponent, TextileComponent, ChainComponent, RopeComponent, ManualComponent, PoweredComponent, UserSiteComponent, IrsComponent, NewSiteComponent, ProductChoiceComponent],
+  declarations: [SortimentComponent, ProductGroupComponent, LaComponent, TextileComponent, ChainComponent, RopeComponent, ManualComponent, PoweredComponent, UserSiteComponent, IrsComponent, NewSiteComponent, ProductChoiceComponent, ProductContainerComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
