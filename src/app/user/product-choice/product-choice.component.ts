@@ -32,6 +32,7 @@ export class ProductChoiceComponent implements OnInit {
   product: Product;
   gysz: string;
   tooltipposition = 'right';
+  empty = '';
 
 
   constructor(private userService: UserService, private _snackBar: MatSnackBar) { }
@@ -73,6 +74,7 @@ export class ProductChoiceComponent implements OnInit {
   }
   onGysz(gysz: string) {
     this.gysz = gysz;
+    this.empty = '';
     console.log(this.gysz);
 
   }
