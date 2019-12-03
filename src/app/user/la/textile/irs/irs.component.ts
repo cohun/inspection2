@@ -190,7 +190,7 @@ formCreate() {
     this.userName = this.user;
     this.products.manufacturer = f.manufacturer;
 
-    //Check duplicate:
+    // Check duplicate:
     this.productService.checkDupl(this.products.type, this.products.length, this.products.descreption,
                                   this.products.capacity, this.products.manufacturer);
     setTimeout(() => {
@@ -248,8 +248,8 @@ formCreate() {
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
+    // Called once, before the instance is destroyed.
+    // Add 'implements OnDestroy' to the class.
     this.sub.unsubscribe();
   }
 

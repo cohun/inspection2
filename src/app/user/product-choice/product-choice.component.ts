@@ -33,6 +33,9 @@ export class ProductChoiceComponent implements OnInit {
   gysz: string;
   tooltipposition = 'right';
   empty = '';
+  num: number;
+  fid: string;
+  step = 1;
 
 
   constructor(private userService: UserService, private _snackBar: MatSnackBar) { }
@@ -67,6 +70,23 @@ export class ProductChoiceComponent implements OnInit {
     };
   }
   openSnackBar(typ: string, val: string) {
+    switch (typ) {
+      case 'capacity':
+        this.step = 1
+        break;
+      case 'type':
+        this.step = 2
+        break;
+      case 'length':
+        this.step = 3
+        break;
+      case 'manufacturer':
+        this.step = 4
+        break;
+      default:
+        break;
+    }
+    this.step += 1;
     this.product[typ] = val;
     this._snackBar.open(JSON.stringify(this.product[typ]), 'kiválasztva', {
       duration: 2000,
@@ -78,9 +98,22 @@ export class ProductChoiceComponent implements OnInit {
     console.log(this.gysz);
 
   }
-  onOperationStart() {
-
-  }
+/*   onOperationStart() {
+    this.userService.checkid(this.gysz, this.user);
+    setTimeout(() => {
+      this.num = this.userService.le;
+      if (this.num !== 0) {
+        alert('Már létezik ez a gyáriszám!');
+        this.gysz = '';
+      } else {
+        // this.productService.addSpecProd(this.gysz);
+        alert('Sikeres adatbevitel');
+        this.userService.addOperantee(this.user,this.gysz, 'üzembehelyezendő', this.fid, this.products);
+        this.product$ = this.userService.product$;
+        this.gysz = '';
+      }
+    }, 800);
+  } */
 
 
 }

@@ -3,11 +3,15 @@
 <button (click)="onCancel()" fxFlex mat-raised-button><mat-icon class="mat-18">skip_previous</mat-icon></button>
   <span fxFlex='40' style="background-color: #607D8B"><mat-divider></mat-divider></span>
 </div>
-<br>
-<app-product-choice *ngIf="productGroup$ | async as p" [products]="p" [user]="user" [group]="group" [descreption]="descreption"></app-product-choice>
-<app-product-container></app-product-container>
+<app-product-choice *ngIf="productGroup$ | async as p" [products]="p"
+                      [user]="user" [group]="group" [descreption]="descreption">
+</app-product-choice>
 
-<div class="list-container">
+<app-product-container *ngIf="product$ | async as p" [products]="p"
+                      [user]="user" [group]="group" [descreption]="descreption">
+</app-product-container>
+
+<!-- <div class="list-container">
   <div class="todo-container column-container">
     <div class="list">
       <h2>Üzembehelyezésre váró termékek</h2>
@@ -67,4 +71,4 @@
     </div>
   </div>
 </div>
-{{user}}
+{{user}} -->

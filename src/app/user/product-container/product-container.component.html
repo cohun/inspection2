@@ -1,1 +1,69 @@
-<p>product-container works!</p>
+<br>
+<div fxLayout="row" fxLayoutAlign="center center" style="margin-bottom: 6px">
+    <span fxFlex='50' style="background-color: #607D8B"><mat-divider></mat-divider></span>
+
+    <span fxFlex='50' style="background-color: #607D8B"><mat-divider></mat-divider></span>
+  </div>
+<br>
+<div class="list-container">
+  Meglévő eszközök kezelése:
+  <div class="todo-container column-container">
+    <div class="list">
+      <h2>Üzembehelyezésre váró termékek:</h2>
+      <mat-card cdkDrag *ngFor="let item of products">
+        <mat-card-header>
+          <div mat-card-avatar class="example-image"></div>
+          <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
+          <button mat-icon-button color="accent" matTooltip="Üzembehelyezés">
+            <mat-icon class="mat-18">build</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" matTooltip="Törlés">
+            <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+          <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+
+
+<!--   <div class="todo-container column-container">
+    <div class="list"
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="new[0].products"
+    [cdkDropListConnectedTo]="doneList"
+    (cdkDropListDropped)="onDrop($event)">
+      <h2>Kiadható termékek</h2>
+      <p>központi elosztó</p>
+      <mat-card *ngFor="let item of new[0].products" cdkDrag>
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
+          <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+
+
+  <div class="done-container column-container">
+    <div class="list"
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="new[1].products"
+    [cdkDropListConnectedTo]="todoList"
+    (cdkDropListDropped)="onDrop($event)">
+      <h2>Célállomás</h2>
+      <p>{{new[2].info}}</p>
+      <mat-card cdkDrag *ngFor="let item of new[1].products">
+        <mat-card-header>
+            <div mat-card-avatar class="image"></div>
+          <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
+          <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div> -->
+</div>
+{{user}}
