@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable, Subscription, pipe } from 'rxjs';
+import { Observable, Subscription, pipe, Subject } from 'rxjs';
 import { UserSite } from '../_interface/user-site';
 import { map, tap, first } from 'rxjs/operators';
 import { firestore } from 'firebase';
@@ -17,7 +17,7 @@ export class UserService {
   operators$: Observable<UserSite[]>;
   public product$: Observable<Productgysz[]>;
   le: number;
-
+  // operandeeAdded = new Subject<Productgysz>();
   products$: Observable<Product[]>;
 
   constructor(private db: AngularFirestore) { }
@@ -52,7 +52,7 @@ addOperators(id:string, user: string, newOperator) {
   alert('Sikeres adatbevitel...')
 }
 
-checkid(id, user) {
+checkid(id: string, user: string) {
   this.db.collection('specProduct', ref => ref.where('id', '==', id)
                                               .where('user', '==', user))
   .valueChanges()
