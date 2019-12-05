@@ -111,16 +111,31 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
         if (this.num !== 0) {
           alert('Terméket megtaláltam');
           this.fidBack();
+          this.adOp();
         } else {
           this.productService.addProduct(this.product);
           alert('Termék feltöltve');
           this.fidBack();
+          this.adOp();
         }
       }, 600);
 
       //Get fid:
     this.productService.getFid(this.product.type, this.product.length, this.product.descreption, this.product.capacity, this.product.manufacturer)
+      console.log();
+  }
 
+  private fidBack() {
+    this.sub = this.productService.product$.pipe(map(val => {
+      return val.map(x => {
+        this.fid = x.fid;
+        console.log(this.fid);
+      });
+    }))
+      .subscribe();
+  }
+
+  private adOp() {
     this.userService.checkid(this.gysz, this.user);
     setTimeout(() => {
       this.num = this.userService.le;
@@ -136,7 +151,7 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
           user: this.user,
           site: 'Raktár',
         };
-        // this.productService.addSpecProd(this.specProdCreate);
+        this.productService.addSpecProd(this.specProdCreate);
         console.log(this.specProdCreate);
 
         this.userService.addOperantee(this.user,this.gysz, 'üzembehelyezendő', this.fid, this.product);
@@ -148,16 +163,6 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
         this.gysz = '';
       }
     }, 800);
-  }
-
-  private fidBack() {
-    this.sub = this.productService.product$.pipe(map(val => {
-      return val.map(x => {
-        this.fid = x.fid;
-        console.log(this.fid);
-      });
-    }))
-      .subscribe();
   }
 
   ngOnDestroy(): void {

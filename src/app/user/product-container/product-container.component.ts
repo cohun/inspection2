@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Productgysz } from 'src/app/_interface/product-gysz';
-import { UserService } from '../user.service';
-
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-product-container',
@@ -13,13 +12,79 @@ export class ProductContainerComponent implements OnInit {
   @Input() group: string;
   @Input() descreption: string;
   @Input() products: Productgysz[];
+  prod: Productgysz[];
+  product: Productgysz[];
 
-  constructor(private userService: UserService) { }
+
+  constructor() { }
 
   ngOnInit() {
-    console.log(this.products);
-/*     this.userService.operandeeAdded.subscribe((data) => console.log(data)
-    ); */
+    this.prod = [
+      {
+        gysz: '1531',
+        fid: '',
+        group: 'körkötelek',
+        type: 'irs 10',
+        length: '1/2 m',
+        descreption: 'körkötél',
+        capacity: '1000 kg',
+        manufacturer: 'Gutman'
+      },
+      {
+        gysz: '1550',
+        fid: '',
+        group: 'körkötelek',
+        type: 'irs 20',
+        length: '1/2 m',
+        descreption: 'körkötél',
+        capacity: '2000 kg',
+        manufacturer: 'Gutman'
+      },
+      {
+        gysz: '1585',
+        fid: '',
+        group: 'körkötelek',
+        type: 'irs 30',
+        length: '1/2 m',
+        descreption: 'körkötél',
+        capacity: '3000 kg',
+        manufacturer: 'Gutman'
+      },
+      {
+        gysz: '1590',
+        fid: '',
+        group: 'körkötelek',
+        type: 'irs 40',
+        length: '1/2 m',
+        descreption: 'körkötél',
+        capacity: '4000 kg',
+        manufacturer: 'Gutman'
+      }
+    ];
+    this.product = [
+      {
+        gysz: 'BA 25300',
+        fid: '',
+        group: 'körkötelek',
+        type: 'irs 10',
+        length: '1/2 m',
+        descreption: 'körkötél',
+        capacity: '1000 kg',
+        manufacturer: 'Gutman'
+  }
+]
+  }
+
+  onDrop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex, event.currentIndex);
+    }
   }
 
 }

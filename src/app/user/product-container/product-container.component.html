@@ -4,11 +4,17 @@
 
     <span fxFlex='50' style="background-color: #607D8B"><mat-divider></mat-divider></span>
   </div>
-<br>
-<div class="list-container">
   Meglévő eszközök kezelése:
+<br>
+
+<div class="list-container">
   <div class="todo-container column-container">
-    <div class="list">
+    <div class="list"
+    cdkDropList
+    #opList="cdkDropList"
+    [cdkDropListData]="products"
+    [cdkDropListConnectedTo]="readyList"
+    (cdkDropListDropped)="onDrop($event)">
       <h2>Üzembehelyezésre váró termékek:</h2>
       <mat-card cdkDrag *ngFor="let item of products">
         <mat-card-header>
@@ -27,16 +33,16 @@
   </div>
 
 
-<!--   <div class="todo-container column-container">
+  <div class="todo-container column-container">
     <div class="list"
     cdkDropList
-    #todoList="cdkDropList"
-    [cdkDropListData]="new[0].products"
-    [cdkDropListConnectedTo]="doneList"
+    #readyList="cdkDropList"
+    [cdkDropListData]="prod"
+    [cdkDropListConnectedTo]="[opList, doneList]"
     (cdkDropListDropped)="onDrop($event)">
       <h2>Kiadható termékek</h2>
-      <p>központi elosztó</p>
-      <mat-card *ngFor="let item of new[0].products" cdkDrag>
+      <p></p>
+      <mat-card *ngFor="let item of prod" cdkDrag>
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
@@ -47,16 +53,16 @@
   </div>
 
 
-  <div class="done-container column-container">
+<div class="done-container column-container">
     <div class="list"
     cdkDropList
     #doneList="cdkDropList"
-    [cdkDropListData]="new[1].products"
-    [cdkDropListConnectedTo]="todoList"
+    [cdkDropListData]="product"
+    [cdkDropListConnectedTo]="readyList"
     (cdkDropListDropped)="onDrop($event)">
       <h2>Célállomás</h2>
-      <p>{{new[2].info}}</p>
-      <mat-card cdkDrag *ngFor="let item of new[1].products">
+      <p></p>
+      <mat-card cdkDrag *ngFor="let item of product">
         <mat-card-header>
             <div mat-card-avatar class="image"></div>
           <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
@@ -64,6 +70,6 @@
         </mat-card-header>
       </mat-card>
     </div>
-  </div> -->
+  </div>
 </div>
 {{user}}

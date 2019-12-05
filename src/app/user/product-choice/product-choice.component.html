@@ -89,8 +89,8 @@
         </mat-form-field>
       </div>
     </mat-expansion-panel>
-
-  <mat-expansion-panel [expanded]="step === 5" [hideToggle]="false">
+  </mat-accordion>
+  <mat-expansion-panel [expanded]="true" [hideToggle]="false">
     <mat-expansion-panel-header>
       <mat-panel-title>Kiválasztott termék :</mat-panel-title>
 
@@ -103,40 +103,51 @@
 
         <mat-card>
           <mat-card-content>
-            <mat-card-subtitle>
-              Megnevezés:
+            <mat-card-subtitle fxLayout="row wrap" fxLayoutAlign="start center">
+              Gyártmány:
+              <span *ngIf="!product.manufacturer">...........</span>
               <strong *ngIf="product.manufacturer" style="color: #E91E63; padding-left: 8px;">
-                {{product.manufacturer}} gyártmányú
+                {{product.manufacturer}}
               </strong>
+              Teherbírás:
+              <span *ngIf="!product.capacity">...........</span>
               <strong *ngIf="product.capacity" style="color: #E91E63; padding-left: 2px;">
-                {{product.capacity}} teherbírású
+                {{product.capacity}}
               </strong>
+              Típus:
+              <span *ngIf="!product.type">...........</span>
               <strong *ngIf="product.type" style="color: #E91E63; padding-left: 2px; padding-right: 8px;">
-                {{product.type}} {{product.length}} {{product.descreption}}
+                {{product.type}}
+              </strong>
+              Hossz:
+              <span *ngIf="!product.length">...........</span>
+              <strong *ngIf="product.length" style="color: #E91E63; padding-left: 2px; padding-right: 8px;">
+                {{product.length}} {{product.descreption}}
               </strong>
             </mat-card-subtitle>
 
-            <mat-card-subtitle>Gyáriszám:
-                <span *ngIf="gysz" style="color: #E91E63; padding-left: 8px;">
-                    <strong>
-                     {{gysz}}
-                    </strong>
-                   </span>
+            <mat-card-subtitle fxLayout="row wrap" fxLayoutAlign="start center">
+              <p>Gyáriszám:</p>
+              <span *ngIf="gysz" style="color: #E91E63; padding-left: 8px;">
+                <strong>
+                  {{gysz}}
+                </strong>
+              </span>
+              <mat-card-header fxLayout="row wrap" fxLayoutAlign="start center" >
+                <mat-form-field appearance="outline">
+                  <input #gy="ngModel" matInput placeholder="Gyáriszám beírása:" (keyup.enter)="onGysz(gy.value)" [(ngModel)]="empty">
+                </mat-form-field>
+                <span>
+                  ...majd ENTER
+                </span>
+              </mat-card-header>
             </mat-card-subtitle>
-
           </mat-card-content>
         </mat-card>
 
 
       <mat-card style="width: 80%; max-width: 350px;" >
-        <mat-card-header fxLayout="row" fxLayoutAlign="start center">
-            <mat-form-field appearance="outline">
-              <input #gy="ngModel" matInput placeholder="Gyáriszám beírása:" (keyup.enter)="onGysz(gy.value)" [(ngModel)]="empty">
-            </mat-form-field>
-            <span>
-              ...majd ENTER
-            </span>
-        </mat-card-header>
+
         <img id="irs" mat-card-image src="../../../../../assets/IRS-körkötél.webp" alt="IRS">
         <mat-card-actions *ngIf="product.capacity && product.length && gysz">
           <button mat-raised-button color="accent" matTooltip="Amennyiben a fenti terméket még üzembe kell helyezni"
@@ -148,4 +159,3 @@
       </mat-card>
     </div>
   </mat-expansion-panel>
-</mat-accordion>
