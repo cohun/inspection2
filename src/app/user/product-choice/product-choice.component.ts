@@ -38,7 +38,8 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
   empty = '';
   num: number;
   fid: string;
-  step = 1;
+  step = 0;
+  isExpanded = 0;
   sub: Subscription = new Subscription();
   specProdCreate: SpecProdCreation;
 
@@ -77,13 +78,14 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
   }
   openSnackBar(typ: string, val: string) {
     switch (typ) {
-      case 'capacity':
+      case 'type':
+        this.isExpanded = 1;
         this.step = 1
         break;
-      case 'type':
+      case 'length':
         this.step = 2
         break;
-      case 'length':
+      case 'capacity':
         this.step = 3
         break;
       case 'manufacturer':
@@ -92,7 +94,6 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
       default:
         break;
     }
-    this.step += 1;
     this.product[typ] = val;
     this._snackBar.open(JSON.stringify(this.product[typ]), 'kiválasztva', {
       duration: 2000,
@@ -102,27 +103,28 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
     this.gysz = gysz;
     this.empty = '';
     console.log(this.gysz);
+    this.isExpanded = 0;
 
   }
    onOperationStart() {
-      this.productService.checkDupl(this.product.type, this.product.length, this.product.descreption, this.product.capacity, this.product.manufacturer)
-      setTimeout(() => {
-        this.num = this.productService.length;
-        if (this.num !== 0) {
-          alert('Terméket megtaláltam');
-          this.fidBack();
-          this.adOp();
-        } else {
-          this.productService.addProduct(this.product);
-          alert('Termék feltöltve');
-          this.fidBack();
-          this.adOp();
-        }
-      }, 600);
-
+    this.productService.checkDupl(this.product.type, this.product.length, this.product.descreption,
+                                  this.product.capacity, this.product.manufacturer)
+    setTimeout(() => {
+      this.num = this.productService.length;
+      if (this.num !== 0) {
+        alert('Terméket megtaláltam');
+        this.fidBack();
+        this.adOp();
+      } else {
+        this.productService.addProduct(this.product);
+        alert('Termék feltöltve');
+        this.fidBack();
+        this.adOp();
+      }
+    }, 600);
       //Get fid:
-    this.productService.getFid(this.product.type, this.product.length, this.product.descreption, this.product.capacity, this.product.manufacturer)
-      console.log();
+    this.productService.getFid(this.product.type, this.product.length, this.product.descreption,
+                              this.product.capacity, this.product.manufacturer)
   }
 
   private fidBack() {

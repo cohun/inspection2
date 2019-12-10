@@ -1,30 +1,50 @@
+<mat-card style="width: 80%; max-width: 350px; margin: 8px auto;" >
+
+  <img id="irs" mat-card-image src="../../../../../assets/IRS-körkötél.webp" alt="IRS">
+  <mat-card-content>
+    <div>
+      Megnevezés:
+    </div>
+    <strong *ngIf="product.type" style="color: #E91E63; padding-left: 2px; padding-right: 4px;">
+      {{product.type}}
+    </strong>
+    <strong *ngIf="product.length" style="color: #E91E63; padding-left: 2px; padding-right: 4px;">
+      {{product.length}}
+    </strong>
+    <strong *ngIf="product.length" style="color: #E91E63; padding-left: 2px; padding-right: 4px;">
+      {{product.descreption}}
+    </strong>
+    <strong *ngIf="product.capacity" style="color: #E91E63; padding-left: 2px; padding-right: 4px;">
+      {{product.capacity}}
+    </strong>
+    <strong *ngIf="product.manufacturer" style="color: #E91E63; padding-left: 2px; padding-right: 4px;">
+      {{product.manufacturer}}
+    </strong>
+    <div>
+      Gyáriszám:
+    </div>
+    <strong *ngIf="gysz" style="color: #E91E63; padding-left: 2px;">
+      {{gysz}}
+    </strong>
+  </mat-card-content>
+  <mat-card-actions *ngIf="product.capacity && product.length && gysz">
+    <button mat-raised-button color="accent" matTooltip="Amennyiben a fenti terméket még üzembe kell helyezni"
+      style="margin-bottom: 10px; margin-left: 10px;" (click)="onOperationStart()">Üzembehelyezendő</button>
+    <button mat-raised-button color="accent" matTooltip="Ha a fenti termék már üzembe van helyezve,
+    az utolsó érvényes vizsgálat dátumának megadása után, átkerül a kiadható termékek listájába"
+    [matTooltipPosition]="tooltipposition">Már üzembehelyezett</button>
+  </mat-card-actions>
+</mat-card>
 
 <mat-accordion displayMode="default">
-  Új termék bevitele:
-    <!-- //Capacity -->
-    <mat-expansion-panel [hideToggle]="false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>Megengedett teherbírás?</mat-panel-title>
-        <mat-panel-description></mat-panel-description>
-      </mat-expansion-panel-header>
-      <mat-chip-list aria-label="selection">
-        <mat-chip *ngFor="let item of capacity" (click)="openSnackBar('capacity', item)"
-                  color="accent" selected>
-          {{item}}
-        </mat-chip>
-        <mat-chip *ngIf="valC.value" (click)="openSnackBar('capacity', valC.value)"
-                  color="warn" selected>
-          {{valC.value}}
-        </mat-chip>
-      </mat-chip-list>
-      <div style="margin-top: 20px;" class="example-form">
-        <mat-form-field class="example-full-width">
-          <input #valC matInput placeholder="Ha nincs a választékban, adatbevitel itt:">
-        </mat-form-field>
-      </div>
-    </mat-expansion-panel>
+<mat-expansion-panel [expanded]="isExpanded === 1" [hideToggle]="false">
+  <mat-expansion-panel-header>
+      <mat-panel-title>Új termék kiválasztása:</mat-panel-title>
+  </mat-expansion-panel-header>
+
+<mat-accordion displayMode="default">
     <!-- //Type -->
-    <mat-expansion-panel [expanded]="step === 2" [hideToggle]="false">
+    <mat-expansion-panel [expanded]="step === 0" [hideToggle]="false">
       <mat-expansion-panel-header>
         <mat-panel-title>Típus?</mat-panel-title>
         <mat-panel-description></mat-panel-description>
@@ -46,7 +66,7 @@
       </div>
     </mat-expansion-panel>
     <!-- //Length -->
-    <mat-expansion-panel [expanded]="step === 3" [hideToggle]="false">
+    <mat-expansion-panel [expanded]="step === 1" [hideToggle]="false">
       <mat-expansion-panel-header>
         <mat-panel-title>Hossz?</mat-panel-title>
         <mat-panel-description></mat-panel-description>
@@ -67,8 +87,30 @@
         </mat-form-field>
       </div>
     </mat-expansion-panel>
+    <!-- //Capacity -->
+    <mat-expansion-panel [expanded]="step === 2" [hideToggle]="false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Megengedett teherbírás?</mat-panel-title>
+          <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-chip-list aria-label="selection">
+          <mat-chip *ngFor="let item of capacity" (click)="openSnackBar('capacity', item)"
+                    color="accent" selected>
+            {{item}}
+          </mat-chip>
+          <mat-chip *ngIf="valC.value" (click)="openSnackBar('capacity', valC.value)"
+                    color="warn" selected>
+            {{valC.value}}
+          </mat-chip>
+        </mat-chip-list>
+        <div style="margin-top: 20px;" class="example-form">
+          <mat-form-field class="example-full-width">
+            <input #valC matInput placeholder="Ha nincs a választékban, adatbevitel itt:">
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
     <!-- //Manufacturer -->
-    <mat-expansion-panel [expanded]="step === 4" [hideToggle]="false">
+    <mat-expansion-panel [expanded]="step === 3" [hideToggle]="false">
       <mat-expansion-panel-header>
         <mat-panel-title>Gyártó?</mat-panel-title>
         <mat-panel-description></mat-panel-description>
@@ -89,73 +131,22 @@
         </mat-form-field>
       </div>
     </mat-expansion-panel>
+    <!-- // Gysz -->
+    <mat-expansion-panel [expanded]="step === 4" [hideToggle]="false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Gyáriszám?</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <mat-form-field appearance="outline">
+          <input #gy="ngModel" matInput placeholder="Gyáriszám beírása:" (keyup.enter)="onGysz(gy.value)" [(ngModel)]="empty">
+        </mat-form-field>
+        <span>
+          ...majd ENTER
+        </span>
+      </div>
+    </mat-expansion-panel>
   </mat-accordion>
-  <mat-expansion-panel [expanded]="true" [hideToggle]="false">
-    <mat-expansion-panel-header>
-      <mat-panel-title>Kiválasztott termék :</mat-panel-title>
+</mat-expansion-panel>
 
-      <mat-panel-description>
-
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-
-    <div class="list">
-
-        <mat-card>
-          <mat-card-content>
-            <mat-card-subtitle fxLayout="row wrap" fxLayoutAlign="start center">
-              Gyártmány:
-              <span *ngIf="!product.manufacturer">...........</span>
-              <strong *ngIf="product.manufacturer" style="color: #E91E63; padding-left: 8px;">
-                {{product.manufacturer}}
-              </strong>
-              Teherbírás:
-              <span *ngIf="!product.capacity">...........</span>
-              <strong *ngIf="product.capacity" style="color: #E91E63; padding-left: 2px;">
-                {{product.capacity}}
-              </strong>
-              Típus:
-              <span *ngIf="!product.type">...........</span>
-              <strong *ngIf="product.type" style="color: #E91E63; padding-left: 2px; padding-right: 8px;">
-                {{product.type}}
-              </strong>
-              Hossz:
-              <span *ngIf="!product.length">...........</span>
-              <strong *ngIf="product.length" style="color: #E91E63; padding-left: 2px; padding-right: 8px;">
-                {{product.length}} {{product.descreption}}
-              </strong>
-            </mat-card-subtitle>
-
-            <mat-card-subtitle fxLayout="row wrap" fxLayoutAlign="start center">
-              <p>Gyáriszám:</p>
-              <span *ngIf="gysz" style="color: #E91E63; padding-left: 8px;">
-                <strong>
-                  {{gysz}}
-                </strong>
-              </span>
-              <mat-card-header fxLayout="row wrap" fxLayoutAlign="start center" >
-                <mat-form-field appearance="outline">
-                  <input #gy="ngModel" matInput placeholder="Gyáriszám beírása:" (keyup.enter)="onGysz(gy.value)" [(ngModel)]="empty">
-                </mat-form-field>
-                <span>
-                  ...majd ENTER
-                </span>
-              </mat-card-header>
-            </mat-card-subtitle>
-          </mat-card-content>
-        </mat-card>
-
-
-      <mat-card style="width: 80%; max-width: 350px;" >
-
-        <img id="irs" mat-card-image src="../../../../../assets/IRS-körkötél.webp" alt="IRS">
-        <mat-card-actions *ngIf="product.capacity && product.length && gysz">
-          <button mat-raised-button color="accent" matTooltip="Amennyiben a fenti terméket még üzembe kell helyezni"
-            style="margin-bottom: 10px; margin-left: 10px;" (click)="onOperationStart()">Üzembehelyezendő</button>
-          <button mat-raised-button color="accent" matTooltip="Ha a fenti termék már üzembe van helyezve,
-          az utolsó érvényes vizsgálat dátumának megadása után, átkerül a kiadható termékek listájába"
-          [matTooltipPosition]="tooltipposition">Már üzembehelyezett</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-  </mat-expansion-panel>
+</mat-accordion>

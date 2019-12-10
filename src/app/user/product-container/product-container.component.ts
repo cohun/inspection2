@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Productgysz } from 'src/app/_interface/product-gysz';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { Sit } from 'src/app/_interface/chosenSit';
 
 @Component({
   selector: 'app-product-container',
@@ -12,6 +13,7 @@ export class ProductContainerComponent implements OnInit {
   @Input() group: string;
   @Input() descreption: string;
   @Input() products: Productgysz[];
+  @Input() chosenSite: Sit
   prod: Productgysz[];
   product: Productgysz[];
 

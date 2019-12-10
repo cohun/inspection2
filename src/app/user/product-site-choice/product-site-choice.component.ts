@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserSite } from 'src/app/_interface/user-site';
 import { Site } from 'src/app/_interface/site';
 import { Operator } from 'src/app/_interface/operator';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { Sit } from "src/app/_interface/chosenSit";
 
 @Component({
   selector: 'app-product-site-choice',
@@ -12,11 +13,12 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class ProductSiteChoiceComponent implements OnInit {
 
   @Input() sites: UserSite[];
+  @Output() chosenSite: EventEmitter<Sit> = new EventEmitter<Sit>();
   public site: any = new Set();
   public operator: any = new Set();
   sitey: Site[];
   operatory: Operator[];
-  sit: {name: string, info?: string, position?: string}
+  sit: Sit = {name: 'Célállomás'};
 
   constructor(private _snackBar: MatSnackBar) { }
 
@@ -34,6 +36,7 @@ export class ProductSiteChoiceComponent implements OnInit {
 
   openSnackBar(typ: string, val: {name: string, info?: string, position?: string}) {
     this.sit = val;
+    this.chosenSite.emit(this.sit);
     this._snackBar.open(JSON.stringify(this.sit.name), 'kiválasztva', {
       duration: 2000,
     });

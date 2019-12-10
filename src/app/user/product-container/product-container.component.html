@@ -15,7 +15,13 @@
     [cdkDropListData]="products"
     [cdkDropListConnectedTo]="readyList"
     (cdkDropListDropped)="onDrop($event)">
-      <h2>Üzembehelyezésre váró termékek:</h2>
+    <mat-card>
+      <mat-card-header>
+        <img matCardAvatar src="../../../assets/inspection.png">
+        <mat-card-title>Üzembehelyezésre váró termékek:</mat-card-title>
+        <mat-card-subtitle>Használatba vétel előtt</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
       <mat-card cdkDrag *ngFor="let item of products">
         <mat-card-header>
           <div mat-card-avatar class="example-image"></div>
@@ -40,8 +46,13 @@
     [cdkDropListData]="prod"
     [cdkDropListConnectedTo]="[opList, doneList]"
     (cdkDropListDropped)="onDrop($event)">
-      <h2>Kiadható termékek</h2>
-      <p></p>
+    <mat-card>
+      <mat-card-header>
+        <img matCardAvatar src="../../../assets/maintenance.jpg">
+        <mat-card-title>Kiadható termékek:</mat-card-title>
+        <mat-card-subtitle>Érvényes vizsgálattal rendelkező termékek:</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
       <mat-card *ngFor="let item of prod" cdkDrag>
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
@@ -60,8 +71,13 @@
     [cdkDropListData]="product"
     [cdkDropListConnectedTo]="readyList"
     (cdkDropListDropped)="onDrop($event)">
-      <h2>Célállomás</h2>
-      <p></p>
+    <mat-card>
+      <mat-card-header>
+        <img matCardAvatar src="../../../assets/service.jpg">
+        <mat-card-title>{{chosenSite.name}}</mat-card-title>
+        <mat-card-subtitle>Használatba adott termékek:</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
       <mat-card cdkDrag *ngFor="let item of product">
         <mat-card-header>
             <div mat-card-avatar class="image"></div>

@@ -6,70 +6,8 @@
 <app-product-choice *ngIf="productGroup$ | async as p" [products]="p"
                       [user]="user" [group]="group" [descreption]="descreption">
 </app-product-choice>
-<app-product-site-choice *ngIf="site$ | async as s" [sites]="s"></app-product-site-choice>
+<app-product-site-choice *ngIf="site$ | async as s" [sites]="s" (chosenSite)="onSite($event)"></app-product-site-choice>
 
 <app-product-container *ngIf="product$ | async as p" [products]="p"
-                      [user]="user" [group]="group" [descreption]="descreption">
+                      [user]="user" [group]="group" [descreption]="descreption" [chosenSite]="chosenSite">
 </app-product-container>
-
-<!-- <div class="list-container">
-  <div class="todo-container column-container">
-    <div class="list">
-      <h2>Üzembehelyezésre váró termékek</h2>
-      <mat-card cdkDrag *ngFor="let item of product$ | async">
-        <mat-card-header>
-          <div mat-card-avatar class="example-image"></div>
-          <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
-          <button mat-icon-button color="accent" matTooltip="Üzembehelyezés">
-            <mat-icon class="mat-18">build</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" matTooltip="Törlés" (click)="delOperantee(item.gysz)">
-            <mat-icon class="mat-18">delete</mat-icon>
-          </button>
-          <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
-        </mat-card-header>
-      </mat-card>
-    </div>
-  </div>
-
-
-  <div class="todo-container column-container">
-    <div class="list"
-    cdkDropList
-    #todoList="cdkDropList"
-    [cdkDropListData]="new[0].products"
-    [cdkDropListConnectedTo]="doneList"
-    (cdkDropListDropped)="onDrop($event)">
-      <h2>Kiadható termékek</h2>
-      <p>központi elosztó</p>
-      <mat-card *ngFor="let item of new[0].products" cdkDrag>
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
-          <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
-        </mat-card-header>
-      </mat-card>
-    </div>
-  </div>
-
-
-  <div class="done-container column-container">
-    <div class="list"
-    cdkDropList
-    #doneList="cdkDropList"
-    [cdkDropListData]="new[1].products"
-    [cdkDropListConnectedTo]="todoList"
-    (cdkDropListDropped)="onDrop($event)">
-      <h2>Célállomás</h2>
-      <p>{{new[2].info}}</p>
-      <mat-card cdkDrag *ngFor="let item of new[1].products">
-        <mat-card-header>
-            <div mat-card-avatar class="image"></div>
-          <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
-          <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>
-        </mat-card-header>
-      </mat-card>
-    </div>
-  </div>
-</div>
-{{user}} -->

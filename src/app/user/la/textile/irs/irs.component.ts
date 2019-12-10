@@ -33,6 +33,7 @@ export class IrsComponent implements OnInit {
   panel = false;
   num: number;
   site$: Observable<UserSite[]>;
+  chosenSite = {name: 'Célállomás'};
 
   constructor(private location: Location, private _snackBar: MatSnackBar,
               private router: Router, private activeRoute: ActivatedRoute,
@@ -56,6 +57,11 @@ export class IrsComponent implements OnInit {
   delOperantee(gysz) {
     this.userService.delOperantee(gysz, this.user);
     this.product$ = this.userService.product$;
+  }
+  onSite(site) {
+    console.log(site);
+    this.chosenSite = site;
+
   }
 
   onCancel() {
