@@ -1,6 +1,6 @@
 <p>Helyszín kiválasztása</p>
 <!-- //siteyy -->
-<mat-expansion-panel [hideToggle]="false">
+<mat-expansion-panel [expanded]="isExpanded" [hideToggle]="false" (click)="isExpanded=true">
   <mat-expansion-panel-header>
     <mat-panel-title>Felhasználási célállomás?</mat-panel-title>
     <mat-panel-description></mat-panel-description>

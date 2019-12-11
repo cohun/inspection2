@@ -12,6 +12,7 @@ import { PoweredComponent } from '../powered/powered.component';
 import { UserSiteComponent } from '../user-site/user-site.component';
 import { IrsComponent } from '../la/textile/irs/irs.component';
 import { NewSiteComponent } from '../user-site/new-site/new-site.component';
+import { ProdPrintComponent } from '../prod-print/prod-print.component';
 
 const routes: Routes = [
   { path: 'user', component: SortimentComponent },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'la/chain', component: ChainComponent},
   { path: 'la/rope', component: RopeComponent},
   { path: 'manual', component: ManualComponent},
-  { path: 'powered', component: PoweredComponent}
+  { path: 'powered', component: PoweredComponent},
+  { path: 'print', component: ProdPrintComponent}
 ]
 
 

@@ -19,9 +19,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ProductChoiceComponent } from './product-choice/product-choice.component';
 import { ProductContainerComponent } from './product-container/product-container.component';
 import { ProductSiteChoiceComponent } from './product-site-choice/product-site-choice.component';
+import { ProdPrintComponent } from './prod-print/prod-print.component';
 
 @NgModule({
-  declarations: [SortimentComponent, ProductGroupComponent, LaComponent, TextileComponent, ChainComponent, RopeComponent, ManualComponent, PoweredComponent, UserSiteComponent, IrsComponent, NewSiteComponent, ProductChoiceComponent, ProductContainerComponent, ProductSiteChoiceComponent],
+  declarations: [SortimentComponent, ProductGroupComponent, LaComponent, TextileComponent, ChainComponent, RopeComponent, ManualComponent, PoweredComponent, UserSiteComponent, IrsComponent, NewSiteComponent, ProductChoiceComponent, ProductContainerComponent, ProductSiteChoiceComponent, ProdPrintComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

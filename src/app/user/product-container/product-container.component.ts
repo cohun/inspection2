@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Productgysz } from 'src/app/_interface/product-gysz';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Sit } from 'src/app/_interface/chosenSit';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-container',
@@ -18,7 +20,8 @@ export class ProductContainerComponent implements OnInit {
   product: Productgysz[];
 
 
-  constructor() { }
+  constructor(private userService: UserService,
+              private router: Router,) { }
 
   ngOnInit() {
     this.prod = [
@@ -87,6 +90,14 @@ export class ProductContainerComponent implements OnInit {
         event.container.data,
         event.previousIndex, event.currentIndex);
     }
+  }
+  delOperantee(gysz, i) {
+    this.userService.delOperantee(gysz, this.user);
+    this.products = this.products.splice(i, 1);
+  }
+  onOpStart(item) {
+    this.router.navigate(['/user/print'],
+        {queryParams: {type: item.type,}});
   }
 
 }

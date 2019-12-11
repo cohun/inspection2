@@ -60,11 +60,7 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
     this.type = [...this.types].sort()
     this.length = [...this.lengths].sort()
     this.manufacturer = [...this.manufacturers].sort()
-
-
   }
-
-
 
   productIni() {
     this.product = {
@@ -76,6 +72,7 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
       manufacturer: ''
     };
   }
+
   openSnackBar(typ: string, val: string) {
     switch (typ) {
       case 'type':
@@ -99,20 +96,22 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
       duration: 2000,
     });
   }
+
   onGysz(gysz: string) {
     this.gysz = gysz;
     this.empty = '';
     console.log(this.gysz);
     this.isExpanded = 0;
-
   }
-   onOperationStart() {
+
+  onOperationStart() {
     this.productService.checkDupl(this.product.type, this.product.length, this.product.descreption,
                                   this.product.capacity, this.product.manufacturer)
     setTimeout(() => {
       this.num = this.productService.length;
       if (this.num !== 0) {
-        alert('Terméket megtaláltam');
+        alert( `Termék beazonosítva,
+                tovább a gyáriszám ellenőrzéshez!`);
         this.fidBack();
         this.adOp();
       } else {
@@ -122,9 +121,9 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
         this.adOp();
       }
     }, 600);
-      //Get fid:
+    //Get fid:
     this.productService.getFid(this.product.type, this.product.length, this.product.descreption,
-                              this.product.capacity, this.product.manufacturer)
+                            this.product.capacity, this.product.manufacturer)
   }
 
   private fidBack() {
@@ -153,15 +152,13 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
           user: this.user,
           site: 'Raktár',
         };
+       /*
         this.productService.addSpecProd(this.specProdCreate);
-        console.log(this.specProdCreate);
+        console.log(this.specProdCreate); */
 
         this.userService.addOperantee(this.user,this.gysz, 'üzembehelyezendő', this.fid, this.product);
         console.log(this.product);
 
-        /* this.userService.operandeeAdded.next(
-          { gysz: this.gysz, fid: this.fid, ...this.product}
-          ); */
         this.gysz = '';
       }
     }, 800);

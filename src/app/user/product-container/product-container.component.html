@@ -22,14 +22,14 @@
         <mat-card-subtitle>Használatba vétel előtt</mat-card-subtitle>
       </mat-card-header>
     </mat-card>
-      <mat-card cdkDrag *ngFor="let item of products">
+      <mat-card cdkDrag *ngFor="let item of products; let i = index">
         <mat-card-header>
           <div mat-card-avatar class="example-image"></div>
           <mat-card-title>{{item.type}} {{item.length}} {{item.descreption}}</mat-card-title>
-          <button mat-icon-button color="accent" matTooltip="Üzembehelyezés">
+          <button mat-icon-button color="accent" matTooltip="Üzembehelyezés" (click)="onOpStart(item)">
             <mat-icon class="mat-18">build</mat-icon>
           </button>
-          <button mat-icon-button color="warn" matTooltip="Leselejtezés">
+          <button mat-icon-button color="warn" matTooltip="Leselejtezés" (click)="delOperantee(item.gysz, i)">
             <mat-icon class="mat-18">delete</mat-icon>
           </button>
           <mat-card-subtitle><strong>Gyáriszám:  {{item.gysz}}</strong></mat-card-subtitle>

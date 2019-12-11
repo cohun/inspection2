@@ -29,10 +29,14 @@
   </mat-card-content>
   <mat-card-actions *ngIf="product.capacity && product.length && gysz">
     <button mat-raised-button color="accent" matTooltip="Amennyiben a fenti terméket még üzembe kell helyezni"
-      style="margin-bottom: 10px; margin-left: 10px;" (click)="onOperationStart()">Üzembehelyezendő</button>
+            style="margin-bottom: 10px; margin-left: 10px;" (click)="onOperationStart()">
+      Üzembehelyezendő
+    </button>
     <button mat-raised-button color="accent" matTooltip="Ha a fenti termék már üzembe van helyezve,
-    az utolsó érvényes vizsgálat dátumának megadása után, átkerül a kiadható termékek listájába"
-    [matTooltipPosition]="tooltipposition">Már üzembehelyezett</button>
+            az utolsó érvényes vizsgálat dátumának megadása után, átkerül a kiadható termékek listájába"
+            [matTooltipPosition]="tooltipposition">
+      Már üzembehelyezett
+    </button>
   </mat-card-actions>
 </mat-card>
 

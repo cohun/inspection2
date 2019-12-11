@@ -19,6 +19,7 @@ export class ProductSiteChoiceComponent implements OnInit {
   sitey: Site[];
   operatory: Operator[];
   sit: Sit = {name: 'Célállomás'};
+  isExpanded = false;
 
   constructor(private _snackBar: MatSnackBar) { }
 
@@ -35,6 +36,7 @@ export class ProductSiteChoiceComponent implements OnInit {
   }
 
   openSnackBar(typ: string, val: {name: string, info?: string, position?: string}) {
+    this.isExpanded = !this.isExpanded;
     this.sit = val;
     this.chosenSite.emit(this.sit);
     this._snackBar.open(JSON.stringify(this.sit.name), 'kiválasztva', {
