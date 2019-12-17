@@ -1,2 +1,136 @@
-<p>prod-print works!</p>
-<pre>{{type}}</pre>
+<div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="50px">
+  <button mat-raised-button (click)="back()" color="warn">Vissza</button>
+  <button  mat-raised-button (click)="print()" color="primary">Nyomtat</button>
+</div>
+<br>
+<article id="pdf" style="border: black solid 1px;">
+  <div style="margin-left: 5px; margin-top: 5px;">
+<section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
+  <div fxFlex="30">
+    <div fxLayout="column" fxLayoutAlign.lt-md="center center">
+      <div class="logo">
+        <img  class="logo" src=""
+              alt="H-ITB" style="margin-bottom: 0px">
+      </div>
+      <span class="mat-subheading-2" style="margin-bottom:2px">
+        <strong>Emelőgép Szakszolgálat</strong>
+      </span>
+      <span class="mat-caption">1119 Budapest Kelenvölgyi határsor 5</span>
+      <span class="mat-caption">Tel.: (1) 205-6208  Fax.: (1) 205-6209</span>
+      <span class="mat-caption">www.h-itb-hu  email: vizsgalat@h-itb.hu</span>
+    </div>
+  </div>
+  <div fxFlex="42">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <span class="mat-title" style="margin: 8px 0">ÜZEMBEHELYEZÉSI</span>
+      <span class="mat-display-1" style="margin-bottom: 8px">JEGYZŐKÖNYV</span>
+      <span class="mat-caption">Az Emelőgép Biztonsági Szabályzatáról szóló</span>
+      <span class="mat-caption">47/1999 (VIII.4) GM rendelet melléklete szerint</span>
+    </div>
+  </div>
+  <div fxFlex="25">
+    <div fxLayout="column" fxLayoutAlign="center end" fxLayoutAlign.lt-md="center center" fxLayoutGap="6px">
+     <span class="mat-caption" fxFlexOffset="16px">Jegyzőkönyv srsz:</span>
+     <span style="border: solid black 2px; padding: 2px; min-width: 120px; text-align: center"><strong>  / {{gysz}}</strong></span>
+     <span class="mat-caption">Gyártási szám:</span>
+     <span style="border: solid black 2px; padding: 2px; min-width: 120px; text-align: center"><strong>{{gysz}}</strong></span>
+    </div>
+  </div>
+</section>
+<hr>
+<div class="mat-caption">
+  Az emelőgép üzemeltetője köteles az {{it.group}} rendeltetésszerű használatáról, biztonságos állapotának
+  megörzéséről, az időszakos vizsgálatokról és a karbantartás szakszerű és rendszeres elvégzéséről
+  gondoskodni.
+</div>
+<div class="mat-title" style="margin: 8px 0; text-align: center">
+  <u>ÜZEMELTETŐ</u>
+</div>
+<br>
+<section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px" fxLayoutAlign="space-between">
+  <div fxFlex="50">
+    Cégnév: <strong>{{user}}</strong>
+  </div>
+  <div fxFlex="50">
+    Cím: <strong></strong>
+  </div>
+  <div fxFlex="50">
+    Üzemeltetés helyszíne: <strong></strong>
+  </div>
+</section>
+<br>
+<hr>
+<div class="mat-title" style="margin: 8px 0; text-align: center">
+  <u>EMELŐGÉP MEGNEVEZÉSE</u>
+</div>
+<br>
+  <section fxLayout="row" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
+    <div fxFlex="33" class="border">
+      Típus: <strong>{{type}}</strong>
+    </div>
+    <div fxFlex="33" class="border">
+      Hossz: <strong>{{length}}</strong>
+    </div>
+    <div fxFlex="33" class="border">
+      Megnevezés: <strong>{{descreption}}</strong>
+    </div>
+  </section>
+  <br>
+  <section fxLayout="row" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
+    <div fxFlex="33" class="border">
+      Teherbírás: <strong></strong>
+    </div>
+    <div fxFlex="33" class="border">
+      Gyártó: <strong></strong>
+    </div>
+    <div fxFlex="33" class="border">
+      Gyáriszám: <strong>{{gysz}}</strong>
+    </div>
+  </section>
+
+<br>
+<hr>
+<div class="mat-title" style="margin: 8px 0; text-align: center">
+  <u>ÜZEMBEHELYEZÉSI ELJÁRÁS MEGÁLLAPÍTÁSAI</u>
+</div>
+<br>
+<section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
+  <div fxFlex="20">
+    A munka elvégzésének időpontjában:
+  </div>
+  <div fxFlex="60" fxLayoutAlign="center center">
+    <span class="mat-headline"><strong>MEGFELELT</strong></span>
+  </div>
+</section>
+<br>
+<section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
+  <div fxFlex="49.5" class="border">
+    Üzembehelyezés időpontja: <strong></strong>
+  </div>
+  <div fxFlex="49.5" class="border">
+    Következő időszakos vizsgálat:
+      <strong>Dáum</strong>
+
+  </div>
+  <div fxFlex="100"></div>
+  <br>
+  <div fxFlex="99" fxLayoutAlign="start start"  fxLayoutGap="16px">
+    <div> Megjegyzés:</div>
+    <div>
+    <strong>........</strong>
+    </div>
+  </div>
+
+</section>
+<br>
+<hr>
+<br>
+<div> Az elvégzett munka szakszerűségét igazolja:</div>
+<br><br><br>
+<div style="text-align: center">
+  <strong></strong>
+  <div>Emelőgép ügyintéző</div>
+</div>
+<p>Dátum: Budapest </p>
+  </div>
+</article>

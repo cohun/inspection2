@@ -97,7 +97,8 @@ export class ProductContainerComponent implements OnInit {
   }
   onOpStart(item) {
     this.router.navigate(['/user/print'],
-        {queryParams: {type: item.type,}});
+        {queryParams: {type: item.type, length: item.length, descreption: item.descreption,
+          gysz: item.gysz, user: this.user}});
   }
 
 }
