@@ -72,7 +72,7 @@ export class RegisterService {
     this.db.collection('users').add(use);
   }
 
-  getUser(ide) {
+  getUser(ide: string) {
     this.user$ = this.db.collection('users', ref => ref.where('user', '==', ide)).snapshotChanges()
     .pipe(map(snaps => {
       return snaps.map(snap => {

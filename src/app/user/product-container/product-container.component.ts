@@ -92,13 +92,16 @@ export class ProductContainerComponent implements OnInit {
     }
   }
   delOperantee(gysz, i) {
-    this.userService.delOperantee(gysz, this.user);
-    this.products = this.products.splice(i, 1);
+    if (confirm('A kiválasztott termék leselejtezésre kerül!')) {
+      this.userService.delOperantee(gysz, this.user);
+      this.products = this.products.splice(i, 1);
+    }
+        
   }
   onOpStart(item) {
     this.router.navigate(['/user/print'],
         {queryParams: {type: item.type, length: item.length, descreption: item.descreption,
-          gysz: item.gysz, user: this.user}});
+        capacity: item.capacity, manufacturer: item.manufacturer, gysz: item.gysz, user: this.user}});
   }
 
 }

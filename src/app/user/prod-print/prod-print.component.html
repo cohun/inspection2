@@ -3,22 +3,42 @@
   <button  mat-raised-button (click)="print()" color="primary">Nyomtat</button>
 </div>
 <br>
+<div fxLayout="row wrap" fxLayoutAlign="space-around start">
+  <form [formGroup] = "siteForm" class="example-form" (ngSubmit)="onSiteAdd(siteForm.value)" >
+    <fieldset>
+      <legend>Üzembehelyezés adatai: </legend>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Üzemeltetés helyszíne" value="" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Üzembehelyező" value="" formControlName="info">
+      <mat-hint align="end">* Kötelező </mat-hint>
+      <div *ngIf="siteInfo.touched && siteInfo.invalid">Kötelező nevet adni!</div>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput [matDatepicker]="picker" placeholder="Üzembehelyezés időpontja"
+      readonly (click)="picker.open()" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+        <mat-hint align="end">* Kötelező </mat-hint>
+        <div *ngIf="dateInfo.touched && dateInfo.invalid">Kötelező kitölteni!</div>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!siteForm.valid">Adatok beillesztése nyomtatványba</button>
+  </fieldset>
+  </form>
+</div>
+<br>
 <article id="pdf" style="border: black solid 1px;">
   <div style="margin-left: 5px; margin-top: 5px;">
 <section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
-  <div fxFlex="30">
-    <div fxLayout="column" fxLayoutAlign.lt-md="center center">
+  <div fxFlex="30" fxLayoutAlign="center center">
+    
       <div class="logo">
-        <img  class="logo" src=""
+        <img  class="logo" src="../../../assets/inspection.png"
               alt="H-ITB" style="margin-bottom: 0px">
       </div>
-      <span class="mat-subheading-2" style="margin-bottom:2px">
-        <strong>Emelőgép Szakszolgálat</strong>
-      </span>
-      <span class="mat-caption">1119 Budapest Kelenvölgyi határsor 5</span>
-      <span class="mat-caption">Tel.: (1) 205-6208  Fax.: (1) 205-6209</span>
-      <span class="mat-caption">www.h-itb-hu  email: vizsgalat@h-itb.hu</span>
-    </div>
+   
   </div>
   <div fxFlex="42">
     <div fxLayout="column" fxLayoutAlign="center center">
@@ -38,10 +58,11 @@
   </div>
 </section>
 <hr>
-<div class="mat-caption">
-  Az emelőgép üzemeltetője köteles az {{it.group}} rendeltetésszerű használatáról, biztonságos állapotának
+<div class="mat-caption" style="padding: 0 50px;">
+  Az emelőgép munkavédelmi szempontú előzetes vizsgálata sikeresen lezárult. Jelen üzembehelyezési nyilatkozat alapján az emelőgép
+  üzemeltetője a továbbiakban köteles annak rendeltetésszerű használatáról, biztonságos állapotának
   megörzéséről, az időszakos vizsgálatokról és a karbantartás szakszerű és rendszeres elvégzéséről
-  gondoskodni.
+  gondoskodni!
 </div>
 <div class="mat-title" style="margin: 8px 0; text-align: center">
   <u>ÜZEMELTETŐ</u>
@@ -51,11 +72,11 @@
   <div fxFlex="50">
     Cégnév: <strong>{{user}}</strong>
   </div>
-  <div fxFlex="50">
-    Cím: <strong></strong>
+  <div fxFlex="50" *ngFor="let item of user$ | async">
+    Cím: <strong>{{item.address}}</strong>
   </div>
   <div fxFlex="50">
-    Üzemeltetés helyszíne: <strong></strong>
+    Üzemeltetés helyszíne: <strong>{{site}} </strong>
   </div>
 </section>
 <br>
@@ -78,10 +99,10 @@
   <br>
   <section fxLayout="row" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
     <div fxFlex="33" class="border">
-      Teherbírás: <strong></strong>
+      Teherbírás: <strong>{{capacity}}</strong>
     </div>
     <div fxFlex="33" class="border">
-      Gyártó: <strong></strong>
+      Gyártó: <strong>{{manufacturer}}</strong>
     </div>
     <div fxFlex="33" class="border">
       Gyáriszám: <strong>{{gysz}}</strong>
@@ -105,11 +126,11 @@
 <br>
 <section fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap.lt-md="12px">
   <div fxFlex="49.5" class="border">
-    Üzembehelyezés időpontja: <strong></strong>
+    Üzembehelyezés időpontja: <strong>{{dates}}</strong>
   </div>
   <div fxFlex="49.5" class="border">
     Következő időszakos vizsgálat:
-      <strong>Dáum</strong>
+      <strong>{{dateNext}}{{dates | slice: 4:10}}</strong>
 
   </div>
   <div fxFlex="100"></div>
@@ -125,12 +146,19 @@
 <br>
 <hr>
 <br>
-<div> Az elvégzett munka szakszerűségét igazolja:</div>
+<div fxLayout="row wrap" fxLayoutGap="10px"> 
+  <span fxFlex="45">
+    Az elvégzett munka szakszerűségét igazolja: 
+  </span> 
+  <span style="text-align: center;">
+    {{info}} 
+  </span> 
+</div>
 <br><br><br>
 <div style="text-align: center">
   <strong></strong>
-  <div>Emelőgép ügyintéző</div>
+  <div>Üzembehelyező</div>
 </div>
-<p>Dátum: Budapest </p>
+<p>Dátum: Budapest, {{ today | date | slice: 7:12 }} {{ today | date | slice: 0:6 }}. </p>
   </div>
 </article>
