@@ -106,7 +106,7 @@ export class ProductDataComponent implements OnInit, OnDestroy {
                   i: this.i}});
   }
   del(gysz) {
-    alert('Végérvényesen törlődik ez a termék!');
+    confirm('Végérvényesen törlődjön ez a termék?');
     this.productService.delProduct(gysz);
   }
   ngOnDestroy(): void {

@@ -3,8 +3,6 @@ import { Product } from 'src/app/_interface/product';
 import { UserService } from '../user.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips'
 import { map } from 'rxjs/operators';
 import { Capacity } from 'src/app/_interface/capacity';
@@ -21,9 +19,11 @@ import { Productgysz } from 'src/app/_interface/product-gysz';
 
 export class ProductChoiceComponent implements OnInit, OnDestroy {
   @Input() user: string;
+  @Input() products: Product[];
+  
   @Input() group: string;
   @Input() descreption: string;
-  @Input() products: Product[];
+  
   public capacities: any = new Set();
   public types: any = new Set();
   public lengths: any = new Set();
@@ -56,6 +56,7 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
       this.lengths.add(x.length);
       this.manufacturers.add(x.manufacturer);
     });
+    
     this.capacity = [...this.capacities].sort()
     this.type = [...this.types].sort()
     this.length = [...this.lengths].sort()

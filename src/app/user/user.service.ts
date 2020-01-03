@@ -105,10 +105,9 @@ delOperantee(gysz, user) {
     .snapshotChanges()
     .pipe(map(snaps => {
       return snaps.map(snap => {
-        return {
-          ...snap.payload.doc.data()
-        }as Product
-      })
-    }))
+        const data = snap.payload.doc.data() as Product;
+        return data;
+      });
+    }));
   }
 }

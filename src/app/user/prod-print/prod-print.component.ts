@@ -24,6 +24,7 @@ export class ProdPrintComponent implements OnInit {
   manufacturer: string;
   gysz: string;
   user: string;
+  fid: string;
   user$: Observable<User[]>
   siteForm: FormGroup;
   info: string = '';
@@ -31,6 +32,12 @@ export class ProdPrintComponent implements OnInit {
   dates: string;
   dateNext: number;
   public today = new Date();
+  specProd : {
+    id: string,
+    site: string,
+    fid: string,
+    user: string,
+  };
 
 
   constructor(private activeRoute: ActivatedRoute,
@@ -45,6 +52,7 @@ export class ProdPrintComponent implements OnInit {
     this.capacity = this.activeRoute .snapshot.queryParams.capacity;
     this.manufacturer = this.activeRoute .snapshot.queryParams.manufacturer;
     this.gysz = this.activeRoute .snapshot.queryParams.gysz;
+    this.fid = this.activeRoute .snapshot.queryParams.fid;
     this.user = this.activeRoute .snapshot.queryParams.user;
     console.log(this.type);
     this.registerService.getUser(this.user);
@@ -53,8 +61,18 @@ export class ProdPrintComponent implements OnInit {
       name: new FormControl(''),
       info: new FormControl('', Validators.required),
       date: new FormControl(new Date(), [Validators.required])
-  })
+  });
+  this.specProd = {
+    id: this.gysz,
+    site: 'Kiadásra váró',
+    fid: this.fid,
+    user: this.user,
+  };
+    console.log(this.specProd);
+    
 }
+
+  
 
   onSiteAdd(f) {
     console.log(f);
@@ -93,5 +111,6 @@ export class ProdPrintComponent implements OnInit {
       pdf.save(`${this.user}/${this.gysz}.pdf`); // Generated PDF
     });
   }
+
 
 }

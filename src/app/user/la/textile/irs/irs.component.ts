@@ -19,8 +19,10 @@ export class IrsComponent implements OnInit {
 
   group = 'körkötelek';
   descreption = 'körkötél';
-  public productGroup$: Observable<Product[]>;
 
+  public productGroup$: Observable<Product[]>;
+  public product$: Observable<Productgysz[]>;
+  public site$: Observable<UserSite[]>;
 
   products: Product;
   pr: Product[];
@@ -28,11 +30,11 @@ export class IrsComponent implements OnInit {
   user: string;
   gysz: string;
   fid: string;
-  public product$: Observable<Productgysz[]>;
+  
   userName: string;
   panel = false;
   num: number;
-  site$: Observable<UserSite[]>;
+  
   chosenSite = {name: 'Célállomás'};
 
   constructor(private location: Location, private _snackBar: MatSnackBar,
@@ -41,14 +43,14 @@ export class IrsComponent implements OnInit {
               private userService: UserService) {}
 
   ngOnInit() {
+    this.user = this.activeRoute.snapshot.queryParams.user;
 
     this.userService.getProducts(this.group);
     this.productGroup$ = this.userService.products$;
 
-    this.user = this.activeRoute.snapshot.queryParams.user;
-    console.log(this.user);
     this.userService.getOpperantee(this.user);
     this.product$ = this.userService.product$;
+    
     this.userService.getSites(this.user);
     this.site$ = this.userService.sites$;
   }

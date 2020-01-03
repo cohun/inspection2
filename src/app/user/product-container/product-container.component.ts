@@ -24,6 +24,7 @@ export class ProductContainerComponent implements OnInit {
               private router: Router,) { }
 
   ngOnInit() {
+    // specProduct where site === 'Kiadásra váró'
     this.prod = [
       {
         gysz: '1531',
@@ -66,6 +67,7 @@ export class ProductContainerComponent implements OnInit {
         manufacturer: 'Gutman'
       }
     ];
+    // specProduct where site === 'Célállomás'
     this.product = [
       {
         gysz: 'BA 25300',
@@ -101,7 +103,7 @@ export class ProductContainerComponent implements OnInit {
   onOpStart(item) {
     this.router.navigate(['/user/print'],
         {queryParams: {type: item.type, length: item.length, descreption: item.descreption,
-        capacity: item.capacity, manufacturer: item.manufacturer, gysz: item.gysz, user: this.user}});
+        capacity: item.capacity, manufacturer: item.manufacturer, gysz: item.gysz, fid: item.fid , user: this.user}});
   }
 
 }
