@@ -1,15 +1,11 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/_interface/product';
 import { UserService } from '../user.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-import {MatChipInputEvent} from '@angular/material/chips'
 import { map } from 'rxjs/operators';
-import { Capacity } from 'src/app/_interface/capacity';
 import { MatSnackBar } from '@angular/material';
 import { ProductService } from 'src/app/product/product.service';
 import { SpecProdCreation } from 'src/app/_interface/specProd-creation';
-import { Productgysz } from 'src/app/_interface/product-gysz';
 
 @Component({
   selector: 'app-product-choice',
@@ -32,7 +28,7 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
   type: Product[];
   length: Product[];
   manufacturer: Product[];
-  
+
   product: Product;
 
   gysz: string;

@@ -46,6 +46,12 @@
     margin: 1em;
     cursor: pointer;
   }
+  .title {
+      color: #B0BEC5;
+      font-weight: bold;
+      font-size: 20px;
+      padding-bottom: 15px;
+  }
 
   .list {
     border: RGBA(46, 49, 49, .7) solid 1px;

@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Productgysz } from 'src/app/_interface/product-gysz';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { Sit } from 'src/app/_interface/chosenSit';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { UserSite } from 'src/app/_interface/user-site';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-container',
@@ -15,15 +16,21 @@ export class ProductContainerComponent implements OnInit {
   @Input() group: string;
   @Input() descreption: string;
   @Input() products: Productgysz[];
-  @Input() chosenSite: Sit
+  public site$: Observable<UserSite[]>;
+  chosenSite = {name: 'Célállomás'};
+
   prod: Productgysz[];
   product: Productgysz[];
+  
   
 
   constructor(private userService: UserService,
               private router: Router,) { }
 
   ngOnInit() {
+    this.userService.getSites(this.user);
+    this.site$ = this.userService.sites$;
+
     // specProduct where site === 'Kiadásra váró'
     this.prod = [
       {
@@ -104,6 +111,11 @@ export class ProductContainerComponent implements OnInit {
     this.router.navigate(['/user/print'],
         {queryParams: {type: item.type, length: item.length, descreption: item.descreption,
         capacity: item.capacity, manufacturer: item.manufacturer, gysz: item.gysz, fid: item.fid , user: this.user}});
+  }
+
+  onSite(site) {
+    console.log(site);
+    this.chosenSite = site;
   }
 
 }

@@ -4,8 +4,6 @@
 
     <span fxFlex='50' style="background-color: #607D8B"><mat-divider></mat-divider></span>
   </div>
-  Meglévő eszközök kezelése:
-<br>
 
 <div class="list-container">
   <div class="todo-container column-container">
@@ -18,8 +16,9 @@
     <mat-card>
       <mat-card-header>
         <img matCardAvatar src="../../../assets/inspection.png">
-        <mat-card-title>Üzembehelyezésre, vagy leselejtezésre váró termékek:</mat-card-title>
-        <mat-card-subtitle>Jegyzőkönyv készítés termék mögötti ikonokkal</mat-card-subtitle>
+        <mat-card-title matTooltip="Jegyzőkönyv készítés termék mögötti ikonokkal" class="title">
+          Üzembehelyezésre, vagy leselejtezésre váró termékek:
+        </mat-card-title>
       </mat-card-header>
     </mat-card>
       <mat-card cdkDrag *ngFor="let item of products; let i = index">
@@ -49,8 +48,9 @@
     <mat-card>
       <mat-card-header>
         <img matCardAvatar src="../../../assets/maintenance.jpg">
-        <mat-card-title>Kiadható termékek:</mat-card-title>
-        <mat-card-subtitle>Érvényes vizsgálattal rendelkező termékek:</mat-card-subtitle>
+        <mat-card-title matTooltip="Érvényes vizsgálattal rendelkező termékek" class="title">
+          Kiadható termékek:
+        </mat-card-title>
       </mat-card-header>
     </mat-card>
       <mat-card *ngFor="let item of prod" cdkDrag>
@@ -74,8 +74,11 @@
     <mat-card>
       <mat-card-header>
         <img matCardAvatar src="../../../assets/service.jpg">
-        <mat-card-title>Használatba adott termékek:</mat-card-title>
-        <mat-card-subtitle><app-product-site-choice></app-product-site-choice></mat-card-subtitle>
+        <mat-card-title class="title">{{chosenSite.name}} használatában lévő termékek:</mat-card-title>
+        <mat-card-subtitle>
+          <app-product-site-choice *ngIf="site$ | async as s" [sites]="s" (chosenSite)="onSite($event)">
+          </app-product-site-choice>
+        </mat-card-subtitle>
         
       </mat-card-header>
     </mat-card>

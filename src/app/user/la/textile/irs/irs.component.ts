@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/user/user.service';
 import { Productgysz } from 'src/app/_interface/product-gysz';
-import { UserSite } from 'src/app/_interface/user-site';
 
 @Component({
   selector: 'app-irs',
@@ -18,11 +17,9 @@ export class IrsComponent implements OnInit {
   group = 'körkötelek';
   descreption = 'körkötél';
   // .
-  chosenSite = {name: 'Célállomás'};
 
   public productGroup$: Observable<Product[]>;
   public product$: Observable<Productgysz[]>;
-  public site$: Observable<UserSite[]>;
 
   constructor(private location: Location, private activeRoute: ActivatedRoute,
               private userService: UserService) {}
@@ -35,14 +32,6 @@ export class IrsComponent implements OnInit {
 
     this.userService.getOpperantee(this.user);
     this.product$ = this.userService.product$;
-    
-    this.userService.getSites(this.user);
-    this.site$ = this.userService.sites$;
-  }
-
-  onSite(site) {
-    console.log(site);
-    this.chosenSite = site;
   }
 
   onCancel() {
