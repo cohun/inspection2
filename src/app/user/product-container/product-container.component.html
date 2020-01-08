@@ -74,8 +74,9 @@
     <mat-card>
       <mat-card-header>
         <img matCardAvatar src="../../../assets/service.jpg">
-        <mat-card-title>{{chosenSite.name}}</mat-card-title>
-        <mat-card-subtitle>Használatba adott termékek:</mat-card-subtitle>
+        <mat-card-title>Használatba adott termékek:</mat-card-title>
+        <mat-card-subtitle><app-product-site-choice></app-product-site-choice></mat-card-subtitle>
+        
       </mat-card-header>
     </mat-card>
       <mat-card cdkDrag *ngFor="let item of product">

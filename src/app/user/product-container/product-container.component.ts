@@ -18,7 +18,7 @@ export class ProductContainerComponent implements OnInit {
   @Input() chosenSite: Sit
   prod: Productgysz[];
   product: Productgysz[];
-
+  
 
   constructor(private userService: UserService,
               private router: Router,) { }

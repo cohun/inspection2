@@ -32,7 +32,9 @@ export class ProductChoiceComponent implements OnInit, OnDestroy {
   type: Product[];
   length: Product[];
   manufacturer: Product[];
+  
   product: Product;
+
   gysz: string;
   tooltipposition = 'right';
   empty = '';

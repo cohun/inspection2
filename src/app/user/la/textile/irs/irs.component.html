@@ -6,7 +6,10 @@
 <app-product-choice *ngIf="productGroup$ | async as p" [products]="p"
                       [user]="user" [group]="group" [descreption]="descreption">
 </app-product-choice>
-<app-product-site-choice *ngIf="site$ | async as s" [sites]="s" (chosenSite)="onSite($event)"></app-product-site-choice>
+
+<app-product-site-choice *ngIf="site$ | async as s" [sites]="s" (chosenSite)="onSite($event)">
+  
+</app-product-site-choice>
 
 <app-product-container *ngIf="product$ | async as p" [products]="p"
                       [user]="user" [group]="group" [descreption]="descreption" [chosenSite]="chosenSite">
