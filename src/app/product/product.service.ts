@@ -31,7 +31,7 @@ export class ProductService {
     .pipe(map(snaps => {
       return snaps.map(snap => {
         return {
-          ...snap.payload.doc.data()
+          ...snap.payload.doc.data() as object
         }as RecordCreation;
       });
      }));
@@ -42,7 +42,7 @@ export class ProductService {
     .pipe(map(snaps => {
       return snaps.map(snap => {
         return {
-          ...snap.payload.doc.data()
+          ...snap.payload.doc.data() as object
         }as RecordCreation;
       });
      }));
@@ -81,7 +81,7 @@ export class ProductService {
       return snaps.map(snap => {
         return {
           fid: snap.payload.doc.id,
-          ...snap.payload.doc.data()
+          ...snap.payload.doc.data() as object
         }as ProductFid;
       });
      }));
@@ -128,7 +128,7 @@ export class ProductService {
     .pipe(map(snaps => {
       return snaps.map(snap => {
         return {
-          ...snap.payload.doc.data()
+          ...snap.payload.doc.data() as object
         }as SpecProduct;
       });
      }));
@@ -140,7 +140,7 @@ export class ProductService {
     .pipe(map(snaps => {
       return snaps.map(snap => {
         return {
-          ...snap.payload.doc.data()
+          ...snap.payload.doc.data() as object
         }as Product;
     });
   }));
@@ -157,7 +157,7 @@ certiAct(id) {
   .pipe(map(snaps => {
     return snaps.map(snap => {
       return {
-        ...snap.payload.doc.data()
+        ...snap.payload.doc.data() as object
       }as SpecProduct;
     });
    }));
@@ -170,7 +170,7 @@ getSpecProduct(gysz) {
     return snaps.map(snap => {
       return {
         fid: snap.payload.doc.id,
-        ...snap.payload.doc.data()
+        ...snap.payload.doc.data() as object
       }as SpecProduct;
     });
    }));
@@ -181,7 +181,7 @@ getProduct(fid) {
     .pipe(map(snaps => {
       return snaps.map(snap => {
         return {
-          ...snap.payload.doc.data()
+          ...snap.payload.doc.data() as object
         }as Product;
     });
   }));
@@ -192,7 +192,7 @@ getProduct(fid) {
     .pipe(map(snaps => {
       return snaps.map(snap => {
         return {
-          ...snap.payload.doc.data()
+          ...snap.payload.doc.data() as object
         }as User;
     });
   }));
@@ -205,7 +205,7 @@ getProduct(fid) {
     return snaps.map(snap => {
       return {
         jkv: snap.payload.doc.id,
-        ...snap.payload.doc.data()
+        ...snap.payload.doc.data() as object
       }as RemarkCert;
     });
    }));

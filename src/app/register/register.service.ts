@@ -77,7 +77,7 @@ export class RegisterService {
     .pipe(map(snaps => {
       return snaps.map(snap => {
         return {
-          ...snap.payload.doc.data()
+          ...snap.payload.doc.data() as object
         }as User;
       });
      }));
@@ -92,7 +92,7 @@ export class RegisterService {
       return snaps.map(snap => {
         return {
           fid: snap.payload.doc.id,
-          ...snap.payload.doc.data()
+          ...snap.payload.doc.data() as object
         }as Record;
       });
      }));
@@ -103,7 +103,7 @@ export class RegisterService {
    .pipe(map(data => {
      return data.map(e => {
        return {
-         ...e.payload.doc.data()
+         ...e.payload.doc.data() as object
        } as User;
      });
    }));
@@ -115,7 +115,7 @@ export class RegisterService {
         return snaps.map(snap => {
           return {
             fid: snap.payload.doc.id,
-            ...snap.payload.doc.data()
+            ...snap.payload.doc.data() as object
           }as Record;
         });
        }));

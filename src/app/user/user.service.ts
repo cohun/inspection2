@@ -27,7 +27,7 @@ export class UserService {
     return snaps.map(snap => {
       return {
         id: snap.payload.doc.id,
-        ...snap.payload.doc.data()
+        ...snap.payload.doc.data() as object
       }as UserSite;
     });
     }));
@@ -66,7 +66,7 @@ addOperantee(user: string, gysz: string, site: string, fid: string, prod: Produc
     map(snaps => {
       return snaps.map(snap => {
         return {
-      ...snap.payload.doc.data()}as Productgysz;
+      ...snap.payload.doc.data() as object}as Productgysz;
     })
   })
   )
@@ -77,7 +77,8 @@ getOpperantee(user: string) {
     map(snaps => {
       return snaps.map(snap => {
         return {
-      ...snap.payload.doc.data()}as Productgysz;
+      ...snap.payload.doc.data() as object
+    }as Productgysz;
     })
   })
   )
