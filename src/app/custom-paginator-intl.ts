@@ -1,5 +1,7 @@
 import { MatPaginatorIntl } from '@angular/material';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class CustomPaginatorIntl extends MatPaginatorIntl{
     itemsPerPageLabel = 'oldalankénti sorok száma';
     nextPageLabel = 'következő oldal';
