@@ -3,7 +3,7 @@ import { Product } from 'src/app/_interface/product';
 import { UserService } from '../user.service';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductService } from 'src/app/product/product.service';
 import { SpecProdCreation } from 'src/app/_interface/specProd-creation';
 
